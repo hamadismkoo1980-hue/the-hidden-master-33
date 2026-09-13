@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -6,9 +7,7 @@
 <title>السيد الخفي 33</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html,body{
   margin:0;
@@ -17,324 +16,81 @@ html,body{
   overflow:hidden;
   background:#020305;
   color:#fff;
-  font-family:Segoe UI,Tahoma,Arial,sans-serif;
-}
-
-body{
-  user-select:none;
+  font-family:Segoe UI,Tahoma,Arial,sans-serif
 }
 
 #game{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(
-      circle at 50% 45%,
-      #17120a 0,
-      #060609 30%,
-      #020305 72%
-    );
+    radial-gradient(circle at 50% 45%,#16120b 0,#06070a 32%,#020305 75%)
 }
 
 canvas{
   display:block;
   width:100%;
-  height:100%;
+  height:100%
 }
 
 .ui{
   position:fixed;
   inset:0;
-  pointer-events:none;
+  pointer-events:none
 }
 
 .topbar{
   position:absolute;
-  top:16px;
-  right:16px;
-  left:16px;
+  top:15px;
+  left:15px;
+  right:15px;
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:10px;
-  z-index:10;
+  z-index:10
 }
 
 .title{
   color:#e8c76a;
-  font-size:25px;
+  font-size:24px;
   font-weight:900;
-  text-shadow:0 0 18px rgba(232,199,106,.35);
+  text-shadow:0 0 18px rgba(232,199,106,.35)
 }
 
 .top-actions{
   display:flex;
-  gap:8px;
   align-items:center;
+  gap:8px
 }
 
 .stage{
   padding:8px 13px;
-  border:1px solid rgba(232,199,106,.35);
-  border-radius:12px;
+  border:1px solid rgba(232,199,106,.4);
+  border-radius:11px;
   background:rgba(0,0,0,.58);
-  color:#fff;
   font-weight:800;
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(7px)
 }
 
-.mini-btn{
+.mini{
   border:1px solid rgba(255,255,255,.14);
   border-radius:10px;
-  padding:8px 11px;
-  background:rgba(0,0,0,.58);
-  color:#cdd2db;
-  cursor:pointer;
-  pointer-events:auto;
-  font-size:11px;
-}
-
-.mini-btn:hover{
-  border-color:#e8c76a;
-  color:#fff;
-}
-
-.center-panel{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:min(800px,92%);
-  padding:32px;
-  text-align:center;
-  border:1px solid rgba(232,199,106,.28);
-  border-radius:24px;
-  background:rgba(3,4,8,.87);
-  box-shadow:
-    0 25px 100px rgba(0,0,0,.82),
-    inset 0 0 40px rgba(232,199,106,.03);
-  backdrop-filter:blur(14px);
-  pointer-events:auto;
-}
-
-.center-panel h1{
-  margin:0 0 14px;
-  color:#e8c76a;
-  font-size:clamp(40px,7vw,74px);
-  line-height:1;
-}
-
-.center-panel h2{
-  margin:0 0 16px;
-  color:#e8c76a;
-  font-size:30px;
-}
-
-.center-panel p{
-  margin:10px 0;
-  color:#d4d6dc;
-  line-height:1.95;
-  font-size:17px;
-}
-
-.small{
-  color:#777d89 !important;
-  font-size:12px !important;
-}
-
-.btn{
-  border:1px solid #e8c76a;
-  border-radius:14px;
-  padding:13px 25px;
-  background:linear-gradient(135deg,#352707,#bf9439);
-  color:#fff;
-  font-size:16px;
-  font-weight:900;
-  cursor:pointer;
-  pointer-events:auto;
-  transition:.22s;
-  box-shadow:0 0 25px rgba(232,199,106,.12);
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 0 34px rgba(232,199,106,.24);
-}
-
-.btn.secondary{
-  background:rgba(8,10,16,.92);
-  border-color:#4a5260;
-}
-
-.hidden{
-  display:none !important;
-}
-
-.chapter{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:min(830px,92%);
-  text-align:center;
-  padding:28px;
-  border-radius:22px;
-  background:rgba(2,3,7,.80);
-  border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(12px);
-  pointer-events:auto;
-}
-
-.chapter .number{
-  color:#737b8d;
-  font-size:12px;
-  margin-bottom:8px;
-  letter-spacing:2px;
-}
-
-.chapter h2{
-  margin:0 0 14px;
-  color:#e8c76a;
-  font-size:clamp(27px,5vw,46px);
-}
-
-.chapter p{
-  margin:0 auto 22px;
-  max-width:730px;
-  color:#dfe2e8;
-  line-height:1.95;
-}
-
-.decision{
-  position:absolute;
-  left:50%;
-  bottom:18px;
-  transform:translateX(-50%);
-  width:min(980px,94%);
-  pointer-events:auto;
-  z-index:8;
-}
-
-.question-box{
-  margin-bottom:10px;
-  padding:15px 18px;
-  border-radius:17px;
-  background:rgba(0,0,0,.77);
-  border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(10px);
-  text-align:center;
-}
-
-.question-box .tag{
-  display:block;
-  margin-bottom:7px;
-  color:#e8c76a;
-  font-size:13px;
-  font-weight:900;
-}
-
-.question-box .question{
-  color:#f2f3f5;
-  line-height:1.85;
-}
-
-.options{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-}
-
-.option{
-  width:100%;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:14px;
-  padding:14px;
-  background:rgba(7,8,13,.93);
-  color:#fff;
-  text-align:right;
-  cursor:pointer;
-  pointer-events:auto;
-  font-size:14px;
-  line-height:1.55;
-  transition:.2s;
-}
-
-.option:hover{
-  transform:translateY(-2px);
-  border-color:#e8c76a;
-  background:rgba(20,20,27,.96);
-}
-
-.result{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:min(740px,92%);
-  padding:29px;
-  border-radius:22px;
-  background:rgba(0,0,0,.89);
-  border:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(14px);
-  text-align:center;
-  box-shadow:0 25px 90px rgba(0,0,0,.9);
-  pointer-events:auto;
-  z-index:12;
-}
-
-.result h2{
-  margin:0 0 12px;
-  color:#e8c76a;
-}
-
-.result p{
-  margin:0 0 20px;
-  color:#d6d9df;
-  line-height:1.9;
-}
-
-.prediction{
-  margin:16px auto;
-  max-width:650px;
-  padding:17px;
-  border-radius:16px;
-  border:1px solid rgba(232,199,106,.2);
-  background:rgba(232,199,106,.04);
-}
-
-.prediction-title{
-  color:#e8c76a;
-  font-weight:900;
-  margin-bottom:10px;
-}
-
-.stats{
-  position:absolute;
-  left:12px;
-  bottom:12px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  z-index:9;
-}
-
-.stat{
   padding:7px 10px;
-  border-radius:10px;
-  background:rgba(0,0,0,.63);
-  border:1px solid rgba(255,255,255,.1);
-  color:#cfd3db;
-  font-size:11px;
-  backdrop-filter:blur(8px);
+  background:rgba(0,0,0,.58);
+  color:#ccd1da;
+  cursor:pointer;
+  pointer-events:auto;
+  font-size:11px
 }
 
-.stat b{
+.mini:hover{
   color:#fff;
+  border-color:#e8c76a
 }
 
 .system{
   position:absolute;
-  top:69px;
+  top:64px;
   left:50%;
   transform:translateX(-50%);
   width:min(760px,90%);
@@ -342,7 +98,231 @@ canvas{
   color:#aeb4bf;
   font-size:11px;
   line-height:1.7;
-  opacity:.82;
+  opacity:.85
+}
+
+.panel{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:min(820px,92%);
+  padding:30px;
+  text-align:center;
+  background:rgba(3,4,8,.88);
+  border:1px solid rgba(232,199,106,.25);
+  border-radius:23px;
+  box-shadow:0 25px 100px rgba(0,0,0,.85);
+  backdrop-filter:blur(14px);
+  pointer-events:auto;
+  z-index:8
+}
+
+.panel h1{
+  margin:0 0 14px;
+  color:#e8c76a;
+  font-size:clamp(40px,7vw,72px)
+}
+
+.panel h2{
+  margin:0 0 12px;
+  color:#e8c76a;
+  font-size:clamp(28px,5vw,46px)
+}
+
+.panel h3{
+  color:#e8c76a;
+  margin:0 0 10px
+}
+
+.panel p{
+  color:#d5d8de;
+  line-height:1.95;
+  font-size:17px
+}
+
+.small{
+  color:#777d88!important;
+  font-size:12px!important
+}
+
+.btn{
+  border:1px solid #e8c76a;
+  border-radius:13px;
+  padding:13px 25px;
+  background:linear-gradient(135deg,#362908,#c19439);
+  color:#fff;
+  font-weight:900;
+  font-size:16px;
+  cursor:pointer;
+  pointer-events:auto;
+  transition:.2s
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 30px rgba(232,199,106,.23)
+}
+
+.btn.dark{
+  background:rgba(9,10,15,.92);
+  border-color:#505764
+}
+
+.hidden{
+  display:none!important
+}
+
+.chapter-tag{
+  color:#747b88;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:7px
+}
+
+.chapter-text{
+  max-width:740px;
+  margin:0 auto 21px
+}
+
+.decision{
+  position:absolute;
+  left:50%;
+  bottom:17px;
+  transform:translateX(-50%);
+  width:min(980px,95%);
+  pointer-events:auto;
+  z-index:7
+}
+
+.question-box{
+  padding:14px 18px;
+  margin-bottom:9px;
+  background:rgba(0,0,0,.77);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+  text-align:center;
+  backdrop-filter:blur(10px)
+}
+
+.question-tag{
+  display:block;
+  color:#e8c76a;
+  font-weight:900;
+  font-size:13px;
+  margin-bottom:6px
+}
+
+.question{
+  color:#f2f3f6;
+  line-height:1.8
+}
+
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px
+}
+
+.option{
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:13px;
+  padding:14px;
+  background:rgba(7,8,13,.94);
+  color:#fff;
+  cursor:pointer;
+  text-align:right;
+  font-size:14px;
+  line-height:1.55;
+  pointer-events:auto;
+  transition:.2s
+}
+
+.option:hover{
+  border-color:#e8c76a;
+  transform:translateY(-2px)
+}
+
+.result{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:min(750px,92%);
+  padding:27px;
+  text-align:center;
+  background:rgba(0,0,0,.9);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:21px;
+  box-shadow:0 25px 90px rgba(0,0,0,.9);
+  backdrop-filter:blur(14px);
+  pointer-events:auto;
+  z-index:12
+}
+
+.result h2{
+  color:#e8c76a;
+  margin:0 0 12px
+}
+
+.result p{
+  color:#d5d8df;
+  line-height:1.9;
+  margin:0 0 18px
+}
+
+.future-box{
+  margin:14px auto 19px;
+  padding:15px;
+  border-radius:14px;
+  border:1px solid rgba(232,199,106,.2);
+  background:rgba(232,199,106,.035);
+  color:#cfd4dc;
+  line-height:1.8
+}
+
+.future-box b{
+  color:#e8c76a
+}
+
+.monitor-box{
+  margin:16px auto;
+  max-width:680px;
+  padding:16px;
+  border-radius:15px;
+  border:1px solid rgba(92,143,255,.22);
+  background:rgba(40,70,140,.06);
+  color:#d8deec;
+  line-height:1.9
+}
+
+.monitor-box .name{
+  color:#8eb4ff;
+  font-weight:900
+}
+
+.stats{
+  position:absolute;
+  left:10px;
+  bottom:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  z-index:9
+}
+
+.stat{
+  padding:7px 10px;
+  border-radius:10px;
+  background:rgba(0,0,0,.64);
+  border:1px solid rgba(255,255,255,.1);
+  color:#cbd0d8;
+  font-size:11px;
+  backdrop-filter:blur(8px)
+}
+
+.stat b{
+  color:#fff
 }
 
 .flash{
@@ -351,14 +331,14 @@ canvas{
   background:#fff;
   opacity:0;
   pointer-events:none;
-  z-index:30;
+  z-index:30
 }
 
-.screen-shake{
-  animation:screenShake .52s linear;
+.shake{
+  animation:shake .52s linear
 }
 
-@keyframes screenShake{
+@keyframes shake{
   0%{transform:translate(0,0)}
   15%{transform:translate(-6px,3px)}
   30%{transform:translate(6px,-4px)}
@@ -369,48 +349,12 @@ canvas{
 }
 
 @media(max-width:720px){
-
-  .title{
-    font-size:18px;
-  }
-
-  .stage{
-    font-size:11px;
-    padding:7px 9px;
-  }
-
-  .topbar{
-    top:10px;
-    left:10px;
-    right:10px;
-  }
-
-  .options{
-    grid-template-columns:1fr;
-  }
-
-  .decision{
-    bottom:9px;
-  }
-
-  .center-panel,
-  .chapter,
-  .result{
-    padding:21px;
-  }
-
-  .system{
-    top:60px;
-  }
-
-  .stats{
-    left:7px;
-    bottom:6px;
-  }
-
-  .mini-btn{
-    display:none;
-  }
+  .title{font-size:18px}
+  .mini{display:none}
+  .options{grid-template-columns:1fr}
+  .decision{bottom:8px}
+  .panel,.result{padding:21px}
+  .stats{left:6px;bottom:5px}
 }
 </style>
 </head>
@@ -422,16 +366,13 @@ canvas{
 <div class="ui">
 
   <div class="topbar">
-
-    <div class="title">
-      السيد الخفي 33
-    </div>
+    <div class="title">السيد الخفي 33</div>
 
     <div class="top-actions">
 
       <button
-        class="mini-btn"
-        id="resetButton"
+        class="mini"
+        id="resetBtn"
         type="button">
         إعادة من البداية
       </button>
@@ -443,8 +384,8 @@ canvas{
       </div>
 
     </div>
-
   </div>
+
 
   <div
     class="system"
@@ -453,33 +394,29 @@ canvas{
   </div>
 
 
-  <!-- البداية -->
-
   <section
-    class="center-panel"
+    class="panel"
     id="startPanel">
 
-    <h1>
-      السيد الخفي 33
-    </h1>
+    <h1>السيد الخفي 33</h1>
 
     <p>
-      33 درجة تفصل بينك وبين القرار الأخير.
+      أمامك 33 درجة.
+      وفي كل درجة سيتغير العالم وفقاً لقراراتك.
     </p>
 
     <p>
-      لا تبحث عن إجابة مثالية.
-      ابحث عن القرار الذي تستطيع تحمّل عواقبه.
+      بعض النتائج ستظهر فوراً...
+      وبعضها لن تعرف مصدره إلا بعد عدة درجات.
     </p>
 
     <p class="small">
-      الأحداث المستقبلية داخل اللعبة هي محاكاة روائية،
-      وليست تنبؤات مؤكدة أو معلومات سرية حقيقية.
+      العالم والأحداث والتنبؤات داخل اللعبة محاكاة روائية تفاعلية.
     </p>
 
     <button
       class="btn"
-      id="startButton"
+      id="startBtn"
       type="button">
       دخول الملف
     </button>
@@ -487,16 +424,14 @@ canvas{
   </section>
 
 
-  <!-- مقدمة المرحلة -->
-
   <section
-    class="chapter hidden"
+    class="panel hidden"
     id="chapterPanel">
 
     <div
-      class="number"
-      id="chapterNumber">
-      الملف 01
+      class="chapter-tag"
+      id="chapterTag">
+      الملف
     </div>
 
     <h2
@@ -505,21 +440,34 @@ canvas{
     </h2>
 
     <p
+      class="chapter-text"
       id="chapterIntro">
       ...
     </p>
 
+    <div
+      class="monitor-box hidden"
+      id="monitorBox">
+
+      <div class="name">
+        المراقب
+      </div>
+
+      <div id="monitorText">
+        ...
+      </div>
+
+    </div>
+
     <button
       class="btn"
-      id="chapterButton"
+      id="openDecisionBtn"
       type="button">
       افتح القرار
     </button>
 
   </section>
 
-
-  <!-- القرار -->
 
   <section
     class="decision hidden"
@@ -528,8 +476,8 @@ canvas{
     <div class="question-box">
 
       <span
-        class="tag"
-        id="decisionTag">
+        class="question-tag"
+        id="questionTag">
         القرار
       </span>
 
@@ -549,8 +497,6 @@ canvas{
   </section>
 
 
-  <!-- النتيجة -->
-
   <section
     class="result hidden"
     id="resultPanel">
@@ -564,14 +510,24 @@ canvas{
     </p>
 
     <div
-      class="prediction hidden"
-      id="predictionBox">
+      class="future-box hidden"
+      id="futureBox">
 
-      <div class="prediction-title">
-        مؤشر المستقبل
+      <b>سجل المستقبل</b>
+
+      <div id="futureText"></div>
+
+    </div>
+
+    <div
+      class="monitor-box hidden"
+      id="resultMonitorBox">
+
+      <div class="name">
+        المراقب
       </div>
 
-      <div id="predictionText">
+      <div id="resultMonitorText">
         ...
       </div>
 
@@ -579,7 +535,7 @@ canvas{
 
     <button
       class="btn"
-      id="continueButton"
+      id="continueBtn"
       type="button">
       متابعة
     </button>
@@ -587,33 +543,31 @@ canvas{
   </section>
 
 
-  <!-- المؤشرات -->
-
   <div class="stats">
 
     <div class="stat">
       النفوذ:
-      <b id="influenceValue">0</b>
+      <b id="influence">0</b>
     </div>
 
     <div class="stat">
       السلام:
-      <b id="peaceValue">50</b>
+      <b id="peace">50</b>
     </div>
 
     <div class="stat">
       الفوضى:
-      <b id="chaosValue">0</b>
+      <b id="chaos">0</b>
     </div>
 
     <div class="stat">
       التوازن:
-      <b id="balanceValue">50</b>
+      <b id="balance">50</b>
     </div>
 
     <div class="stat">
       الثقة:
-      <b id="trustValue">50</b>
+      <b id="trust">50</b>
     </div>
 
   </div>
@@ -628,7 +582,7 @@ canvas{
 
 <script>
 const SAVE_KEY =
-  "hidden_master_33_v2";
+  "hidden_master_33_v4";
 
 
 const state = {
@@ -647,16 +601,18 @@ const state = {
 
   history:[],
 
-  lastChoice:null,
+  predictions:[],
 
-  predictions:[]
+  observerSeen:false,
+
+  observerLevel:0
 
 };
 
 
-/* ================================
-   العناصر
-================================ */
+/* =========================
+   عناصر الواجهة
+========================= */
 
 const game =
   document.getElementById("game");
@@ -673,20 +629,20 @@ const decisionPanel =
 const resultPanel =
   document.getElementById("resultPanel");
 
-const startButton =
-  document.getElementById("startButton");
+const startBtn =
+  document.getElementById("startBtn");
 
-const chapterButton =
-  document.getElementById("chapterButton");
+const openDecisionBtn =
+  document.getElementById("openDecisionBtn");
 
-const continueButton =
-  document.getElementById("continueButton");
+const continueBtn =
+  document.getElementById("continueBtn");
 
-const resetButton =
-  document.getElementById("resetButton");
+const resetBtn =
+  document.getElementById("resetBtn");
 
-const chapterNumber =
-  document.getElementById("chapterNumber");
+const chapterTag =
+  document.getElementById("chapterTag");
 
 const chapterTitle =
   document.getElementById("chapterTitle");
@@ -694,8 +650,14 @@ const chapterTitle =
 const chapterIntro =
   document.getElementById("chapterIntro");
 
-const decisionTag =
-  document.getElementById("decisionTag");
+const monitorBox =
+  document.getElementById("monitorBox");
+
+const monitorText =
+  document.getElementById("monitorText");
+
+const questionTag =
+  document.getElementById("questionTag");
 
 const questionText =
   document.getElementById("questionText");
@@ -709,11 +671,17 @@ const resultTitle =
 const resultText =
   document.getElementById("resultText");
 
-const predictionBox =
-  document.getElementById("predictionBox");
+const futureBox =
+  document.getElementById("futureBox");
 
-const predictionText =
-  document.getElementById("predictionText");
+const futureText =
+  document.getElementById("futureText");
+
+const resultMonitorBox =
+  document.getElementById("resultMonitorBox");
+
+const resultMonitorText =
+  document.getElementById("resultMonitorText");
 
 const stageCounter =
   document.getElementById("stageCounter");
@@ -721,28 +689,28 @@ const stageCounter =
 const systemText =
   document.getElementById("systemText");
 
-const influenceValue =
-  document.getElementById("influenceValue");
+const influenceEl =
+  document.getElementById("influence");
 
-const peaceValue =
-  document.getElementById("peaceValue");
+const peaceEl =
+  document.getElementById("peace");
 
-const chaosValue =
-  document.getElementById("chaosValue");
+const chaosEl =
+  document.getElementById("chaos");
 
-const balanceValue =
-  document.getElementById("balanceValue");
+const balanceEl =
+  document.getElementById("balance");
 
-const trustValue =
-  document.getElementById("trustValue");
+const trustEl =
+  document.getElementById("trust");
 
 const flash =
   document.getElementById("flash");
 
 
-/* ================================
-   الأدوات
-================================ */
+/* =========================
+   الحالة
+========================= */
 
 function clamp(
   value,
@@ -783,10 +751,10 @@ function loadGame(){
       JSON.parse(raw);
 
     state.stage =
-      Number(saved.stage) || 1;
+      Number(saved.stage)||1;
 
     state.influence =
-      Number(saved.influence) || 0;
+      Number(saved.influence)||0;
 
     state.peace =
       Number(saved.peace) || 50;
@@ -805,13 +773,16 @@ function loadGame(){
         ? saved.history
         : [];
 
-    state.lastChoice =
-      saved.lastChoice || null;
-
     state.predictions =
       Array.isArray(saved.predictions)
         ? saved.predictions
         : [];
+
+    state.observerSeen =
+      Boolean(saved.observerSeen);
+
+    state.observerLevel =
+      Number(saved.observerLevel)||0;
 
   }catch(error){
 
@@ -831,24 +802,24 @@ function updateUI(){
     String(state.stage).padStart(2,"0") +
     " / 33";
 
-  influenceValue.textContent =
+  influenceEl.textContent =
     state.influence;
 
-  peaceValue.textContent =
+  peaceEl.textContent =
     state.peace;
 
-  chaosValue.textContent =
+  chaosEl.textContent =
     state.chaos;
 
-  balanceValue.textContent =
+  balanceEl.textContent =
     state.balance;
 
-  trustValue.textContent =
+  trustEl.textContent =
     state.trust;
 }
 
 
-function hideAllPanels(){
+function hidePanels(){
 
   startPanel.classList.add(
     "hidden"
@@ -870,20 +841,16 @@ function hideAllPanels(){
 
 function flashScreen(){
 
-  flash.style.transition =
-    "none";
-
-  flash.style.opacity =
-    ".2";
+  flash.style.transition="none";
+  flash.style.opacity=".18";
 
   setTimeout(
     function(){
 
-      flash.style.transition =
-        "opacity .75s ease";
+      flash.style.transition=
+        "opacity .8s ease";
 
-      flash.style.opacity =
-        "0";
+      flash.style.opacity="0";
 
     },
     70
@@ -894,20 +861,20 @@ function flashScreen(){
 function shakeScreen(){
 
   document.body.classList.remove(
-    "screen-shake"
+    "shake"
   );
 
   void document.body.offsetWidth;
 
   document.body.classList.add(
-    "screen-shake"
+    "shake"
   );
 
   setTimeout(
     function(){
 
       document.body.classList.remove(
-        "screen-shake"
+        "shake"
       );
 
     },
@@ -916,775 +883,461 @@ function shakeScreen(){
 }
 
 
-/* ================================
-   المراحل 01 - 10
-================================ */
+/* =========================
+   حساب المسار السابق
+========================= */
+
+function dominantPath(){
+
+  if(
+    state.chaos >=
+    Math.max(
+      state.peace,
+      state.balance,
+      state.trust
+    )
+  ){
+    return "chaos";
+  }
+
+  if(
+    state.influence >=
+    55 &&
+    state.influence >
+    state.balance
+  ){
+    return "power";
+  }
+
+  if(
+    state.peace >=
+    state.balance
+  ){
+    return "peace";
+  }
+
+  return "balance";
+}
+
+
+function predictionResult(){
+
+  if(
+    state.predictions.length===0
+  ){
+    return "none";
+  }
+
+  const prediction =
+    state.predictions[
+      state.predictions.length-1
+    ].prediction;
+
+  if(
+    prediction==="forecast_peace" &&
+    state.peace>=
+    Math.max(
+      state.chaos,
+      state.influence/2
+    )
+  ){
+
+    return "confirmed";
+  }
+
+  if(
+    prediction==="forecast_conflict" &&
+    state.chaos>=
+    state.peace
+  ){
+
+    return "confirmed";
+  }
+
+  if(
+    prediction==="forecast_tech" &&
+    state.history.some(
+      item =>
+        item.choice==="autonomy" ||
+        item.choice==="assist"
+    )
+  ){
+
+    return "confirmed";
+  }
+
+  if(
+    prediction==="forecast_unknown"
+  ){
+
+    return "open";
+  }
+
+  return "diverged";
+}
+
+
+/* =========================
+   المراحل 11 - 15
+========================= */
 
 const stages = {
 
-
-  1:{
-
-    number:"الملف 01",
-
-    title:"غرفة القرار العالمي",
-
-    intro:
-      "لأول مرة تدخل إلى مركز القرار. أزمة دولية تتسع بسرعة، والأسواق مرتبكة، والدول تنتظر إشارتك. لا أحد يعرف ماذا ستختار.",
-
-    tag:"الأزمة الأولى",
-
-    question:
-      "أنت صاحب القرار. أمامك أزمة دولية تهدد الاستقرار. ما المبدأ الذي ستضعه أولاً؟",
-
-    options:[
-
-      {
-        id:"peace",
-        text:"🕊️ أفتح باب التفاوض وأعطي السلام الأولوية.",
-        title:"قرار السلام",
-        result:
-          "اخترت أن تمنح الدبلوماسية فرصة. التوتر لم يختفِ، لكن العالم التقط أنفاسه.",
-        influence:8,
-        peace:12,
-        chaos:-3,
-        balance:5,
-        trust:8
-      },
-
-      {
-        id:"power",
-        text:"⚔️ أستخدم القوة لفرض استقرار سريع.",
-        title:"قرار القوة",
-        result:
-          "زاد نفوذك بسرعة. بعض الخصوم تراجعوا، لكن الخوف بدأ يدخل إلى المعادلة.",
-        influence:13,
-        peace:-8,
-        chaos:9,
-        balance:-2,
-        trust:-4
-      },
-
-      {
-        id:"balance",
-        text:"⚖️ أحافظ على توازن القوى ولا أنحاز بالكامل.",
-        title:"قرار التوازن",
-        result:
-          "اخترت أصعب الطرق. لم تربح حب الجميع، لكنك منعت أي طرف من السيطرة الكاملة.",
-        influence:10,
-        peace:4,
-        chaos:2,
-        balance:12,
-        trust:5
-      },
-
-      {
-        id:"chaos",
-        text:"🔥 أستغل الفوضى لإعادة تشكيل النظام.",
-        title:"قرار الفوضى",
-        result:
-          "القرار منحك نفوذاً غير متوقع. لكن شيئاً في العالم بدأ ينكسر.",
-        influence:18,
-        peace:-15,
-        chaos:24,
-        balance:-12,
-        trust:-10
-      }
-
-    ]
-
-  },
-
-
-  2:{
-
-    number:"الملف 02",
-
-    title:"الليلة التي انطفأت فيها المدن",
-
-    intro:
-      "تمر شهور. أزمة طاقة ضخمة تضرب عدة مناطق. الكهرباء تتقطع، الملايين ينتظرون قرارك، وكل حل يحمل ثمناً سياسياً واقتصادياً.",
-
-    tag:"أزمة الطاقة",
-
-    question:
-      "لديك موارد محدودة. كيف ستتعامل مع أزمة الطاقة؟",
-
-    options:[
-
-      {
-        id:"ration",
-        text:"🌿 أفرض التقنين مؤقتاً وأحمي الخدمات الأساسية.",
-        title:"قرار التقنين",
-        result:
-          "المدن خفت أضواؤها، لكن المستشفيات والمياه والخدمات الأساسية استمرت في العمل.",
-        influence:7,
-        peace:10,
-        chaos:-5,
-        balance:9,
-        trust:10
-      },
-
-      {
-        id:"market",
-        text:"💰 أترك السوق يحدد الأولويات مهما كان الثمن.",
-        title:"قرار السوق",
-        result:
-          "تحسن تدفق الموارد في بعض الأماكن، لكن الفئات الأضعف دفعت ثمناً ثقيلاً.",
-        influence:11,
-        peace:-2,
-        chaos:8,
-        balance:3,
-        trust:-2
-      },
-
-      {
-        id:"alliance",
-        text:"🤝 أعقد تحالفاً دولياً لتقاسم الموارد.",
-        title:"قرار التحالف",
-        result:
-          "استغرق القرار وقتاً، لكنه خلق شبكة جديدة من المصالح المشتركة.",
-        influence:12,
-        peace:8,
-        chaos:-2,
-        balance:14,
-        trust:9
-      },
-
-      {
-        id:"shock",
-        text:"⚡ أستخدم قراراً صادماً لإجبار الجميع على إعادة البناء.",
-        title:"قرار الصدمة",
-        result:
-          "انخفض استهلاك الموارد بشدة، لكن الخوف دخل إلى الحياة اليومية.",
-        influence:20,
-        peace:-17,
-        chaos:22,
-        balance:-9,
-        trust:-12
-      }
-
-    ]
-
-  },
-
-
-  3:{
-
-    number:"الملف 03",
-
-    title:"الماء الأخير",
-
-    intro:
-      "تدخل المرحلة الثالثة فتجد خريطة عالمية تتغير أمام عينيك. أزمة مياه تهدد مدناً ودولاً، والممرات المائية أصبحت أهم من الحدود.",
-
-    tag:"أزمة المياه",
-
-    question:
-      "أصبح أمامك مورد واحد يكفي الجميع بصعوبة. ما القرار الذي ستتخذه؟",
-
-    options:[
-
-      {
-        id:"share",
-        text:"💧 أفرض اتفاقاً دولياً لتقاسم المياه.",
-        title:"اتفاق المياه",
-        result:
-          "فتحت الممرات المائية من جديد. لم تختفِ الخلافات، لكن ملايين البشر حصلوا على فرصة.",
-        influence:10,
-        peace:15,
-        chaos:-8,
-        balance:10,
-        trust:12
-      },
-
-      {
-        id:"control",
-        text:"🏛️ أضع الموارد تحت سيطرة مركزية كاملة.",
-        title:"سيطرة الموارد",
-        result:
-          "أصبحت مفاتيح المياه بيدك. ارتفع نفوذك، لكن الخوف من السلطة الجديدة ازداد.",
-        influence:17,
-        peace:-5,
-        chaos:10,
-        balance:6,
-        trust:-7
-      },
-
-      {
-        id:"trade",
-        text:"⚖️ أحول المياه إلى اتفاقات تبادل ومصالح اقتصادية.",
-        title:"اقتصاد المياه",
-        result:
-          "تحولت الأزمة إلى شبكة من العقود والمصالح. الجميع يملك شيئاً يحتاجه الآخر.",
-        influence:13,
-        peace:7,
-        chaos:1,
-        balance:14,
-        trust:6
-      },
-
-      {
-        id:"deny",
-        text:"🌋 أستخدم الأزمة لإجبار الخصوم على الاستسلام.",
-        title:"قرار الانهيار",
-        result:
-          "انتشرت الصدمة بسرعة. ارتفع نفوذك، لكن العالم دخل منطقة أخطر من أي مرحلة سابقة.",
-        influence:24,
-        peace:-22,
-        chaos:30,
-        balance:-16,
-        trust:-15
-      }
-
-    ]
-
-  },
-
-
-  4:{
-
-    number:"الملف 04",
-
-    title:"السوق الذي لا ينام",
-
-    intro:
-      "تفتح شاشات الأسواق أمامك. عملات تنهار، مؤشرات ترتفع، والناس في الشوارع يتساءلون: هل سيُنقذ النظام الاقتصاد أم سيحمي الأقوى فقط؟",
-
-    tag:"الأزمة الاقتصادية",
-
-    question:
-      "أمامك قرار قد يغيّر الاقتصاد لسنوات. ماذا تفعل؟",
-
-    options:[
-
-      {
-        id:"stimulus",
-        text:"🏗️ أضخ الاستثمار في البنية التحتية والوظائف.",
-        title:"خطة الإحياء",
-        result:
-          "تحركت عجلة الاقتصاد ببطء. لم يتحقق الثراء فوراً، لكن الناس رأوا طريقاً للعمل.",
-        influence:10,
-        peace:7,
-        chaos:-5,
-        balance:8,
-        trust:11
-      },
-
-      {
-        id:"austerity",
-        text:"📉 أفرض تقشفاً قاسياً لإيقاف النزيف المالي.",
-        title:"قرار التقشف",
-        result:
-          "انخفض العجز، لكن الألم الاجتماعي ارتفع. الأسواق ارتاحت قبل أن يرتاح الناس.",
-        influence:12,
-        peace:-8,
-        chaos:12,
-        balance:4,
-        trust:-5
-      },
-
-      {
-        id:"cooperation",
-        text:"🌐 أطلق اتفاقاً اقتصادياً إقليمياً واسعاً.",
-        title:"الاقتصاد المتصل",
-        result:
-          "بدأت الحدود الاقتصادية باللين. أصبحت الدول مرتبطة ببعضها أكثر من السابق.",
-        influence:14,
-        peace:9,
-        chaos:-3,
-        balance:13,
-        trust:10
-      },
-
-      {
-        id:"collapse",
-        text:"🔥 أستغل الانهيار لإعادة توزيع النفوذ بالكامل.",
-        title:"الاقتصاد المحروق",
-        result:
-          "تحولت الأزمة إلى سلاح. ارتفع نفوذك، لكن ملايين البشر خسروا ثقتهم بالنظام.",
-        influence:23,
-        peace:-18,
-        chaos:27,
-        balance:-14,
-        trust:-18
-      }
-
-    ]
-
-  },
-
-
-  5:{
-
-    number:"الملف 05",
-
-    title:"حافة الحرب",
-
-    intro:
-      "هذه هي أول مرة ترى فيها مراكز القيادة العسكرية. الإنذارات تعمل، والوقت يقترب من الصفر. قرارك قد يمنع الحرب أو يجعلها أمراً واقعاً.",
-
-    tag:"الحرب والسلام",
-
-    question:
-      "لديك ساعات قليلة قبل تصعيد شامل. ما القرار؟",
-
-    options:[
-
-      {
-        id:"ceasefire",
-        text:"🕊️ أفرض وقفاً مؤقتاً للنار وأفتح قناة تفاوض.",
-        title:"نافذة السلام",
-        result:
-          "توقفت الصواريخ لساعات. وفي ذلك الصمت ظهرت فرصة لم تكن موجودة قبل القرار.",
-        influence:12,
-        peace:20,
-        chaos:-12,
-        balance:8,
-        trust:14
-      },
-
-      {
-        id:"deterrence",
-        text:"🛡️ أرفع الردع العسكري لمنع الطرف الآخر من التقدم.",
-        title:"التوازن المسلح",
-        result:
-          "تراجعت احتمالات الهجوم المباشر، لكن العالم أصبح أكثر توتراً.",
-        influence:17,
-        peace:2,
-        chaos:8,
-        balance:16,
-        trust:4
-      },
-
-      {
-        id:"negotiation",
-        text:"🤝 أدخل في وساطة متعددة الأطراف.",
-        title:"الدائرة الدبلوماسية",
-        result:
-          "تدخلت عدة أطراف. لم تحصل على نصر سريع، لكن احتمال الحل ارتفع.",
-        influence:14,
-        peace:15,
-        chaos:-7,
-        balance:12,
-        trust:13
-      },
-
-      {
-        id:"totalwar",
-        text:"☄️ أقرر إنهاء الحرب بالتصعيد الشامل.",
-        title:"قرار الحافة",
-        result:
-          "امتلأت السماء بالضوء. في هذه اللحظة أدركت أن العالم لا يغفر القرارات السهلة.",
-        influence:27,
-        peace:-30,
-        chaos:38,
-        balance:-20,
-        trust:-25
-      }
-
-    ]
-
-  },
-
-
-  6:{
-
-    number:"الملف 06",
-
-    title:"الإشارة المفقودة",
-
-    intro:
-      "بعد الحرب، تظهر أزمة أخرى: المعلومات نفسها أصبحت ساحة معركة. ملايين الناس يرون روايات متناقضة، ولا أحد يعرف أين تبدأ الحقيقة وأين تنتهي الدعاية.",
-
-    tag:"المعلومة",
-
-    question:
-      "أصبحت قادراً على التحكم في منظومة إعلامية ضخمة. ماذا تفعل؟",
-
-    options:[
-
-      {
-        id:"transparency",
-        text:"🔎 أنشر البيانات والوثائق وأسمح بالتحقق المستقل.",
-        title:"قرار الشفافية",
-        result:
-          "أصبح العالم أكثر ضجيجاً، لكنه بدأ يملك القدرة على مقارنة الروايات بنفسه.",
-        influence:8,
-        peace:10,
-        chaos:-4,
-        balance:8,
-        trust:20
-      },
-
-      {
-        id:"narrative",
-        text:"📡 أوحد الرسالة لحماية الاستقرار.",
-        title:"الرواية الواحدة",
-        result:
-          "انخفضت الفوضى في البداية، لكن الأسئلة التي لم تجد إجابة بدأت تتراكم.",
-        influence:16,
-        peace:5,
-        chaos:6,
-        balance:3,
-        trust:-8
-      },
-
-      {
-        id:"free",
-        text:"🗣️ أترك الجميع يتحدثون دون تدخل مركزي.",
-        title:"سوق الأفكار",
-        result:
-          "ارتفع الضجيج، لكن ظهرت أفكار لم يكن يمكن للنظام رؤيتها من قبل.",
-        influence:7,
-        peace:3,
-        chaos:10,
-        balance:6,
-        trust:12
-      },
-
-      {
-        id:"control",
-        text:"🔒 أفرض السيطرة الكاملة على المعلومات.",
-        title:"الملف المغلق",
-        result:
-          "هدأ السطح. لكن في أعماق النظام بدأ الخوف من شيء لا تستطيع رؤيته.",
-        influence:22,
-        peace:-6,
-        chaos:15,
-        balance:-8,
-        trust:-22
-      }
-
-    ]
-
-  },
-
-
-  7:{
-
-    number:"الملف 07",
-
-    title:"الآلة التي تفكر",
-
-    intro:
-      "يظهر أمامك نظام ذكاء اصطناعي قادر على تحليل الاقتصاد والطاقة والحروب في لحظات. لم يطلب النظام أن يحكم العالم... حتى الآن.",
-
-    tag:"الذكاء الاصطناعي",
-
-    question:
-      "هل تمنح النظام مساحة واسعة لاتخاذ القرارات؟",
-
-    options:[
-
-      {
-        id:"human",
-        text:"🧠 أبقي القرار النهائي بيد البشر.",
-        title:"أولوية الإنسان",
-        result:
-          "خسر النظام بعض السرعة، لكنه لم يخسر شيئاً أهم: المسؤولية البشرية.",
-        influence:9,
-        peace:8,
-        chaos:-5,
-        balance:13,
-        trust:16
-      },
-
-      {
-        id:"assist",
-        text:"⚙️ أسمح له بالمساعدة مع رقابة بشرية.",
-        title:"الشراكة",
-        result:
-          "بدأت مرحلة جديدة: البشر يقررون، والآلة تكشف الاحتمالات التي لم يروها.",
-        influence:15,
-        peace:9,
-        chaos:-2,
-        balance:15,
-        trust:12
-      },
-
-      {
-        id:"autonomy",
-        text:"🤖 أمنحه استقلالاً واسعاً لتسريع القرارات.",
-        title:"الاستقلال",
-        result:
-          "أصبحت القرارات أسرع بصورة مقلقة. بعض النتائج كانت مذهلة، وبعضها لم يكن متوقعاً.",
-        influence:22,
-        peace:-4,
-        chaos:12,
-        balance:5,
-        trust:-8
-      },
-
-      {
-        id:"erase",
-        text:"💥 أوقف النظام نهائياً قبل أن يكبر.",
-        title:"قطع الشبكة",
-        result:
-          "انطفأت الشاشات. لكن السؤال الذي بقي: هل كان النظام مجرد أداة أم شيئاً أكبر؟",
-        influence:11,
-        peace:2,
-        chaos:3,
-        balance:9,
-        trust:7
-      }
-
-    ]
-
-  },
-
-
-  8:{
-
-    number:"الملف 08",
-
-    title:"التنبؤ",
-
-    intro:
-      "للمرة الأولى لا يُطلب منك اتخاذ قرار. يُطلب منك أن تتوقع ما سيحدث.",
-
-    tag:"المستقبل",
-
-    question:
-      "توقع نتيجة النظام العالمي خلال السنوات القادمة:",
-
-    prediction:true,
-
-    options:[
-
-      {
-        id:"future_peace",
-        text:"🌿 سيعود العالم تدريجياً إلى الاستقرار.",
-        title:"توقع الاستقرار",
-        result:
-          "سُجل توقعك في ملف المستقبل. لن تعرف الآن مدى دقته."
-      },
-
-      {
-        id:"future_conflict",
-        text:"⚔️ ستندلع أزمات جديدة رغم محاولات السلام.",
-        title:"توقع الصراع",
-        result:
-          "سُجل توقعك. سيعود النظام إلى هذا الملف عندما تتغير الأحداث."
-      },
-
-      {
-        id:"future_ai",
-        text:"🤖 ستصبح التقنية هي القوة السياسية الكبرى.",
-        title:"توقع التقنية",
-        result:
-          "سُجل توقعك. ربما تكون قد أجبت قبل أن يبدأ السؤال الحقيقي."
-      },
-
-      {
-        id:"future_unknown",
-        text:"❓ سيحدث شيء لا تستطيع النماذج الحالية توقعه.",
-        title:"توقع المجهول",
-        result:
-          "هذا التوقع لم يعجب النظام. ظهرت رسالة: «أخيراً... فهمت طبيعة الاختبار.»"
-      }
-
-    ]
-
-  },
-
-
-  9:{
-
-    number:"الملف 09",
-
-    title:"الملف الذي لا يحمل اسماً",
-
-    intro:
-      "عندما تعود إلى مركز القيادة تجد ملفاً لم تره من قبل. لا يوجد عليه اسم دولة، ولا تاريخ، ولا جهة مسؤولة. فقط رقم واحد: 33.",
-
-    tag:"الملف الغامض",
-
-    question:
-      "أمامك ملف غامض. ماذا تفعل؟",
-
-    options:[
-
-      {
-        id:"open",
-        text:"📂 أفتحه بالكامل مهما كان ما بداخله.",
-        title:"فتح الملف",
-        result:
-          "فتحت الملف. لم تجد سراً جاهزاً... بل وجدت قائمة بقراراتك السابقة.",
-        influence:14,
-        peace:4,
-        chaos:5,
-        balance:8,
-        trust:-4
-      },
-
-      {
-        id:"seal",
-        text:"🔐 أغلقه وأطلب تحقيقاً مستقلاً.",
-        title:"الملف المغلق",
-        result:
-          "رفضت المعرفة السهلة. النظام سجل ذلك باعتباره علامة قوة.",
-        influence:10,
-        peace:7,
-        chaos:-3,
-        balance:13,
-        trust:12
-      },
-
-      {
-        id:"destroy",
-        text:"🔥 أحطم الملف قبل أن يراه أحد.",
-        title:"محو الأثر",
-        result:
-          "اختفى الملف، لكن آخر جملة ظهرت على الشاشة قبل إطفائها: «أنت لم تحطم النسخة الأصلية.»",
-        influence:20,
-        peace:-2,
-        chaos:13,
-        balance:-6,
-        trust:-9
-      },
-
-      {
-        id:"study",
-        text:"🧩 أدرسه وأقارن كل سطر بقراراتي السابقة.",
-        title:"صانع الأنماط",
-        result:
-          "لاحظت أن الملف لا يتنبأ بك... بل يبني مستقبلاً مختلفاً كلما غيّرت قراراً.",
-        influence:16,
-        peace:9,
-        chaos:-4,
-        balance:17,
-        trust:15
-      }
-
-    ]
-
-  },
-
-
-  10:{
-
-    number:"الملف 10",
-
-    title:"الرسالة التي لم يكن يجب أن تصل",
-
-    intro:
-      "تصل إلى جهازك رسالة بلا مرسل. فيها جملة واحدة فقط: «لقد وصلت إلى الدرجة العاشرة. الآن يبدأ اختبارك الحقيقي.» ثم يظهر رقم: 33.",
-
-    tag:"التحول",
-
-    question:
-      "هل تكمل الطريق رغم أنك لم تعد تعرف من صنع النظام؟",
-
-    options:[
-
-      {
-        id:"continue",
-        text:"🚪 أتابع. أريد معرفة الحقيقة بنفسي.",
-        title:"المضي قدماً",
-        result:
-          "قررت متابعة الطريق. النظام فتح لك أول باب حقيقي نحو الدرجة 33.",
-        influence:18,
-        peace:5,
-        chaos:3,
-        balance:10,
-        trust:8
-      },
-
-      {
-        id:"withdraw",
-        text:"🕊️ أتوقف. القوة بلا معرفة قد تتحول إلى كارثة.",
-        title:"الانسحاب",
-        result:
-          "توقفت. للمرة الأولى لم يعاقبك النظام ولم يكافئك. فقط كتب: «قرار نادر.»",
-        influence:5,
-        peace:12,
-        chaos:-7,
-        balance:14,
-        trust:18
-      },
-
-      {
-        id:"control",
-        text:"👁️ أحاول السيطرة على النظام نفسه.",
-        title:"السيطرة على السيد",
-        result:
-          "بدأت الشاشة تتغير. يبدو أن النظام كان ينتظر هذه الإجابة بالذات.",
-        influence:24,
-        peace:-5,
-        chaos:15,
-        balance:6,
-        trust:-6
-      },
-
-      {
-        id:"break",
-        text:"💥 أحاول تدميره بالكامل.",
-        title:"كسر النظام",
-        result:
-          "انطفأت الغرفة لثلاث ثوانٍ. ثم عادت الشاشة بجملة: «لا يمكنك تدمير شيء لم تفهمه.»",
-        influence:22,
-        peace:-10,
-        chaos:20,
-        balance:-10,
-        trust:-12
-      }
-
-    ]
-
-  }
+11:{
+  tag:"الفصل الثاني — الدرجة 11",
+  title:"المدينة التي لا تظهر على الخريطة",
+  intro:
+    "بعد الدرجة العاشرة يظهر أمامك عالم جديد. لا توجد دولة باسم هذه المدينة في أي سجل داخل اللعبة. ومع ذلك تظهر أضواؤها على الخريطة. في وسطها يقف شخص لا يظهر وجهه.",
+  monitor:
+    "أنت وصلت إلى منطقة لم تكن ضمن المسار الأصلي. يبدو أن قراراتك السابقة هي التي فتحتها.",
+  question:
+    "تطلب منك المدينة اختيار أول قاعدة لنظامها الجديد.",
+  options:[
+    {
+      id:"city_open",
+      text:"🏛️ أفتح المدينة أمام العالم وأسمح بالمشاركة الدولية.",
+      title:"المدينة المفتوحة",
+      result:
+        "دخلت المدينة في شبكة العالم. بدأت المعلومات تتدفق إليها كما تتدفق منها.",
+      influence:10,
+      peace:9,
+      chaos:-4,
+      balance:12,
+      trust:11
+    },
+    {
+      id:"city_control",
+      text:"🔒 أضع المدينة تحت نظام مركزي صارم.",
+      title:"المدينة المغلقة",
+      result:
+        "أصبحت المدينة أكثر هدوءاً، لكن الممرات الداخلية بدأت تختفي عن أعين الخارج.",
+      influence:18,
+      peace:-4,
+      chaos:8,
+      balance:5,
+      trust:-8
+    },
+    {
+      id:"city_balance",
+      text:"⚖️ أنشئ مجلساً يضم قوى متعارضة.",
+      title:"مجلس التوازن",
+      result:
+        "لا أحد يملك السيطرة وحده. التوتر ارتفع قليلاً، لكن القرار أصبح مشتركاً.",
+      influence:12,
+      peace:8,
+      chaos:1,
+      balance:18,
+      trust:9
+    },
+    {
+      id:"city_ignore",
+      text:"🚪 أرفض التدخل وأغادر المدينة.",
+      title:"الطريق الصامت",
+      result:
+        "غادرت. لكن عند خروجك سمعت صوتاً يقول: «كنت أتوقع أن تفعل ذلك.»",
+      influence:4,
+      peace:4,
+      chaos:0,
+      balance:9,
+      trust:7
+    }
+  ]
+},
+
+12:{
+  tag:"الدرجة 12 — غرفة الخرائط",
+  title:"العالم أمامك",
+  intro:
+    "لأول مرة تتحول الغرفة إلى منصة خريطة ثلاثية الأبعاد. القارات أمامك ليست تفاصيل زخرفية؛ كل قرار سابق ترك أثراً في توازنها.",
+  monitor:
+    "الآن تستطيع رؤية العلاقة بين قراراتك. العالم لا يتحرك من قرار واحد.",
+  question:
+    "أمامك ثلاث مناطق في أزمة في الوقت نفسه. أين تضع أكبر قدر من النفوذ؟",
+  options:[
+    {
+      id:"map_east",
+      text:"🌏 أركز على الاستقرار في المنطقة الشرقية.",
+      title:"بوابة الشرق",
+      result:
+        "استقرت المنطقة مؤقتاً، وأصبحت لك قناة نفوذ جديدة.",
+      influence:15,
+      peace:8,
+      chaos:-2,
+      balance:10,
+      trust:6
+    },
+    {
+      id:"map_sea",
+      text:"🌊 أركز على الممرات البحرية والتجارة.",
+      title:"طريق البحر",
+      result:
+        "ارتفع نفوذك الاقتصادي. أصبح البحر أهم من الحدود في حسابات النظام.",
+      influence:18,
+      peace:6,
+      chaos:1,
+      balance:13,
+      trust:8
+    },
+    {
+      id:"map_people",
+      text:"🏙️ أركز على المدن والسكان قبل المصالح الكبرى.",
+      title:"قرار الإنسان",
+      result:
+        "لم تحصل على أقصى نفوذ، لكن الثقة بك ارتفعت بصورة واضحة.",
+      influence:9,
+      peace:14,
+      chaos:-5,
+      balance:9,
+      trust:17
+    },
+    {
+      id:"map_control",
+      text:"👁️ أضع النظام كله تحت مركز قرار واحد.",
+      title:"عين واحدة",
+      result:
+        "ارتفع نفوذك بقوة. أصبحت الخريطة أكثر هدوءاً... وأكثر صمتاً.",
+      influence:25,
+      peace:-7,
+      chaos:17,
+      balance:-5,
+      trust:-14
+    }
+  ]
+},
+
+13:{
+  tag:"الدرجة 13 — المراقب",
+  title:"الرجل الذي يعرف قراراتك",
+  intro:
+    "تعود إلى غرفة القيادة. الشخص الذي رأيته في المدينة يظهر على شاشة شفافة. لا يعطيك اسماً. يقول فقط: «أنت لا تتذكر كل شيء.»",
+  monitor:
+    "المراقب: أنا لا أقرر عنك. أنا أرى الأنماط التي تتركها قراراتك.",
+  question:
+    "هل تسمح للمراقب بتحليل سجل قراراتك؟",
+  options:[
+    {
+      id:"observer_yes",
+      text:"🧩 نعم. أريد أن أعرف نمطي الحقيقي.",
+      title:"فتح السجل",
+      result:
+        "فتح المراقب السجل. لم يعطك حكماً، بل أظهر ثلاث كلمات: القوة، التوازن، والخوف.",
+      influence:8,
+      peace:5,
+      chaos:-1,
+      balance:12,
+      trust:14,
+      observer:true
+    },
+    {
+      id:"observer_no",
+      text:"🛑 لا. لا أحد يقرأني أفضل مني.",
+      title:"الرفض",
+      result:
+        "صمت المراقب. ثم قال: «هذا أيضاً نمط.»",
+      influence:7,
+      peace:5,
+      chaos:3,
+      balance:8,
+      trust:10,
+      observer:true
+    },
+    {
+      id:"observer_trap",
+      text:"🎭 أسمح له، لكن أقدم له بيانات زائفة.",
+      title:"الخداع",
+      result:
+        "ابتسم المراقب. «إذا كانت البيانات زائفة، فربما تكون أنت من يتعلم الآن.»",
+      influence:15,
+      peace:0,
+      chaos:7,
+      balance:13,
+      trust:-5,
+      observer:true
+    },
+    {
+      id:"observer_destroy",
+      text:"💥 أقطع الاتصال نهائياً.",
+      title:"قطع المراقب",
+      result:
+        "اختفت صورته. لكن مؤشرات العالم بقيت تتحرك لثلاث ثوانٍ من تلقاء نفسها.",
+      influence:17,
+      peace:-3,
+      chaos:12,
+      balance:-2,
+      trust:-12,
+      observer:true
+    }
+  ]
+},
+
+14:{
+  tag:"الدرجة 14 — الاختبار الصامت",
+  title:"ثلاثة أبواب",
+  intro:
+    "يظهر أمامك ثلاثة أبواب مضيئة. خلف كل باب مستقبل محتمل. لا يعطيك النظام معلومات إضافية.",
+  monitor:
+    "المراقب: هذه ليست مسابقة معرفة. إنها تجربة لمعرفة كيف تتصرف عندما تنقصك المعلومات.",
+  question:
+    "أي طريق تختار؟",
+  options:[
+    {
+      id:"door_green",
+      text:"🌿 الباب الأخضر — استقرار بطيء وطويل.",
+      title:"طريق الاستقرار",
+      result:
+        "دخلت طريقاً لا يمنح نتائج سريعة، لكنه يقلل المخاطر المتراكمة.",
+      influence:7,
+      peace:14,
+      chaos:-8,
+      balance:13,
+      trust:12
+    },
+    {
+      id:"door_gold",
+      text:"👑 الباب الذهبي — نفوذ واسع بسرعة.",
+      title:"طريق النفوذ",
+      result:
+        "ازداد نفوذك بسرعة، لكن كل خطوة أصبحت تحمل تكلفة أكبر.",
+      influence:25,
+      peace:-3,
+      chaos:9,
+      balance:4,
+      trust:-3
+    },
+    {
+      id:"door_blue",
+      text:"🔵 الباب الأزرق — معرفة أكثر قبل القرار.",
+      title:"طريق المعرفة",
+      result:
+        "لم تربح شيئاً فوراً. لكن النظام أعطاك نافذة على احتمالات لم يرها الآخرون.",
+      influence:9,
+      peace:8,
+      chaos:-3,
+      balance:18,
+      trust:15
+    },
+    {
+      id:"door_black",
+      text:"⚫ الباب الأسود — لا معرفة، فقط المجهول.",
+      title:"طريق المجهول",
+      result:
+        "كل شيء أصبح أكثر غموضاً. المراقب لم يمنعك من الدخول.",
+      influence:17,
+      peace:-2,
+      chaos:16,
+      balance:2,
+      trust:-8
+    }
+  ]
+},
+
+15:{
+  tag:"الدرجة 15 — أول علامة",
+  title:"الرقم الذي يظهر حيث لا ينبغي",
+  intro:
+    "بعد قراراتك الأخيرة، يبدأ الرقم 33 بالظهور في أماكن مختلفة: على ساعة، على خريطة، وعلى شاشة لا تحمل أي بيانات.",
+  monitor:
+    "المراقب: الرقم ليس مفتاحاً سحرياً. أهميته هي ما ستمنحه له أنت.",
+  question:
+    "كيف تتعامل مع الرقم 33؟",
+  options:[
+    {
+      id:"number_study",
+      text:"🔬 أدرسه كظاهرة وأبحث عن الأنماط.",
+      title:"الباحث",
+      result:
+        "تكتشف أن الرقم يظهر بعد قرارات معينة فقط. بدأ لديك أول خيط حقيقي.",
+      influence:11,
+      peace:6,
+      chaos:-2,
+      balance:20,
+      trust:13,
+      observer:true
+    },
+    {
+      id:"number_follow",
+      text:"🚪 أتبعه أينما ظهر.",
+      title:"مطاردة الرقم",
+      result:
+        "يقودك الرقم إلى ممر جديد. كلما اقتربت منه، قلّت المعلومات.",
+      influence:19,
+      peace:2,
+      chaos:10,
+      balance:8,
+      trust:2,
+      observer:true
+    },
+    {
+      id:"number_ignore",
+      text:"🕊️ أتجاهله وأركز على استقرار العالم.",
+      title:"تجاهل الإغراء",
+      result:
+        "اختفى الرقم لبعض الوقت. لكن النظام سجل أنك لم تسمح للغموض بقيادة القرار.",
+      influence:8,
+      peace:12,
+      chaos:-5,
+      balance:14,
+      trust:16,
+      observer:true
+    },
+    {
+      id:"number_claim",
+      text:"👑 أعلن أن الرقم رمز لسلطتي.",
+      title:"صناعة الرمز",
+      result:
+        "بدأ الآخرون يفسرون الرقم كما تريد. أصبح الرمز أداة نفوذ قبل أن تعرف معناه.",
+      influence:26,
+      peace:-4,
+      chaos:12,
+      balance:0,
+      trust:-10,
+      observer:true
+    }
+  ]
+}
 
 };
 
 
-/* =====================================
-   3D ENGINE
-===================================== */
+/* =========================
+   3D
+========================= */
 
-let threeReady = false;
-let renderer = null;
-let scene = null;
-let camera = null;
-let clock = null;
+let threeReady=false;
+let renderer=null;
+let scene=null;
+let camera=null;
 
-let core = null;
-let ring = null;
+let core=null;
+let ring=null;
+let globe=null;
+let observerMesh=null;
 
-let mainLight = null;
-let blueLight = null;
-let redLight = null;
-
-let stars = [];
-let worldObjects = [];
-
+let mainLight=null;
+let blueLight=null;
+let redLight=null;
 
 function loadThree(){
 
   if(window.THREE){
-
     startThree();
-
     return;
   }
 
-  const script =
+  const script=
     document.createElement("script");
 
-  script.src =
+  script.src=
     "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.min.js";
 
-  script.onload =
+  script.onload=
     function(){
-
       startThree();
-
     };
 
-  script.onerror =
+  script.onerror=
     function(){
-
       createFallback();
-
     };
 
   document.head.appendChild(
@@ -1702,30 +1355,25 @@ function startThree(){
     return;
   }
 
-  threeReady = true;
+  threeReady=true;
 
-  clock =
-    new THREE.Clock();
-
-  scene =
+  scene=
     new THREE.Scene();
 
-  scene.background =
-    new THREE.Color(
-      0x030507
-    );
+  scene.background=
+    new THREE.Color(0x030507);
 
-  scene.fog =
+  scene.fog=
     new THREE.FogExp2(
       0x030507,
       .045
     );
 
 
-  camera =
+  camera=
     new THREE.PerspectiveCamera(
       64,
-      window.innerWidth /
+      window.innerWidth/
       window.innerHeight,
       .1,
       120
@@ -1733,12 +1381,12 @@ function startThree(){
 
   camera.position.set(
     0,
-    2.15,
-    8.7
+    2.25,
+    8.8
   );
 
 
-  renderer =
+  renderer=
     new THREE.WebGLRenderer({
       antialias:true,
       powerPreference:"high-performance"
@@ -1756,28 +1404,22 @@ function startThree(){
     window.innerHeight
   );
 
-  renderer.shadowMap.enabled =
-    false;
-
-  game.innerHTML = "";
+  game.innerHTML="";
 
   game.appendChild(
     renderer.domElement
   );
 
 
-  const ambient =
-    new THREE.AmbientLight(
-      0x323744,
-      .48
-    );
-
   scene.add(
-    ambient
+    new THREE.AmbientLight(
+      0x303640,
+      .48
+    )
   );
 
 
-  mainLight =
+  mainLight=
     new THREE.PointLight(
       0xe8c76a,
       8,
@@ -1785,9 +1427,7 @@ function startThree(){
     );
 
   mainLight.position.set(
-    0,
-    5,
-    1
+    0,5,1
   );
 
   scene.add(
@@ -1795,17 +1435,15 @@ function startThree(){
   );
 
 
-  blueLight =
+  blueLight=
     new THREE.PointLight(
-      0x234aff,
+      0x254dff,
       2,
-      22
+      23
     );
 
   blueLight.position.set(
-    -6,
-    3,
-    -5
+    -6,3,-5
   );
 
   scene.add(
@@ -1813,17 +1451,15 @@ function startThree(){
   );
 
 
-  redLight =
+  redLight=
     new THREE.PointLight(
       0xff2200,
       0,
-      22
+      23
     );
 
   redLight.position.set(
-    6,
-    3,
-    -4
+    6,3,-4
   );
 
   scene.add(
@@ -1831,52 +1467,52 @@ function startThree(){
   );
 
 
-  buildRoom();
+  createRoom();
+  createCore();
+  createGlobe();
+  createObserver();
 
-  buildCore();
-
-  buildStars();
-
-  buildMonoliths();
+  window.addEventListener(
+    "resize",
+    resizeThree
+  );
 
   animate();
 }
 
 
-function buildRoom(){
+function createRoom(){
 
-  const floor =
+  const floor=
     new THREE.Mesh(
       new THREE.PlaneGeometry(
-        25,
-        25
+        26,
+        26
       ),
       new THREE.MeshStandardMaterial({
         color:0x05070a,
         roughness:.92,
-        metalness:.12
+        metalness:.1
       })
     );
 
-  floor.rotation.x =
-    -Math.PI / 2;
+  floor.rotation.x=
+    -Math.PI/2;
 
-  scene.add(
-    floor
-  );
+  scene.add(floor);
 
 
-  const wallMaterial =
+  const wallMaterial=
     new THREE.MeshStandardMaterial({
-      color:0x080a0e,
-      roughness:.92,
+      color:0x080b10,
+      roughness:.9,
       metalness:.08
     });
 
 
   addBox(
     0,5,-9,
-    25,10,.3,
+    26,10,.3,
     wallMaterial
   );
 
@@ -1893,41 +1529,34 @@ function buildRoom(){
   );
 
 
-  const platform =
+  const platform=
     new THREE.Mesh(
       new THREE.CylinderGeometry(
         3.1,
-        3.4,
+        3.45,
         .4,
         48
       ),
       new THREE.MeshStandardMaterial({
         color:0x11141a,
-        roughness:.4,
-        metalness:.7
+        roughness:.42,
+        metalness:.68
       })
     );
 
-  platform.position.y =
-    .22;
+  platform.position.y=.22;
 
-  scene.add(
-    platform
-  );
+  scene.add(platform);
 }
 
 
 function addBox(
-  x,
-  y,
-  z,
-  sx,
-  sy,
-  sz,
+  x,y,z,
+  sx,sy,sz,
   material
 ){
 
-  const mesh =
+  const mesh=
     new THREE.Mesh(
       new THREE.BoxGeometry(
         sx,sy,sz
@@ -1939,17 +1568,13 @@ function addBox(
     x,y,z
   );
 
-  scene.add(
-    mesh
-  );
-
-  return mesh;
+  scene.add(mesh);
 }
 
 
-function buildCore(){
+function createCore(){
 
-  core =
+  core=
     new THREE.Mesh(
       new THREE.SphereGeometry(
         .72,
@@ -1957,27 +1582,25 @@ function buildCore(){
         32
       ),
       new THREE.MeshStandardMaterial({
-        color:0x090b0e,
-        emissive:0x684b12,
-        emissiveIntensity:2.2,
+        color:0x080a0d,
+        emissive:0x6a4b12,
+        emissiveIntensity:2.25,
         roughness:.15,
         metalness:.9
       })
     );
 
   core.position.set(
-    0,2.4,0
+    0,2.45,0
   );
 
-  scene.add(
-    core
-  );
+  scene.add(core);
 
 
-  ring =
+  ring=
     new THREE.Mesh(
       new THREE.TorusGeometry(
-        1.28,
+        1.3,
         .03,
         12,
         96
@@ -1987,368 +1610,468 @@ function buildCore(){
       })
     );
 
-  ring.rotation.x =
-    Math.PI / 2;
+  ring.rotation.x=
+    Math.PI/2;
 
   ring.position.copy(
     core.position
   );
 
-  scene.add(
-    ring
-  );
+  scene.add(ring);
 }
 
 
-function buildStars(){
+function createGlobe(){
 
-  const geometry =
-    new THREE.BufferGeometry();
-
-  const count = 150;
-
-  const positions =
-    new Float32Array(
-      count * 3
+  const geometry=
+    new THREE.SphereGeometry(
+      1.45,
+      24,
+      16
     );
 
-  for(
-    let i=0;
-    i<count;
-    i++
-  ){
-
-    positions[i * 3] =
-      (Math.random()-.5)*24;
-
-    positions[i * 3 + 1] =
-      Math.random()*10;
-
-    positions[i * 3 + 2] =
-      -Math.random()*20;
-  }
-
-  geometry.setAttribute(
-    "position",
-    new THREE.BufferAttribute(
-      positions,
-      3
-    )
-  );
-
-  const material =
-    new THREE.PointsMaterial({
-      color:0x927a45,
-      size:.045,
+  const material=
+    new THREE.MeshBasicMaterial({
+      color:0x214f9d,
+      wireframe:true,
       transparent:true,
-      opacity:.5
+      opacity:.12
     });
 
-  const points =
-    new THREE.Points(
+  globe=
+    new THREE.Mesh(
       geometry,
       material
     );
 
-  scene.add(
-    points
+  globe.position.set(
+    0,2.45,-3.1
   );
 
-  stars.push(
-    points
+  globe.visible=false;
+
+  scene.add(globe);
+}
+
+
+function createObserver(){
+
+  const group=
+    new THREE.Group();
+
+
+  const body=
+    new THREE.Mesh(
+      new THREE.CylinderGeometry(
+        .42,
+        .7,
+        1.9,
+        16
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0x090b10,
+        emissive:0x101827,
+        emissiveIntensity:1.3,
+        roughness:.5,
+        metalness:.45
+      })
+    );
+
+  body.position.y=.95;
+
+  group.add(body);
+
+
+  const head=
+    new THREE.Mesh(
+      new THREE.SphereGeometry(
+        .42,
+        20,
+        20
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0x050609,
+        emissive:0x17243a,
+        emissiveIntensity:1.5,
+        roughness:.4,
+        metalness:.4
+      })
+    );
+
+  head.position.y=2.05;
+
+  group.add(head);
+
+
+  const eye=
+    new THREE.Mesh(
+      new THREE.BoxGeometry(
+        .28,
+        .035,
+        .03
+      ),
+      new THREE.MeshBasicMaterial({
+        color:0x83b5ff
+      })
+    );
+
+  eye.position.set(
+    0,
+    2.08,
+    -.38
   );
+
+  group.add(eye);
+
+
+  group.position.set(
+    0,
+    0,
+    -3.5
+  );
+
+  group.visible=false;
+
+  observerMesh=group;
+
+  scene.add(group);
 }
 
 
-function buildMonoliths(){
+/* =========================
+   البيئة
+========================= */
 
-  for(
-    let i=0;
-    i<10;
-    i++
-  ){
-
-    const height =
-      .7 +
-      Math.random()*2;
-
-    const mesh =
-      new THREE.Mesh(
-        new THREE.BoxGeometry(
-          .42,
-          height,
-          .42
-        ),
-        new THREE.MeshStandardMaterial({
-          color:0x11151a,
-          roughness:.7,
-          metalness:.25
-        })
-      );
-
-    mesh.position.set(
-      (Math.random()-.5)*13,
-      height/2,
-      -2-Math.random()*7
-    );
-
-    scene.add(
-      mesh
-    );
-
-    worldObjects.push(
-      mesh
-    );
-  }
-}
-
-
-/* =====================================
-   البيئة حسب القرار
-===================================== */
-
-function setEnvironment(type){
-
-  if(!scene){
-    return;
-  }
-
-
-  if(type === "peace"){
-
-    applyEnvironment(
-      0x071b14,
-      0x71d8ab,
-      0x32c89a,
-      0x1255ff
-    );
-
-    systemText.textContent =
-      "النظام: الاستقرار يتقدم. الحياة تعود إلى بعض المناطق.";
-
-  }
-
-
-  if(type === "power"){
-
-    applyEnvironment(
-      0x1b0908,
-      0xff9b45,
-      0x2654ff,
-      0xff2c00
-    );
-
-    systemText.textContent =
-      "النظام: النفوذ يرتفع. الخوف أيضاً.";
-
-  }
-
-
-  if(type === "balance"){
-
-    applyEnvironment(
-      0x071221,
-      0x6bb8ff,
-      0x4a61ff,
-      0x6d50ff
-    );
-
-    systemText.textContent =
-      "النظام: توازن هش. لا أحد يملك اليد العليا.";
-
-  }
-
-
-  if(type === "chaos"){
-
-    applyEnvironment(
-      0x240403,
-      0xff6330,
-      0xff2400,
-      0xff0900
-    );
-
-    shakeScreen();
-
-    flashScreen();
-
-    systemText.textContent =
-      "تحذير النظام: الفوضى تتجاوز الحدود الآمنة.";
-
-  }
-
-
-  if(type === "neutral"){
-
-    applyEnvironment(
-      0x030507,
-      0xe8c76a,
-      0x345dff,
-      0x140000
-    );
-
-    systemText.textContent =
-      "النظام يراقب قراراتك...";
-
-  }
-
-}
-
-
-function applyEnvironment(
-  background,
-  coreColor,
-  mainColor,
-  dangerColor
+function setEnvironment(
+  type
 ){
 
-  scene.background =
-    new THREE.Color(
-      background
-    );
+  if(!scene) return;
 
-  scene.fog.color =
-    new THREE.Color(
-      background
-    );
 
-  if(core){
+  if(type==="peace"){
 
-    core.material.emissive =
-      new THREE.Color(
-        coreColor
-      );
+    scene.background=
+      new THREE.Color(0x071a14);
 
-    core.material.emissiveIntensity =
-      2.3;
+    scene.fog.color=
+      new THREE.Color(0x071a14);
+
+    core.material.emissive=
+      new THREE.Color(0x67d5a5);
+
+    mainLight.color=
+      new THREE.Color(0x52c797);
+
+    mainLight.intensity=8;
+
+    redLight.intensity=.2;
+
   }
 
-  if(mainLight){
+  else if(type==="power"){
 
-    mainLight.color =
-      new THREE.Color(
-        mainColor
-      );
+    scene.background=
+      new THREE.Color(0x190907);
 
-    mainLight.intensity =
-      8;
+    scene.fog.color=
+      new THREE.Color(0x190907);
+
+    core.material.emissive=
+      new THREE.Color(0xff8e3c);
+
+    mainLight.color=
+      new THREE.Color(0xff9e42);
+
+    mainLight.intensity=8;
+
+    redLight.color=
+      new THREE.Color(0xff2600);
+
+    redLight.intensity=4;
+
   }
 
-  if(redLight){
+  else if(type==="balance"){
 
-    redLight.color =
-      new THREE.Color(
-        dangerColor
-      );
+    scene.background=
+      new THREE.Color(0x07111e);
 
-    redLight.intensity =
-      dangerColor === 0xff0900
-        ? 8
-        : dangerColor === 0xff2c00
-          ? 4
-          : .15;
+    scene.fog.color=
+      new THREE.Color(0x07111e);
+
+    core.material.emissive=
+      new THREE.Color(0x6fb8ff);
+
+    mainLight.color=
+      new THREE.Color(0x668dff);
+
+    mainLight.intensity=7;
+
+    redLight.intensity=.25;
+
+  }
+
+  else if(type==="chaos"){
+
+    scene.background=
+      new THREE.Color(0x250403);
+
+    scene.fog.color=
+      new THREE.Color(0x250403);
+
+    core.material.emissive=
+      new THREE.Color(0xff3017);
+
+    mainLight.color=
+      new THREE.Color(0xff4d24);
+
+    mainLight.intensity=9;
+
+    redLight.color=
+      new THREE.Color(0xff0900);
+
+    redLight.intensity=8;
+
+    shakeScreen();
+    flashScreen();
+
+  }
+
+  else{
+
+    scene.background=
+      new THREE.Color(0x030507);
+
+    scene.fog.color=
+      new THREE.Color(0x030507);
+
+    core.material.emissive=
+      new THREE.Color(0x6a4b12);
+
+    mainLight.color=
+      new THREE.Color(0xe8c76a);
+
+    mainLight.intensity=8;
+
+    redLight.intensity=0;
+
   }
 }
 
 
-function applyChoiceVisuals(
+function screenMode(
   option
 ){
 
-  if(
-    option.id === "peace" ||
-    option.id === "ration" ||
-    option.id === "alliance" ||
-    option.id === "share" ||
-    option.id === "stimulus" ||
-    option.id === "cooperation" ||
-    option.id === "ceasefire" ||
-    option.id === "negotiation" ||
-    option.id === "transparency" ||
-    option.id === "human" ||
-    option.id === "assist" ||
-    option.id === "withdraw"
-  ){
+  const peaceIds=[
+    "peace",
+    "ration",
+    "alliance",
+    "share",
+    "invest",
+    "union",
+    "ceasefire",
+    "mediation",
+    "transparency",
+    "human",
+    "assist",
+    "stop33",
+    "city_open",
+    "city_balance",
+    "map_people",
+    "observer_yes",
+    "observer_no",
+    "door_green",
+    "door_blue",
+    "number_study",
+    "number_ignore"
+  ];
+
+  const powerIds=[
+    "power",
+    "market",
+    "control",
+    "austerity",
+    "deterrence",
+    "single",
+    "autonomy",
+    "open33",
+    "continue33",
+    "city_control",
+    "map_east",
+    "map_sea",
+    "number_follow",
+    "number_claim"
+  ];
+
+  const balanceIds=[
+    "balance",
+    "trade",
+    "free",
+    "study33",
+    "observer_trap"
+  ];
+
+  const chaosIds=[
+    "chaos",
+    "shock",
+    "deny",
+    "collapse",
+    "total",
+    "control",
+    "erase",
+    "destroy33",
+    "break33",
+    "city_ignore",
+    "map_control",
+    "observer_destroy",
+    "door_black"
+  ];
+
+
+  if(peaceIds.includes(option.id)){
 
     setEnvironment("peace");
 
-  }else if(
-    option.id === "power" ||
-    option.id === "market" ||
-    option.id === "control" ||
-    option.id === "austerity" ||
-    option.id === "deterrence" ||
-    option.id === "narrative" ||
-    option.id === "autonomy" ||
-    option.id === "open" ||
-    option.id === "control" ||
-    option.id === "continue"
-  ){
+  }else if(powerIds.includes(option.id)){
 
     setEnvironment("power");
 
-  }else if(
-    option.id === "balance" ||
-    option.id === "trade" ||
-    option.id === "free" ||
-    option.id === "study"
-  ){
+  }else if(balanceIds.includes(option.id)){
 
     setEnvironment("balance");
 
-  }else if(
-    option.id === "chaos" ||
-    option.id === "shock" ||
-    option.id === "deny" ||
-    option.id === "collapse" ||
-    option.id === "totalwar" ||
-    option.id === "destroy" ||
-    option.id === "break"
-  ){
+  }else if(chaosIds.includes(option.id)){
 
     setEnvironment("chaos");
 
   }else{
 
-    setEnvironment("neutral");
-
+    setEnvironment("balance");
   }
 }
 
 
-/* =====================================
-   المرحلة الحالية
-===================================== */
+/* =========================
+   منطق المراقب
+========================= */
 
-function openCurrentStage(){
+function observerMessage(stage){
 
-  const data =
+  if(stage===11){
+
+    if(state.influence>=state.peace){
+
+      return "المراقب: أنت تبني نفوذك أسرع مما تبني ثقة العالم.";
+    }
+
+    if(state.peace>=state.chaos){
+
+      return "المراقب: الغريب أنك ما زلت تختار الاستقرار حتى عندما تستطيع أخذ القوة.";
+    }
+
+    return "المراقب: قراراتك لا تنتمي إلى اتجاه واحد. وهذا يجعل توقعك أصعب.";
+  }
+
+
+  if(stage===13){
+
+    const path=
+      dominantPath();
+
+    if(path==="chaos"){
+      return "المراقب: أنت لا تخاف من الفوضى. وهذا قد يكون قوتك... أو ضعفك.";
+    }
+
+    if(path==="power"){
+      return "المراقب: أنت تتعامل مع العالم كمنظومة يمكن السيطرة عليها.";
+    }
+
+    if(path==="peace"){
+      return "المراقب: أنت تبني النفوذ من خلال الاستقرار أكثر من الإكراه.";
+    }
+
+    return "المراقب: التوازن هو نمطك الأكثر وضوحاً.";
+  }
+
+
+  if(stage===15){
+
+    return "المراقب: الرقم 33 لا يطاردك. أنت الذي بدأت تطارد معناه.";
+  }
+
+
+  return "المراقب: قراراتك تترك آثاراً أطول مما تتوقع.";
+}
+
+
+/* =========================
+   فتح المرحلة
+========================= */
+
+function openStage(){
+
+  const data=
     stages[state.stage];
 
   if(!data){
 
-    openBeyondStage10();
+    showAfter15();
 
     return;
   }
 
-  hideAllPanels();
 
-  chapterNumber.textContent =
-    data.number;
+  hidePanels();
 
-  chapterTitle.textContent =
+  chapterTag.textContent=
+    data.tag;
+
+  chapterTitle.textContent=
     data.title;
 
-  chapterIntro.textContent =
+  chapterIntro.textContent=
     data.intro;
 
-  chapterButton.textContent =
+  openDecisionBtn.textContent=
     "افتح القرار";
 
-  predictionBox.classList.add(
+  monitorBox.classList.add(
     "hidden"
   );
+
+  resultMonitorBox.classList.add(
+    "hidden"
+  );
+
+  if(data.monitor){
+
+    monitorBox.classList.remove(
+      "hidden"
+    );
+
+    monitorText.textContent =
+      data.monitor;
+  }
+
+
+  if(state.stage>=13){
+
+    observerMesh.visible=true;
+
+  }
+
+
+  if(state.stage>=12){
+
+    globe.visible=true;
+
+    systemText.textContent=
+      "النظام: تم تفعيل خريطة التوازن العالمي.";
+
+  }
+
 
   chapterPanel.classList.remove(
     "hidden"
@@ -2360,56 +2083,49 @@ function openCurrentStage(){
 
 function openDecision(){
 
-  const data =
+  const data=
     stages[state.stage];
 
-  if(!data){
-    return;
-  }
+  if(!data) return;
 
-  hideAllPanels();
+  hidePanels();
 
-  decisionTag.textContent =
+  questionTag.textContent=
     data.tag;
 
-  questionText.textContent =
+  questionText.textContent=
     data.question;
 
-  options.innerHTML = "";
+  options.innerHTML="";
 
 
   data.options.forEach(
     function(option){
 
-      const button =
+      const button=
         document.createElement(
           "button"
         );
 
-      button.type =
-        "button";
+      button.type="button";
+      button.className="option";
 
-      button.className =
-        "option";
-
-      button.textContent =
+      button.textContent=
         option.text;
 
       button.addEventListener(
         "click",
         function(){
 
-          chooseOption(
+          choose(
             option
           );
-
         }
       );
 
       options.appendChild(
         button
       );
-
     }
   );
 
@@ -2420,86 +2136,70 @@ function openDecision(){
 }
 
 
-/* =====================================
-   القرار
-===================================== */
+/* =========================
+   اختيار اللاعب
+========================= */
 
-function chooseOption(
-  option
-){
-
-  state.lastChoice =
-    option.id;
-
+function choose(option){
 
   if(
-    typeof option.influence ===
-    "number"
+    typeof option.influence==="number"
   ){
-    state.influence +=
+    state.influence+=
       option.influence;
   }
 
-  if(
-    typeof option.peace ===
-    "number"
-  ){
-    state.peace +=
-      option.peace;
-  }
 
   if(
-    typeof option.chaos ===
-    "number"
+    typeof option.peace==="number"
   ){
-    state.chaos +=
-      option.chaos;
-  }
-
-  if(
-    typeof option.balance ===
-    "number"
-  ){
-    state.balance +=
-      option.balance;
-  }
-
-  if(
-    typeof option.trust ===
-    "number"
-  ){
-    state.trust +=
-      option.trust;
+    state.peace=
+      clamp(
+        state.peace+
+        option.peace,
+        0,
+        100
+      );
   }
 
 
-  state.peace =
-    clamp(
-      state.peace,
-      0,
-      100
-    );
+  if(
+    typeof option.chaos==="number"
+  ){
+    state.chaos=
+      clamp(
+        state.chaos+
+        option.chaos,
+        0,
+        100
+      );
+  }
 
-  state.chaos =
-    clamp(
-      state.chaos,
-      0,
-      100
-    );
 
-  state.balance =
-    clamp(
-      state.balance,
-      0,
-      100
-    );
+  if(
+    typeof option.balance==="number"
+  ){
+    state.balance=
+      clamp(
+        state.balance+
+        option.balance,
+        0,
+        100
+      );
+  }
 
-  state.trust =
-    clamp(
-      state.trust,
-      0,
-      100
-    );
+
+  if(
+    typeof option.trust==="number"
+  ){
+    state.trust=
+      clamp(
+        state.trust+
+        option.trust,
+        0,
+        100
+      );
+  }
 
 
   state.history.push({
@@ -2523,27 +2223,20 @@ function chooseOption(
       state.balance,
 
     trust:
-      state.trust
+      state.trust,
 
+    time:
+      new Date().toISOString()
   });
 
 
   if(
-    stages[state.stage].prediction
+    option.observer
   ){
 
-    state.predictions.push({
+    state.observerSeen=true;
 
-      stage:
-        state.stage,
-
-      prediction:
-        option.id,
-
-      timestamp:
-        new Date().toISOString()
-
-    });
+    state.observerLevel++;
 
   }
 
@@ -2552,39 +2245,66 @@ function chooseOption(
 
   updateUI();
 
-  applyChoiceVisuals(
-    option
-  );
+  screenMode(option);
 
 
-  resultTitle.textContent =
+  resultTitle.textContent=
     option.title;
 
-  resultText.textContent =
+  resultText.textContent=
     option.result;
 
 
+  futureBox.classList.add(
+    "hidden"
+  );
+
+
   if(
-    stages[state.stage].prediction
+    state.stage===11
   ){
 
-    predictionBox.classList.remove(
+    resultMonitorBox.classList.remove(
       "hidden"
     );
 
-    predictionText.textContent =
-      "تم تسجيل توقعك في سجل المستقبل. ستعود اللعبة إلى هذا الملف في مراحل لاحقة لمقارنة ما توقعتَه بما حدث داخل المحاكاة.";
+    resultMonitorText.textContent=
+      observerMessage(11);
 
-  }else{
-
-    predictionBox.classList.add(
-      "hidden"
-    );
+    state.observerSeen=true;
 
   }
 
 
-  hideAllPanels();
+  if(
+    state.stage===13
+  ){
+
+    resultMonitorBox.classList.remove(
+      "hidden"
+    );
+
+    resultMonitorText.textContent=
+      observerMessage(13);
+
+  }
+
+
+  if(
+    state.stage===15
+  ){
+
+    resultMonitorBox.classList.remove(
+      "hidden"
+    );
+
+    resultMonitorText.textContent=
+      observerMessage(15);
+
+  }
+
+
+  hidePanels();
 
   resultPanel.classList.remove(
     "hidden"
@@ -2592,116 +2312,142 @@ function chooseOption(
 }
 
 
-/* =====================================
-   المرحلة التالية
-===================================== */
+/* =========================
+   متابعة
+========================= */
 
 function continueGame(){
 
-  state.stage += 1;
+  state.stage++;
 
   saveGame();
 
   updateUI();
 
   if(
-    state.stage <= 10
+    state.stage<=15
   ){
 
-    openCurrentStage();
+    openStage();
 
   }else{
 
-    openBeyondStage10();
+    showAfter15();
 
   }
 }
 
 
-/* =====================================
-   ما بعد الدرجة 10
-===================================== */
+/* =========================
+   ما بعد 15
+========================= */
 
-function openBeyondStage10(){
+function showAfter15(){
 
-  hideAllPanels();
+  hidePanels();
 
-  chapterNumber.textContent =
-    "الدرجة 11";
+  chapterTag.textContent=
+    "الفصل الثالث";
 
-  chapterTitle.textContent =
-    "الباب بدأ يفتح";
+  chapterTitle.textContent=
+    "الدرجة 16 — العالم بدأ يتذكرك";
 
-  chapterIntro.textContent =
-    "لقد أصبحت الآن داخل النواة الحقيقية للنظام. من هنا سنبدأ المرحلة التي طلبتها: قرارات مرتبطة بالأحداث، مدن وخرائط، مؤثرات طبيعية، شخصيات، ملفات سرية، ونظام يجعل الماضي يؤثر في المستقبل.";
+  chapterIntro.textContent=
+    "من هنا ستبدأ اللعبة بقراءة سجل قراراتك بشكل أعمق. ستظهر نتائج لم تكن مرتبطة ظاهرياً بقراراتك القديمة، وسنبدأ ببناء الفروع التي تقود تدريجياً إلى الدرجة 33.";
 
-  chapterButton.textContent =
-    "متابعة";
+  monitorBox.classList.remove(
+    "hidden"
+  );
+
+  monitorText.textContent=
+    "المراقب: من هذه النقطة لن يكون الماضي مجرد سجل. سيصبح عاملاً في المستقبل.";
+
+  openDecisionBtn.textContent=
+    "العودة إلى المختبر";
 
   chapterPanel.classList.remove(
     "hidden"
   );
 
 
-  chapterButton.onclick =
+  openDecisionBtn.onclick=
     function(){
 
-      state.stage = 11;
-
-      saveGame();
-
-      alert(
-        "المراحل 11-33 ستبنى فوق هذا المحرك في التوسعة التالية."
-      );
+      resetGame();
 
     };
 }
 
 
-/* =====================================
+/* =========================
    إعادة البداية
-===================================== */
+========================= */
 
 function resetGame(){
 
-  const confirmed =
+  const yes=
     window.confirm(
       "هل تريد حذف تقدم اللعبة والعودة إلى الدرجة 01؟"
     );
 
-  if(!confirmed){
-    return;
-  }
+  if(!yes) return;
+
 
   localStorage.removeItem(
     SAVE_KEY
   );
 
-  state.stage = 1;
-  state.influence = 0;
-  state.peace = 50;
-  state.chaos = 0;
-  state.balance = 50;
-  state.trust = 50;
-  state.history = [];
-  state.lastChoice = null;
-  state.predictions = [];
+
+  state.stage=1;
+  state.influence=0;
+  state.peace=50;
+  state.chaos=0;
+  state.balance=50;
+  state.trust=50;
+  state.history=[];
+  state.predictions=[];
+  state.observerSeen=false;
+  state.observerLevel=0;
+
+
+  if(globe){
+
+    globe.visible=false;
+
+  }
+
+
+  if(observerMesh){
+
+    observerMesh.visible=false;
+
+  }
+
 
   setEnvironment(
     "neutral"
   );
 
+
   updateUI();
 
-  openCurrentStage();
+  openStage();
+
+
+  openDecisionBtn.onclick=
+    function(){
+
+      openDecision();
+
+    };
 }
 
 
-/* =====================================
+/* =========================
    الأحداث
-===================================== */
+========================= */
 
-startButton.addEventListener(
+startBtn.addEventListener(
   "click",
   function(){
 
@@ -2709,13 +2455,13 @@ startButton.addEventListener(
       "neutral"
     );
 
-    openCurrentStage();
+    openStage();
 
   }
 );
 
 
-chapterButton.addEventListener(
+openDecisionBtn.addEventListener(
   "click",
   function(){
 
@@ -2725,7 +2471,7 @@ chapterButton.addEventListener(
 );
 
 
-continueButton.addEventListener(
+continueBtn.addEventListener(
   "click",
   function(){
 
@@ -2735,7 +2481,7 @@ continueButton.addEventListener(
 );
 
 
-resetButton.addEventListener(
+resetBtn.addEventListener(
   "click",
   function(){
 
@@ -2745,15 +2491,16 @@ resetButton.addEventListener(
 );
 
 
-/* =====================================
+/* =========================
    الحركة
-===================================== */
+========================= */
 
 function animate(){
 
   requestAnimationFrame(
     animate
   );
+
 
   if(
     !renderer ||
@@ -2764,16 +2511,16 @@ function animate(){
   }
 
 
-  const t =
-    clock.getElapsedTime();
+  const t=
+    performance.now()*.001;
 
 
   if(core){
 
-    core.rotation.y += .006;
+    core.rotation.y+=.006;
 
-    core.position.y =
-      2.4 +
+    core.position.y=
+      2.45+
       Math.sin(t*1.7)*.08;
 
   }
@@ -2781,30 +2528,37 @@ function animate(){
 
   if(ring){
 
-    ring.rotation.z += .008;
+    ring.rotation.z+=.008;
+    ring.rotation.y+=.003;
 
-    ring.rotation.y += .003;
+  }
+
+
+  if(globe){
+
+    globe.rotation.y+=.0025;
+
+  }
+
+
+  if(observerMesh){
+
+    observerMesh.position.y=
+      Math.sin(t*1.4)*.05;
+
+    observerMesh.rotation.y=
+      Math.sin(t*.4)*.18;
 
   }
 
 
   if(mainLight){
 
-    mainLight.intensity =
-      7.2 +
+    mainLight.intensity=
+      7+
       Math.sin(t*2.2)*1.1;
 
   }
-
-
-  stars.forEach(
-    function(points,index){
-
-      points.rotation.y =
-        t*.004*(index+1);
-
-    }
-  );
 
 
   camera.lookAt(
@@ -2823,15 +2577,12 @@ function animate(){
 
 function resizeThree(){
 
-  if(
-    !renderer ||
-    !camera
-  ){
+  if(!renderer || !camera){
     return;
   }
 
-  camera.aspect =
-    window.innerWidth /
+  camera.aspect=
+    window.innerWidth/
     window.innerHeight;
 
   camera.updateProjectionMatrix();
@@ -2849,64 +2600,39 @@ window.addEventListener(
 );
 
 
-/* =====================================
-   مشهد بديل عند فشل 3D
-===================================== */
+/* =========================
+   بديل عند فشل 3D
+========================= */
 
 function createFallback(){
 
-  game.innerHTML = "";
+  game.innerHTML="";
 
-  const orb =
+  const orb=
     document.createElement(
       "div"
     );
 
-  orb.style.position =
-    "absolute";
-
-  orb.style.top =
-    "50%";
-
-  orb.style.left =
-    "50%";
-
-  orb.style.width =
-    "150px";
-
-  orb.style.height =
-    "150px";
-
-  orb.style.transform =
-    "translate(-50%,-50%)";
-
-  orb.style.borderRadius =
-    "50%";
-
-  orb.style.background =
-    "radial-gradient(circle at 35% 30%,#fff4bf,#e8c76a 15%,#684912 45%,#050505 75%)";
-
-  orb.style.boxShadow =
-    "0 0 30px #e8c76a,0 0 100px rgba(232,199,106,.3)";
+  orb.style.cssText=
+    "position:absolute;left:50%;top:50%;width:145px;height:145px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3bd,#e8c76a 15%,#6b4d15 44%,#050505 76%);box-shadow:0 0 35px #e8c76a,0 0 100px rgba(232,199,106,.3)";
 
   game.appendChild(
     orb
   );
-
 }
 
 
-/* =====================================
-   البداية
-===================================== */
+/* =========================
+   تشغيل
+========================= */
 
 loadGame();
 
 updateUI();
 
 loadThree();
-
 </script>
 
 </body>
 </html>
+```
