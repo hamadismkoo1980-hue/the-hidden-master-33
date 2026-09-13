@@ -1,186 +1,163 @@
-```html
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>السيد الخفي 33</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
-
-html,
-body{
+*{box-sizing:border-box}
+html,body{
   margin:0;
   width:100%;
   height:100%;
   overflow:hidden;
   background:#020204;
-  font-family:Segoe UI,Tahoma,Arial,sans-serif;
   color:#fff;
+  font-family:Segoe UI,Tahoma,Arial,sans-serif
 }
-
 #game{
   position:fixed;
   inset:0;
+  background:
+    radial-gradient(circle at 50% 45%,#17120a 0,#050507 28%,#020204 70%)
 }
-
-canvas{
-  display:block;
-}
+canvas{display:block;width:100%;height:100%}
 
 .ui{
   position:fixed;
   inset:0;
-  pointer-events:none;
+  pointer-events:none
 }
 
 .top{
   position:absolute;
-  top:22px;
-  right:22px;
-  left:22px;
+  top:20px;
+  left:20px;
+  right:20px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  pointer-events:none;
+  align-items:center
 }
 
 .title{
-  font-size:26px;
-  font-weight:900;
-  letter-spacing:1px;
   color:#e8c76a;
-  text-shadow:0 0 18px rgba(232,199,106,.35);
+  font-size:25px;
+  font-weight:900;
+  text-shadow:0 0 18px rgba(232,199,106,.3)
 }
 
 .stage{
-  padding:10px 16px;
+  padding:10px 15px;
   border:1px solid rgba(232,199,106,.4);
-  border-radius:14px;
-  background:rgba(0,0,0,.5);
-  backdrop-filter:blur(8px);
+  border-radius:12px;
+  background:rgba(0,0,0,.55);
   color:#fff;
-  font-weight:800;
+  font-weight:800
 }
 
-.intro{
+.panel{
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:min(760px,90%);
+  width:min(760px,92%);
+  padding:32px;
   text-align:center;
-  padding:34px;
   border:1px solid rgba(232,199,106,.28);
   border-radius:24px;
-  background:rgba(5,5,9,.78);
+  background:rgba(4,4,8,.86);
+  box-shadow:0 20px 80px rgba(0,0,0,.8);
   backdrop-filter:blur(12px);
-  box-shadow:
-    0 20px 80px rgba(0,0,0,.8),
-    inset 0 0 40px rgba(232,199,106,.03);
-  pointer-events:auto;
+  pointer-events:auto
 }
 
-.intro h1{
+.panel h1{
   margin:0 0 14px;
-  font-size:clamp(38px,7vw,72px);
   color:#e8c76a;
+  font-size:clamp(40px,7vw,72px)
 }
 
-.intro .sub{
-  margin:0 0 24px;
-  color:#bbb;
-  font-size:18px;
+.panel p{
+  color:#d2d2d2;
   line-height:1.9;
+  font-size:18px
 }
 
-.warning{
-  margin:20px 0;
-  color:#858585;
-  font-size:12px;
-  line-height:1.8;
+.small{
+  color:#888!important;
+  font-size:12px!important
 }
 
 .btn{
+  display:inline-block;
   pointer-events:auto;
   border:1px solid #e8c76a;
-  background:linear-gradient(135deg,#33270b,#b68a2e);
-  color:#fff;
-  padding:14px 26px;
   border-radius:14px;
-  cursor:pointer;
+  padding:14px 28px;
+  background:linear-gradient(135deg,#342707,#c19432);
+  color:#fff;
   font-size:17px;
   font-weight:900;
-  transition:.2s;
-  box-shadow:0 0 25px rgba(232,199,106,.12);
+  cursor:pointer;
+  transition:.2s
 }
 
 .btn:hover{
   transform:translateY(-2px);
-  box-shadow:0 0 35px rgba(232,199,106,.26);
+  box-shadow:0 0 30px rgba(232,199,106,.22)
 }
 
-.hidden{
-  display:none !important;
-}
+.hidden{display:none!important}
 
 .decision{
   position:absolute;
-  right:50%;
-  bottom:28px;
-  transform:translateX(50%);
-  width:min(900px,92%);
-  pointer-events:auto;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(920px,92%);
+  pointer-events:auto
 }
 
 .question{
-  text-align:center;
-  background:rgba(4,4,7,.78);
+  margin-bottom:10px;
+  padding:16px;
+  border-radius:16px;
   border:1px solid rgba(255,255,255,.1);
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:12px;
-  backdrop-filter:blur(8px);
+  background:rgba(0,0,0,.72);
+  text-align:center;
+  backdrop-filter:blur(10px)
 }
 
 .question strong{
   display:block;
   color:#e8c76a;
-  margin-bottom:8px;
-  font-size:14px;
-}
-
-.question span{
-  color:#eee;
-  line-height:1.8;
+  margin-bottom:7px
 }
 
 .options{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
+  grid-template-columns:1fr 1fr;
+  gap:10px
 }
 
 .option{
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(10,10,15,.9);
-  color:#fff;
-  border-radius:14px;
+  width:100%;
   padding:15px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(9,9,14,.92);
+  color:#fff;
   cursor:pointer;
   font-size:15px;
   text-align:right;
-  transition:.2s;
   pointer-events:auto;
+  transition:.2s
 }
 
 .option:hover{
   border-color:#e8c76a;
-  transform:translateY(-1px);
+  transform:translateY(-1px)
 }
 
 .message{
@@ -188,64 +165,69 @@ canvas{
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:min(700px,90%);
+  width:min(680px,92%);
+  padding:28px;
   text-align:center;
-  padding:30px;
   border-radius:22px;
-  background:rgba(0,0,0,.84);
   border:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(12px);
-  box-shadow:0 20px 70px rgba(0,0,0,.8);
-  pointer-events:auto;
+  background:rgba(0,0,0,.88);
+  box-shadow:0 20px 80px rgba(0,0,0,.85);
+  pointer-events:auto
 }
 
 .message h2{
   color:#e8c76a;
-  margin-top:0;
+  margin-top:0
 }
 
 .message p{
-  line-height:1.9;
   color:#ddd;
+  line-height:1.9
 }
 
 .stats{
   position:absolute;
-  left:20px;
-  bottom:20px;
+  left:16px;
+  bottom:16px;
   display:flex;
   gap:8px;
-  flex-wrap:wrap;
-  pointer-events:none;
+  flex-wrap:wrap
 }
 
 .stat{
-  background:rgba(0,0,0,.65);
-  border:1px solid rgba(255,255,255,.1);
-  padding:8px 12px;
+  padding:8px 11px;
   border-radius:10px;
-  font-size:12px;
+  background:rgba(0,0,0,.62);
+  border:1px solid rgba(255,255,255,.1);
   color:#ccc;
+  font-size:12px
+}
+
+.fallback-orb{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:140px;
+  height:140px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 30%,#fff8d0 0 4%,#e8c76a 12%,#6f5016 38%,#080808 72%);
+  box-shadow:
+    0 0 25px #e8c76a,
+    0 0 80px rgba(232,199,106,.3);
+  animation:float 3s ease-in-out infinite
+}
+
+@keyframes float{
+  0%,100%{transform:translate(-50%,-50%) translateY(0)}
+  50%{transform:translate(-50%,-50%) translateY(-12px)}
 }
 
 @media(max-width:700px){
-
-  .options{
-    grid-template-columns:1fr;
-  }
-
-  .intro{
-    padding:24px;
-  }
-
-  .title{
-    font-size:20px;
-  }
-
-  .stats{
-    left:12px;
-    bottom:12px;
-  }
+  .options{grid-template-columns:1fr}
+  .panel{padding:23px}
+  .title{font-size:20px}
 }
 </style>
 </head>
@@ -261,73 +243,58 @@ canvas{
     <div class="stage" id="stage">الدرجة 01 / 33</div>
   </div>
 
-  <div class="intro" id="intro">
-
+  <div class="panel" id="intro">
     <h1>السيد الخفي 33</h1>
 
-    <p class="sub">
+    <p>
       هناك 33 درجة.<br>
-      كل درجة تمنحك مزيداً من النفوذ… وتحمّلك مسؤولية أكبر.
+      كل درجة تمنحك مزيداً من النفوذ...
+      وتحمّلك مسؤولية أكبر.
     </p>
 
-    <div class="warning">
-      العالم الذي ستراه هنا هو عالم روائي تفاعلي.
-      القرارات والنتائج جزء من محاكاة اللعبة وليست تنبؤات مؤكدة بالمستقبل.
-    </div>
+    <p class="small">
+      هذه لعبة استراتيجية روائية تفاعلية.
+      القرارات والنتائج جزء من المحاكاة داخل اللعبة.
+    </p>
 
     <button
-      type="button"
       class="btn"
-      id="startBtn">
+      id="startBtn"
+      type="button">
       دخول الملف
     </button>
-
   </div>
 
   <div class="decision hidden" id="decision">
 
     <div class="question">
       <strong>الملف الأول — القرار الأول</strong>
-
-      <span>
+      <div>
         أنت الآن داخل مركز القرار.
         أزمة عالمية تتصاعد، والأيام القادمة قد تحدد شكل العالم.
         ما أول مبدأ ستعتمد عليه؟
-      </span>
+      </div>
     </div>
 
     <div class="options">
 
-      <button
-        type="button"
-        class="option"
-        data-choice="peace">
+      <button class="option" type="button" data-choice="peace">
         🕊️ أبحث عن التفاوض والسلام
       </button>
 
-      <button
-        type="button"
-        class="option"
-        data-choice="power">
+      <button class="option" type="button" data-choice="power">
         ⚔️ أستخدم القوة لفرض الاستقرار
       </button>
 
-      <button
-        type="button"
-        class="option"
-        data-choice="balance">
+      <button class="option" type="button" data-choice="balance">
         ⚖️ أحافظ على توازن القوى
       </button>
 
-      <button
-        type="button"
-        class="option"
-        data-choice="chaos">
+      <button class="option" type="button" data-choice="chaos">
         🔥 أستغل الفوضى لإعادة تشكيل العالم
       </button>
 
     </div>
-
   </div>
 
   <div class="message hidden" id="message">
@@ -337,9 +304,9 @@ canvas{
     <p id="messageText"></p>
 
     <button
-      type="button"
       class="btn"
-      id="continueBtn">
+      id="continueBtn"
+      type="button">
       متابعة
     </button>
 
@@ -364,384 +331,124 @@ canvas{
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.min.js"></script>
-
 <script>
-const game = document.getElementById("game");
-
-const scene = new THREE.Scene();
-
-scene.background = new THREE.Color(0x020204);
-
-scene.fog = new THREE.FogExp2(
-  0x020204,
-  0.055
-);
-
-const camera = new THREE.PerspectiveCamera(
-  65,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  100
-);
-
-camera.position.set(
-  0,
-  1.8,
-  7
-);
-
-const renderer = new THREE.WebGLRenderer({
-  antialias:true,
-  powerPreference:"high-performance"
-});
-
-renderer.setPixelRatio(
-  Math.min(window.devicePixelRatio, 1.5)
-);
-
-renderer.setSize(
-  window.innerWidth,
-  window.innerHeight
-);
-
-game.appendChild(renderer.domElement);
-
-
-/* الإضاءة */
-
-const ambient = new THREE.AmbientLight(
-  0x404050,
-  0.5
-);
-
-scene.add(ambient);
-
-const goldLight = new THREE.PointLight(
-  0xd7a93d,
-  8,
-  18
-);
-
-goldLight.position.set(
-  0,
-  3.8,
-  1
-);
-
-scene.add(goldLight);
-
-const blueLight = new THREE.PointLight(
-  0x2244ff,
-  3,
-  15
-);
-
-blueLight.position.set(
-  0,
-  2,
-  -6
-);
-
-scene.add(blueLight);
-
-
-/* الأرضية */
-
-const floorGeometry =
-  new THREE.PlaneGeometry(
-    20,
-    20
-  );
-
-const floorMaterial =
-  new THREE.MeshStandardMaterial({
-    color:0x050507,
-    roughness:0.85,
-    metalness:0.15
-  });
-
-const floor =
-  new THREE.Mesh(
-    floorGeometry,
-    floorMaterial
-  );
-
-floor.rotation.x = -Math.PI / 2;
-
-floor.position.y = 0;
-
-scene.add(floor);
-
-
-/* الجدران */
-
-const wallMaterial =
-  new THREE.MeshStandardMaterial({
-    color:0x08080b,
-    roughness:0.9,
-    metalness:0.05
-  });
-
-function createWall(
-  x,
-  y,
-  z,
-  sx,
-  sy,
-  sz
-){
-  const mesh =
-    new THREE.Mesh(
-      new THREE.BoxGeometry(
-        sx,
-        sy,
-        sz
-      ),
-      wallMaterial
-    );
-
-  mesh.position.set(
-    x,
-    y,
-    z
-  );
-
-  scene.add(mesh);
-
-  return mesh;
-}
-
-createWall(
-  0,
-  4.5,
-  -6,
-  20,
-  9,
-  0.3
-);
-
-createWall(
-  -10,
-  4.5,
-  0,
-  0.3,
-  9,
-  12
-);
-
-createWall(
-  10,
-  4.5,
-  0,
-  0.3,
-  9,
-  12
-);
-
-
-/* المنصة */
-
-const platform =
-  new THREE.Mesh(
-    new THREE.CylinderGeometry(
-      2.6,
-      2.9,
-      0.35,
-      48
-    ),
-    new THREE.MeshStandardMaterial({
-      color:0x111116,
-      roughness:0.45,
-      metalness:0.65
-    })
-  );
-
-platform.position.y = 0.2;
-
-scene.add(platform);
-
-
-/* الكرة الغامضة */
-
-const orb =
-  new THREE.Mesh(
-    new THREE.SphereGeometry(
-      0.65,
-      32,
-      32
-    ),
-    new THREE.MeshStandardMaterial({
-      color:0x0b0b10,
-      emissive:0x5b4213,
-      emissiveIntensity:2.2,
-      metalness:0.85,
-      roughness:0.15
-    })
-  );
-
-orb.position.set(
-  0,
-  2.25,
-  0
-);
-
-scene.add(orb);
-
-
-/* الحلقة */
-
-const ring =
-  new THREE.Mesh(
-    new THREE.TorusGeometry(
-      1.15,
-      0.025,
-      12,
-      80
-    ),
-    new THREE.MeshBasicMaterial({
-      color:0xe8c76a
-    })
-  );
-
-ring.rotation.x = Math.PI / 2;
-
-ring.position.copy(
-  orb.position
-);
-
-scene.add(ring);
-
-
-/* حالة اللعبة */
+/* =========================
+   حالة اللعبة
+========================= */
 
 const state = {
-  stage:1,
-  influence:0,
-  peace:50,
-  chaos:0
+  stage: 1,
+  influence: 0,
+  peace: 50,
+  chaos: 0
 };
 
-const intro =
-  document.getElementById("intro");
 
-const decision =
-  document.getElementById("decision");
+/* =========================
+   عناصر الواجهة
+========================= */
 
-const message =
-  document.getElementById("message");
+const intro = document.getElementById("intro");
+const startBtn = document.getElementById("startBtn");
+const decision = document.getElementById("decision");
+const message = document.getElementById("message");
+const messageTitle = document.getElementById("messageTitle");
+const messageText = document.getElementById("messageText");
+const continueBtn = document.getElementById("continueBtn");
+const stageEl = document.getElementById("stage");
+const influenceEl = document.getElementById("influence");
+const peaceEl = document.getElementById("peace");
+const chaosEl = document.getElementById("chaos");
 
-const messageTitle =
-  document.getElementById("messageTitle");
 
-const messageText =
-  document.getElementById("messageText");
-
-const continueBtn =
-  document.getElementById("continueBtn");
-
-const stageEl =
-  document.getElementById("stage");
-
-const influenceEl =
-  document.getElementById("influence");
-
-const peaceEl =
-  document.getElementById("peace");
-
-const chaosEl =
-  document.getElementById("chaos");
-
+/* =========================
+   تحديث المعلومات
+========================= */
 
 function updateStats(){
-
-  influenceEl.textContent =
-    String(state.influence);
-
-  peaceEl.textContent =
-    String(state.peace);
-
-  chaosEl.textContent =
-    String(state.chaos);
 
   stageEl.textContent =
     "الدرجة " +
     String(state.stage).padStart(2,"0") +
     " / 33";
+
+  influenceEl.textContent =
+    state.influence;
+
+  peaceEl.textContent =
+    state.peace;
+
+  chaosEl.textContent =
+    state.chaos;
 }
 
 
-/* بداية اللعبة */
-
-document
-  .getElementById("startBtn")
-  .addEventListener(
-    "click",
-    startGame
-  );
+/* =========================
+   تشغيل اللعبة
+   هذا الجزء يعمل قبل 3D
+========================= */
 
 function startGame(){
 
-  intro.classList.add(
-    "hidden"
-  );
+  intro.classList.add("hidden");
 
-  decision.classList.remove(
-    "hidden"
-  );
+  decision.classList.remove("hidden");
+
+  startThreeScene();
 
 }
 
 
-/* القرارات */
+/* =========================
+   ربط زر البداية
+========================= */
+
+startBtn.addEventListener(
+  "click",
+  startGame
+);
+
+
+/* =========================
+   القرارات
+========================= */
 
 document
   .querySelectorAll(".option")
-  .forEach(
-    button => {
+  .forEach(function(button){
 
-      button.addEventListener(
-        "click",
-        () => {
+    button.addEventListener(
+      "click",
+      function(){
 
-          makeDecision(
-            button.dataset.choice
-          );
+        makeDecision(
+          button.dataset.choice
+        );
 
-        }
-      );
+      }
+    );
 
-    }
-  );
+  });
 
 
 function makeDecision(choice){
 
-  decision.classList.add(
-    "hidden"
-  );
+  decision.classList.add("hidden");
 
   if(choice === "peace"){
 
     state.influence += 8;
     state.peace += 12;
 
-    scene.background =
-      new THREE.Color(
-        0x071a12
-      );
-
-    scene.fog.color =
-      new THREE.Color(
-        0x071a12
-      );
-
     messageTitle.textContent =
       "المسار الأول — السلام";
 
     messageText.textContent =
-      "اخترت طريق التفاوض. لم يتغير العالم فوراً، لكن أول مؤشر للاستقرار بدأ بالارتفاع. النظام يراقب قرارك.";
+      "اخترت التفاوض. بدأ مؤشر الاستقرار بالارتفاع، لكن النظام يراقب كل خطوة تقوم بها.";
 
+    changeWorld(
+      0x071a12
+    );
   }
 
   else if(choice === "power"){
@@ -750,22 +457,15 @@ function makeDecision(choice){
     state.peace -= 8;
     state.chaos += 10;
 
-    scene.background =
-      new THREE.Color(
-        0x180707
-      );
-
-    scene.fog.color =
-      new THREE.Color(
-        0x180707
-      );
-
     messageTitle.textContent =
       "المسار الثاني — القوة";
 
     messageText.textContent =
-      "استخدمت القوة لفرض الاستقرار. ازداد نفوذك، لكن الفوضى بدأت تتسرب إلى النظام العالمي.";
+      "استخدمت القوة لفرض الاستقرار. ازداد نفوذك، لكن الفوضى بدأت تتسلل إلى المشهد.";
 
+    changeWorld(
+      0x180707
+    );
   }
 
   else if(choice === "balance"){
@@ -778,7 +478,7 @@ function makeDecision(choice){
       "المسار الثالث — التوازن";
 
     messageText.textContent =
-      "اخترت موازنة المصالح. القرار أقل إثارة من الحرب، لكنه فتح أمامك طريقاً سياسياً أكثر تعقيداً.";
+      "اخترت توازن القوى. لم يكن القرار صاخباً، لكنه فتح طريقاً سياسياً أكثر تعقيداً.";
 
   }
 
@@ -788,78 +488,453 @@ function makeDecision(choice){
     state.peace -= 18;
     state.chaos += 25;
 
-    scene.background =
-      new THREE.Color(
-        0x200300
-      );
-
-    scene.fog.color =
-      new THREE.Color(
-        0x200300
-      );
-
     messageTitle.textContent =
       "المسار الرابع — الفوضى";
 
     messageText.textContent =
-      "اخترت استغلال الفوضى. ارتفع نفوذك بسرعة، لكن النظام العالمي بدأ يفقد توازنه. بعض الأبواب قد لا تعود مفتوحة.";
+      "اخترت استغلال الفوضى. ارتفع نفوذك بسرعة، لكن النظام العالمي بدأ يفقد توازنه.";
 
+    changeWorld(
+      0x210300
+    );
   }
 
   updateStats();
 
-  message.classList.remove(
-    "hidden"
-  );
-
+  message.classList.remove("hidden");
 }
 
 
-/* المتابعة */
+/* =========================
+   زر المتابعة
+========================= */
 
 continueBtn.addEventListener(
   "click",
-  () => {
+  function(){
 
-    message.classList.add(
-      "hidden"
-    );
+    message.classList.add("hidden");
 
-    state.stage += 1;
+    state.stage++;
+
+    if(state.stage > 33){
+      state.stage = 33;
+    }
 
     updateStats();
 
-    decision.classList.remove(
-      "hidden"
-    );
-
+    decision.classList.remove("hidden");
   }
 );
 
 
-/* الحركة */
+/* =========================
+   نظام 3D
+========================= */
 
-let time = 0;
+let threeStarted = false;
+let renderer = null;
+let scene = null;
+let camera = null;
+let orb = null;
+let ring = null;
+let goldLight = null;
+let clock = 0;
+
+
+/* تحميل Three.js
+   بعد أن تصبح الواجهة جاهزة */
+function loadThree(){
+
+  if(window.THREE){
+    startThreeScene();
+    return;
+  }
+
+  const script =
+    document.createElement("script");
+
+  script.src =
+    "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.min.js";
+
+  script.onload = function(){
+    startThreeScene();
+  };
+
+  script.onerror = function(){
+
+    createFallbackScene();
+
+  };
+
+  document.head.appendChild(script);
+}
+
+
+/* =========================
+   بدء المشهد
+========================= */
+
+function startThreeScene(){
+
+  if(threeStarted) return;
+
+  if(!window.THREE){
+
+    createFallbackScene();
+
+    return;
+  }
+
+  threeStarted = true;
+
+  const container =
+    document.getElementById("game");
+
+  container.innerHTML = "";
+
+  scene =
+    new THREE.Scene();
+
+  scene.background =
+    new THREE.Color(0x020204);
+
+  scene.fog =
+    new THREE.FogExp2(
+      0x020204,
+      0.055
+    );
+
+  camera =
+    new THREE.PerspectiveCamera(
+      65,
+      window.innerWidth /
+      window.innerHeight,
+      0.1,
+      100
+    );
+
+  camera.position.set(
+    0,
+    1.8,
+    7
+  );
+
+  renderer =
+    new THREE.WebGLRenderer({
+      antialias:true,
+      powerPreference:"high-performance"
+    });
+
+  renderer.setPixelRatio(
+    Math.min(
+      window.devicePixelRatio,
+      1.5
+    )
+  );
+
+  renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+  );
+
+  container.appendChild(
+    renderer.domElement
+  );
+
+
+  const ambient =
+    new THREE.AmbientLight(
+      0x505060,
+      0.55
+    );
+
+  scene.add(ambient);
+
+
+  goldLight =
+    new THREE.PointLight(
+      0xd7a93d,
+      8,
+      18
+    );
+
+  goldLight.position.set(
+    0,
+    3.8,
+    1
+  );
+
+  scene.add(goldLight);
+
+
+  const blueLight =
+    new THREE.PointLight(
+      0x2244ff,
+      3,
+      15
+    );
+
+  blueLight.position.set(
+    0,
+    2,
+    -6
+  );
+
+  scene.add(blueLight);
+
+
+  const floor =
+    new THREE.Mesh(
+      new THREE.PlaneGeometry(
+        20,
+        20
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0x050507,
+        roughness:0.85,
+        metalness:0.15
+      })
+    );
+
+  floor.rotation.x =
+    -Math.PI / 2;
+
+  scene.add(floor);
+
+
+  const wallMaterial =
+    new THREE.MeshStandardMaterial({
+      color:0x08080b,
+      roughness:0.9,
+      metalness:0.05
+    });
+
+
+  createWall(
+    0,
+    4.5,
+    -6,
+    20,
+    9,
+    0.3,
+    wallMaterial
+  );
+
+  createWall(
+    -10,
+    4.5,
+    0,
+    0.3,
+    9,
+    12,
+    wallMaterial
+  );
+
+  createWall(
+    10,
+    4.5,
+    0,
+    0.3,
+    9,
+    12,
+    wallMaterial
+  );
+
+
+  const platform =
+    new THREE.Mesh(
+      new THREE.CylinderGeometry(
+        2.6,
+        2.9,
+        0.35,
+        48
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0x111116,
+        roughness:0.45,
+        metalness:0.65
+      })
+    );
+
+  platform.position.y = 0.2;
+
+  scene.add(platform);
+
+
+  orb =
+    new THREE.Mesh(
+      new THREE.SphereGeometry(
+        0.65,
+        32,
+        32
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0x0b0b10,
+        emissive:0x5b4213,
+        emissiveIntensity:2.2,
+        metalness:0.85,
+        roughness:0.15
+      })
+    );
+
+  orb.position.set(
+    0,
+    2.25,
+    0
+  );
+
+  scene.add(orb);
+
+
+  ring =
+    new THREE.Mesh(
+      new THREE.TorusGeometry(
+        1.15,
+        0.025,
+        12,
+        80
+      ),
+      new THREE.MeshBasicMaterial({
+        color:0xe8c76a
+      })
+    );
+
+  ring.rotation.x =
+    Math.PI / 2;
+
+  ring.position.copy(
+    orb.position
+  );
+
+  scene.add(ring);
+
+
+  window.addEventListener(
+    "resize",
+    resizeScene
+  );
+
+
+  animate();
+}
+
+
+/* =========================
+   إنشاء الجدران
+========================= */
+
+function createWall(
+  x,
+  y,
+  z,
+  sx,
+  sy,
+  sz,
+  material
+){
+
+  const mesh =
+    new THREE.Mesh(
+      new THREE.BoxGeometry(
+        sx,
+        sy,
+        sz
+      ),
+      material
+    );
+
+  mesh.position.set(
+    x,
+    y,
+    z
+  );
+
+  scene.add(mesh);
+}
+
+
+/* =========================
+   مؤثر عند تغيير القرار
+========================= */
+
+function changeWorld(hex){
+
+  if(!scene) return;
+
+  scene.background =
+    new THREE.Color(hex);
+
+  if(scene.fog){
+    scene.fog.color =
+      new THREE.Color(hex);
+  }
+}
+
+
+/* =========================
+   مشهد احتياطي
+========================= */
+
+function createFallbackScene(){
+
+  if(
+    document.querySelector(
+      ".fallback-orb"
+    )
+  ){
+    return;
+  }
+
+  const orbEl =
+    document.createElement("div");
+
+  orbEl.className =
+    "fallback-orb";
+
+  document
+    .getElementById("game")
+    .appendChild(orbEl);
+}
+
+
+/* =========================
+   الحركة
+========================= */
 
 function animate(){
+
+  if(!renderer || !scene || !camera){
+    return;
+  }
 
   requestAnimationFrame(
     animate
   );
 
-  time += 0.01;
+  clock += 0.01;
 
-  orb.rotation.y += 0.008;
+  if(orb){
 
-  ring.rotation.z += 0.01;
+    orb.rotation.y += 0.008;
 
-  orb.position.y =
-    2.25 +
-    Math.sin(time * 2) * 0.08;
+    orb.position.y =
+      2.25 +
+      Math.sin(clock * 2) *
+      0.08;
+  }
 
-  goldLight.intensity =
-    7 +
-    Math.sin(time * 2.5) * 1.2;
+  if(ring){
+    ring.rotation.z += 0.01;
+  }
+
+  if(goldLight){
+
+    goldLight.intensity =
+      7 +
+      Math.sin(clock * 2.5) *
+      1.2;
+  }
 
   camera.lookAt(
     0,
@@ -873,36 +948,43 @@ function animate(){
   );
 }
 
-animate();
 
+/* =========================
+   حجم الشاشة
+========================= */
 
-/* تغيير حجم الشاشة */
+function resizeScene(){
 
-window.addEventListener(
-  "resize",
-  () => {
-
-    camera.aspect =
-      window.innerWidth /
-      window.innerHeight;
-
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(
-      window.innerWidth,
-      window.innerHeight
-    );
-
+  if(!renderer || !camera){
+    return;
   }
-);
+
+  camera.aspect =
+    window.innerWidth /
+    window.innerHeight;
+
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+  );
+}
 
 
-/* البداية */
+/* =========================
+   البداية
+========================= */
 
 updateStats();
+
+/*
+  نحاول تحميل 3D عند بداية الصفحة،
+  لكن عدم توفر المكتبة لا يعطل زر الدخول.
+*/
+loadThree();
 
 </script>
 
 </body>
 </html>
-```
