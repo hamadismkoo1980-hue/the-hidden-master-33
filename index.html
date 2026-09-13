@@ -1,8 +1,9 @@
+```html
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>السيد الخفي 33</title>
 
@@ -11,7 +12,8 @@
   box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
   margin:0;
   width:100%;
   height:100%;
@@ -44,6 +46,7 @@ canvas{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  pointer-events:none;
 }
 
 .title{
@@ -74,11 +77,12 @@ canvas{
   padding:34px;
   border:1px solid rgba(232,199,106,.28);
   border-radius:24px;
-  background:rgba(5,5,9,.72);
+  background:rgba(5,5,9,.78);
   backdrop-filter:blur(12px);
   box-shadow:
     0 20px 80px rgba(0,0,0,.8),
     inset 0 0 40px rgba(232,199,106,.03);
+  pointer-events:auto;
 }
 
 .intro h1{
@@ -121,7 +125,7 @@ canvas{
 }
 
 .hidden{
-  display:none!important;
+  display:none !important;
 }
 
 .decision{
@@ -135,7 +139,7 @@ canvas{
 
 .question{
   text-align:center;
-  background:rgba(4,4,7,.75);
+  background:rgba(4,4,7,.78);
   border:1px solid rgba(255,255,255,.1);
   border-radius:18px;
   padding:18px;
@@ -163,7 +167,7 @@ canvas{
 
 .option{
   border:1px solid rgba(255,255,255,.12);
-  background:rgba(10,10,15,.86);
+  background:rgba(10,10,15,.9);
   color:#fff;
   border-radius:14px;
   padding:15px;
@@ -171,6 +175,7 @@ canvas{
   font-size:15px;
   text-align:right;
   transition:.2s;
+  pointer-events:auto;
 }
 
 .option:hover{
@@ -187,10 +192,11 @@ canvas{
   text-align:center;
   padding:30px;
   border-radius:22px;
-  background:rgba(0,0,0,.78);
+  background:rgba(0,0,0,.84);
   border:1px solid rgba(255,255,255,.12);
   backdrop-filter:blur(12px);
   box-shadow:0 20px 70px rgba(0,0,0,.8);
+  pointer-events:auto;
 }
 
 .message h2{
@@ -210,10 +216,11 @@ canvas{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
+  pointer-events:none;
 }
 
 .stat{
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.65);
   border:1px solid rgba(255,255,255,.1);
   padding:8px 12px;
   border-radius:10px;
@@ -222,6 +229,7 @@ canvas{
 }
 
 @media(max-width:700px){
+
   .options{
     grid-template-columns:1fr;
   }
@@ -232,6 +240,11 @@ canvas{
 
   .title{
     font-size:20px;
+  }
+
+  .stats{
+    left:12px;
+    bottom:12px;
   }
 }
 </style>
@@ -249,6 +262,7 @@ canvas{
   </div>
 
   <div class="intro" id="intro">
+
     <h1>السيد الخفي 33</h1>
 
     <p class="sub">
@@ -261,9 +275,13 @@ canvas{
       القرارات والنتائج جزء من محاكاة اللعبة وليست تنبؤات مؤكدة بالمستقبل.
     </div>
 
-    <button class="btn" id="startBtn">
+    <button
+      type="button"
+      class="btn"
+      id="startBtn">
       دخول الملف
     </button>
+
   </div>
 
   <div class="decision hidden" id="decision">
@@ -280,19 +298,31 @@ canvas{
 
     <div class="options">
 
-      <button class="option" data-choice="peace">
+      <button
+        type="button"
+        class="option"
+        data-choice="peace">
         🕊️ أبحث عن التفاوض والسلام
       </button>
 
-      <button class="option" data-choice="power">
+      <button
+        type="button"
+        class="option"
+        data-choice="power">
         ⚔️ أستخدم القوة لفرض الاستقرار
       </button>
 
-      <button class="option" data-choice="balance">
+      <button
+        type="button"
+        class="option"
+        data-choice="balance">
         ⚖️ أحافظ على توازن القوى
       </button>
 
-      <button class="option" data-choice="chaos">
+      <button
+        type="button"
+        class="option"
+        data-choice="chaos">
         🔥 أستغل الفوضى لإعادة تشكيل العالم
       </button>
 
@@ -301,17 +331,35 @@ canvas{
   </div>
 
   <div class="message hidden" id="message">
+
     <h2 id="messageTitle"></h2>
+
     <p id="messageText"></p>
-    <button class="btn" id="continueBtn">
+
+    <button
+      type="button"
+      class="btn"
+      id="continueBtn">
       متابعة
     </button>
+
   </div>
 
   <div class="stats">
-    <div class="stat">النفوذ: <b id="influence">0</b></div>
-    <div class="stat">السلام: <b id="peace">50</b></div>
-    <div class="stat">الفوضى: <b id="chaos">0</b></div>
+    <div class="stat">
+      النفوذ:
+      <b id="influence">0</b>
+    </div>
+
+    <div class="stat">
+      السلام:
+      <b id="peace">50</b>
+    </div>
+
+    <div class="stat">
+      الفوضى:
+      <b id="chaos">0</b>
+    </div>
   </div>
 
 </div>
@@ -349,7 +397,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.setPixelRatio(
-  Math.min(window.devicePixelRatio,1.5)
+  Math.min(window.devicePixelRatio, 1.5)
 );
 
 renderer.setSize(
@@ -419,15 +467,14 @@ const floor =
     floorMaterial
   );
 
-floor.rotation.x =
-  -Math.PI / 2;
+floor.rotation.x = -Math.PI / 2;
 
 floor.position.y = 0;
 
 scene.add(floor);
 
 
-/* الغرفة */
+/* الجدران */
 
 const wallMaterial =
   new THREE.MeshStandardMaterial({
@@ -436,7 +483,7 @@ const wallMaterial =
     metalness:0.05
   });
 
-function wall(
+function createWall(
   x,
   y,
   z,
@@ -454,36 +501,63 @@ function wall(
       wallMaterial
     );
 
-  mesh.position.set(x,y,z);
+  mesh.position.set(
+    x,
+    y,
+    z
+  );
 
   scene.add(mesh);
 
   return mesh;
 }
 
-wall(0,4.5,-6,20,9,.3);
-wall(-10,4.5,0,.3,9,12);
-wall(10,4.5,0,.3,9,12);
+createWall(
+  0,
+  4.5,
+  -6,
+  20,
+  9,
+  0.3
+);
+
+createWall(
+  -10,
+  4.5,
+  0,
+  0.3,
+  9,
+  12
+);
+
+createWall(
+  10,
+  4.5,
+  0,
+  0.3,
+  9,
+  12
+);
 
 
-/* المنصة المركزية */
+/* المنصة */
 
 const platform =
   new THREE.Mesh(
     new THREE.CylinderGeometry(
       2.6,
       2.9,
-      .35,
+      0.35,
       48
     ),
     new THREE.MeshStandardMaterial({
       color:0x111116,
-      roughness:.45,
-      metalness:.65
+      roughness:0.45,
+      metalness:0.65
     })
   );
 
-platform.position.y=.2;
+platform.position.y = 0.2;
 
 scene.add(platform);
 
@@ -493,7 +567,7 @@ scene.add(platform);
 const orb =
   new THREE.Mesh(
     new THREE.SphereGeometry(
-      .65,
+      0.65,
       32,
       32
     ),
@@ -501,8 +575,8 @@ const orb =
       color:0x0b0b10,
       emissive:0x5b4213,
       emissiveIntensity:2.2,
-      metalness:.85,
-      roughness:.15
+      metalness:0.85,
+      roughness:0.15
     })
   );
 
@@ -515,13 +589,13 @@ orb.position.set(
 scene.add(orb);
 
 
-/* حلقة حول الكرة */
+/* الحلقة */
 
 const ring =
   new THREE.Mesh(
     new THREE.TorusGeometry(
       1.15,
-      .025,
+      0.025,
       12,
       80
     ),
@@ -530,8 +604,7 @@ const ring =
     })
   );
 
-ring.rotation.x =
-  Math.PI / 2;
+ring.rotation.x = Math.PI / 2;
 
 ring.position.copy(
   orb.position
@@ -548,7 +621,6 @@ const state = {
   peace:50,
   chaos:0
 };
-
 
 const intro =
   document.getElementById("intro");
@@ -584,16 +656,18 @@ const chaosEl =
 function updateStats(){
 
   influenceEl.textContent =
-    state.influence;
+    String(state.influence);
 
   peaceEl.textContent =
-    state.peace;
+    String(state.peace);
 
   chaosEl.textContent =
-    state.chaos;
+    String(state.chaos);
 
   stageEl.textContent =
-    `الدرجة ${String(state.stage).padStart(2,"0")} / 33`;
+    "الدرجة " +
+    String(state.stage).padStart(2,"0") +
+    " / 33";
 }
 
 
@@ -605,7 +679,6 @@ document
     "click",
     startGame
   );
-
 
 function startGame(){
 
@@ -742,7 +815,7 @@ function makeDecision(choice){
 }
 
 
-/* الانتقال التالي */
+/* المتابعة */
 
 continueBtn.addEventListener(
   "click",
@@ -752,7 +825,7 @@ continueBtn.addEventListener(
       "hidden"
     );
 
-    state.stage++;
+    state.stage += 1;
 
     updateStats();
 
@@ -764,7 +837,7 @@ continueBtn.addEventListener(
 );
 
 
-/* حركة المشهد */
+/* الحركة */
 
 let time = 0;
 
@@ -782,13 +855,11 @@ function animate(){
 
   orb.position.y =
     2.25 +
-    Math.sin(time * 2) *
-    0.08;
+    Math.sin(time * 2) * 0.08;
 
   goldLight.intensity =
     7 +
-    Math.sin(time * 2.5) *
-    1.2;
+    Math.sin(time * 2.5) * 1.2;
 
   camera.lookAt(
     0,
@@ -800,7 +871,6 @@ function animate(){
     scene,
     camera
   );
-
 }
 
 animate();
@@ -827,7 +897,7 @@ window.addEventListener(
 );
 
 
-/* الحالة الأولية */
+/* البداية */
 
 updateStats();
 
@@ -835,3 +905,4 @@ updateStats();
 
 </body>
 </html>
+```
