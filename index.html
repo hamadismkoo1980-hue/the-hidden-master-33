@@ -1,58 +1,54 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>السيد الخفي 33 — Cinematic 3D</title>
-  <link rel="stylesheet" href="./src/styles.css">
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.webgpu.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
-    }
-  }
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>السيد الخفي 33 — 3D Prototype</title>
+<link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
-  <main id="app">
-    <canvas id="scene"></canvas>
+<div id="app">
+  <canvas id="scene"></canvas>
 
-    <section id="overlay" class="overlay">
-      <div class="topbar">
-        <div class="brand">السيد الخفي 33</div>
-        <div class="stage" id="stageLabel">الدرجة 01 / 33</div>
+  <div id="hud">
+    <div class="brand">السيد الخفي 33</div>
+    <div class="stage">PROTOTYPE · 3D · المرحلة 01</div>
+    <div class="status" id="status">النظام جاهز</div>
+  </div>
+
+  <div id="cinematic" class="cinematic">
+    <div id="caption"></div>
+  </div>
+
+  <div id="intro" class="panel">
+    <div class="eyebrow">THE HIDDEN MASTER 33</div>
+    <h1>غرفة القرار</h1>
+    <p>هذا هو الاختبار الحقيقي للمحرك ثلاثي الأبعاد.</p>
+    <p class="muted">اضغط للدخول إلى المشهد.</p>
+    <button id="start">دخول المشهد</button>
+  </div>
+
+  <div id="decision" class="decision hidden">
+    <div class="decisionCard">
+      <div class="eyebrow">القرار الأول</div>
+      <h2>العالم ينتظر إشارتك</h2>
+      <p>كيف تتعامل مع الأزمة التي ظهرت على الخريطة؟</p>
+      <div class="choices">
+        <button data-path="peace">🕊️ فتح باب التفاوض</button>
+        <button data-path="power">⚔️ فرض الاستقرار بالقوة</button>
+        <button data-path="balance">⚖️ إبقاء توازن القوى</button>
+        <button data-path="chaos">🔥 استغلال الفوضى</button>
       </div>
+    </div>
+  </div>
 
-      <div id="stats" class="stats"></div>
-
-      <div id="narration" class="narration"></div>
-      <div id="location" class="location"></div>
-
-      <section id="decision" class="decision hidden">
-        <div class="eyebrow">لحظة القرار</div>
-        <h1 id="question"></h1>
-        <div id="options" class="options"></div>
-      </section>
-
-      <section id="intro" class="card">
-        <div class="eyebrow">INTERACTIVE 3D STRATEGY</div>
-        <h1>السيد الخفي 33</h1>
-        <p>نسخة المحرك الجديدة: عالم ثلاثي الأبعاد، كاميرا سينمائية، نظام قرارات، وإضاءة ومؤثرات قابلة للتوسع.</p>
-        <button id="start" class="primary">بدء التجربة</button>
-      </section>
-
-      <section id="result" class="card hidden">
-        <div class="eyebrow">AFTERMATH</div>
-        <h1 id="resultTitle"></h1>
-        <p id="resultText"></p>
-        <button id="continue" class="primary">متابعة</button>
-      </section>
-
-      <button id="restart" class="secondary">إعادة من الدرجة 01</button>
-    </section>
-  </main>
-
-  <script type="module" src="./src/main.js"></script>
+  <div id="result" class="panel hidden">
+    <div class="eyebrow" id="resultTag">AFTERMATH</div>
+    <h2 id="resultTitle">...</h2>
+    <p id="resultText">...</p>
+    <button id="again">إعادة التجربة</button>
+  </div>
+</div>
+<script type="module" src="src/main.js"></script>
 </body>
 </html>
