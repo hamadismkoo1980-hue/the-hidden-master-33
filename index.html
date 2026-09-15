@@ -23,9 +23,9 @@
   <div id="intro" class="panel">
     <div class="eyebrow">THE HIDDEN MASTER 33</div>
     <h1>غرفة القرار</h1>
-    <p>هذا هو الاختبار الحقيقي للمحرك ثلاثي الأبعاد.</p>
+    <p>هذا هو الاختبار الحقيقي للمشهد ثلاثي الأبعاد.</p>
     <p class="muted">اضغط للدخول إلى المشهد.</p>
-    <button id="start">دخول المشهد</button>
+    <button id="start" type="button">دخول المشهد</button>
   </div>
 
   <div id="decision" class="decision hidden">
@@ -34,21 +34,22 @@
       <h2>العالم ينتظر إشارتك</h2>
       <p>كيف تتعامل مع الأزمة التي ظهرت على الخريطة؟</p>
       <div class="choices">
-        <button data-path="peace">🕊️ فتح باب التفاوض</button>
-        <button data-path="power">⚔️ فرض الاستقرار بالقوة</button>
-        <button data-path="balance">⚖️ إبقاء توازن القوى</button>
-        <button data-path="chaos">🔥 استغلال الفوضى</button>
+        <button type="button" data-path="peace">🕊️ فتح باب التفاوض</button>
+        <button type="button" data-path="power">⚔️ فرض الاستقرار بالقوة</button>
+        <button type="button" data-path="balance">⚖️ إبقاء توازن القوى</button>
+        <button type="button" data-path="chaos">🔥 استغلال الفوضى</button>
       </div>
     </div>
   </div>
 
   <div id="result" class="panel hidden">
-    <div class="eyebrow" id="resultTag">AFTERMATH</div>
+    <div class="eyebrow">AFTERMATH</div>
     <h2 id="resultTitle">...</h2>
     <p id="resultText">...</p>
-    <button id="again">إعادة التجربة</button>
+    <button id="again" type="button">إعادة التجربة</button>
   </div>
 </div>
-<script type="module" src="src/main.js"></script>
+
+<script src="src/main.js"></script>
 </body>
 </html>
