@@ -31,6 +31,7 @@ button{
   inset:0;
   overflow:hidden;
   background:#03040a;
+  transition:background .8s ease,transform .2s ease;
 }
 
 #scene{
@@ -43,32 +44,31 @@ button{
 #vignette{
   position:absolute;
   inset:-5%;
-  pointer-events:none;
   z-index:20;
+  pointer-events:none;
   background:
     radial-gradient(
       ellipse at center,
-      rgba(0,0,0,0) 35%,
+      rgba(0,0,0,0) 30%,
       rgba(0,0,0,.28) 68%,
-      rgba(0,0,0,.82) 100%
+      rgba(0,0,0,.86) 100%
     );
 }
 
 #scanlines{
   position:absolute;
   inset:0;
-  pointer-events:none;
   z-index:21;
-  opacity:.08;
+  pointer-events:none;
+  opacity:.055;
   background:
     repeating-linear-gradient(
       to bottom,
-      rgba(255,255,255,.8) 0px,
-      rgba(255,255,255,.8) 1px,
+      rgba(255,255,255,.75) 0,
+      rgba(255,255,255,.75) 1px,
       transparent 1px,
       transparent 4px
     );
-  mix-blend-mode:screen;
 }
 
 #cinemaTop,
@@ -77,7 +77,7 @@ button{
   left:0;
   right:0;
   height:7vh;
-  min-height:42px;
+  min-height:40px;
   background:#000;
   z-index:30;
   pointer-events:none;
@@ -95,7 +95,7 @@ button{
 
 #topBar{
   position:absolute;
-  top:11vh;
+  top:10vh;
   left:3vw;
   right:3vw;
   display:flex;
@@ -108,41 +108,39 @@ button{
   color:#e9c96d;
   font-weight:900;
   font-size:clamp(18px,2.2vw,28px);
-  text-shadow:
-    0 0 12px rgba(233,201,109,.35),
-    0 0 30px rgba(233,201,109,.14);
   letter-spacing:1px;
+  text-shadow:0 0 25px rgba(233,201,109,.2);
 }
 
 .stageBadge{
-  padding:9px 14px;
+  padding:8px 14px;
   border:1px solid rgba(233,201,109,.35);
   border-radius:999px;
-  background:rgba(0,0,0,.52);
-  color:#d7d9df;
-  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,.55);
+  color:#d9dce2;
   font-size:12px;
+  backdrop-filter:blur(10px);
 }
 
 #stats{
   position:absolute;
-  top:16vh;
+  top:15vh;
   right:3vw;
   display:flex;
-  gap:7px;
   flex-wrap:wrap;
   justify-content:flex-end;
-  max-width:58vw;
+  gap:6px;
+  max-width:65vw;
 }
 
 .stat{
+  padding:5px 8px;
+  border-radius:8px;
   background:rgba(0,0,0,.46);
   border:1px solid rgba(255,255,255,.08);
-  border-radius:8px;
-  padding:5px 8px;
-  color:#b8bec8;
+  color:#aeb5c1;
   font-size:10px;
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
 }
 
 .stat b{
@@ -151,8 +149,8 @@ button{
 
 #subtitles{
   position:absolute;
-  left:8vw;
-  right:8vw;
+  left:7vw;
+  right:7vw;
   bottom:16vh;
   text-align:center;
   pointer-events:none;
@@ -160,24 +158,132 @@ button{
 
 #subtitleLine{
   display:inline-block;
-  max-width:980px;
-  min-height:44px;
-  padding:8px 15px;
-  color:#f2f1ed;
-  font-size:clamp(18px,2.2vw,31px);
-  line-height:1.75;
+  max-width:1050px;
+  color:#f0f1f4;
+  font-size:clamp(17px,2.2vw,30px);
   font-weight:600;
+  line-height:1.8;
   text-shadow:
     0 2px 10px #000,
-    0 0 30px rgba(0,0,0,.85);
+    0 0 30px rgba(0,0,0,.95);
 }
 
 #systemLine{
   display:block;
-  margin-top:2px;
-  color:rgba(228,230,236,.45);
+  margin-top:7px;
+  color:rgba(225,228,235,.48);
   font-size:10px;
   letter-spacing:1px;
+}
+
+#controls{
+  position:absolute;
+  left:3vw;
+  bottom:9vh;
+  display:flex;
+  gap:7px;
+  pointer-events:auto;
+}
+
+.ghostButton{
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.42);
+  color:#adb4c0;
+  border-radius:9px;
+  padding:7px 10px;
+  cursor:pointer;
+  font-size:10px;
+  backdrop-filter:blur(10px);
+}
+
+#introLayer,
+#resultLayer{
+  position:absolute;
+  inset:0;
+  z-index:600;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(4,6,15,.25),
+      rgba(0,0,0,.76)
+    );
+  pointer-events:auto;
+}
+
+.movieCard{
+  width:min(880px,92vw);
+  padding:38px 34px;
+  border-radius:22px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7,9,16,.96),
+      rgba(1,2,7,.97)
+    );
+  border:1px solid rgba(233,201,109,.18);
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.82),
+    0 0 70px rgba(233,201,109,.04);
+  text-align:center;
+  backdrop-filter:blur(18px);
+}
+
+.movieKicker{
+  color:#8b929f;
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:12px;
+}
+
+.movieTitle{
+  margin:0;
+  color:#e9c96d;
+  font-size:clamp(34px,6vw,68px);
+  line-height:1.15;
+  text-shadow:0 0 25px rgba(233,201,109,.13);
+}
+
+.movieText{
+  margin:17px auto 22px;
+  max-width:720px;
+  color:#d0d4db;
+  font-size:clamp(15px,1.9vw,19px);
+  line-height:2;
+}
+
+.smallNote{
+  max-width:680px;
+  margin:0 auto 22px;
+  color:#707783;
+  font-size:11px;
+  line-height:1.8;
+}
+
+.mainButton{
+  pointer-events:auto;
+  border:1px solid rgba(233,201,109,.8);
+  color:#fff;
+  background:
+    linear-gradient(
+      135deg,
+      #2a2107,
+      #b68b2f
+    );
+  padding:13px 24px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:900;
+  transition:.18s ease;
+}
+
+.mainButton:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 35px rgba(0,0,0,.45);
 }
 
 #decisionLayer{
@@ -187,31 +293,27 @@ button{
   display:flex;
   align-items:flex-end;
   justify-content:center;
-  padding:0 5vw 11vh;
+  padding:0 4vw 10vh;
   pointer-events:none;
 }
 
 #decisionBox{
-  width:min(1040px,94vw);
-  pointer-events:auto;
+  width:min(1080px,95vw);
+  padding:18px;
+  border-radius:18px;
   background:
     linear-gradient(
       to bottom,
       rgba(5,7,12,.86),
-      rgba(3,4,9,.96)
+      rgba(2,3,8,.97)
     );
   border:1px solid rgba(233,201,109,.18);
-  border-radius:18px;
-  padding:18px;
-  box-shadow:
-    0 25px 80px rgba(0,0,0,.75),
-    0 0 50px rgba(233,201,109,.05);
-  backdrop-filter:blur(12px);
-  transform:translateY(18px);
+  box-shadow:0 30px 90px rgba(0,0,0,.82);
+  backdrop-filter:blur(13px);
+  pointer-events:auto;
   opacity:0;
-  transition:
-    opacity .6s ease,
-    transform .6s ease;
+  transform:translateY(25px);
+  transition:.6s ease;
 }
 
 #decisionBox.visible{
@@ -224,15 +326,14 @@ button{
   color:#e9c96d;
   font-weight:900;
   font-size:12px;
-  margin-bottom:8px;
-  letter-spacing:1px;
+  margin-bottom:7px;
 }
 
 #question{
   text-align:center;
-  color:#e9ebf0;
-  font-size:clamp(15px,1.8vw,22px);
+  color:#eceef2;
   line-height:1.8;
+  font-size:clamp(15px,1.8vw,22px);
   margin-bottom:13px;
 }
 
@@ -243,29 +344,28 @@ button{
 }
 
 .option{
-  min-height:70px;
-  text-align:right;
-  padding:13px 15px;
+  min-height:72px;
+  border:1px solid rgba(255,255,255,.1);
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.11);
   background:
     linear-gradient(
       135deg,
       rgba(13,16,25,.96),
-      rgba(5,7,12,.96)
+      rgba(4,6,11,.98)
     );
-  color:#f4f5f6;
+  color:#f3f4f5;
+  padding:13px 15px;
+  text-align:right;
   cursor:pointer;
-  transition:
-    .18s ease;
+  font-size:14px;
+  line-height:1.6;
+  transition:.18s ease;
 }
 
 .option:hover{
   border-color:rgba(233,201,109,.6);
   transform:translateY(-2px);
-  box-shadow:
-    0 12px 35px rgba(0,0,0,.35),
-    inset 0 0 30px rgba(233,201,109,.03);
+  box-shadow:0 10px 35px rgba(0,0,0,.35);
 }
 
 .option:active{
@@ -273,168 +373,42 @@ button{
 }
 
 .option.locked{
-  opacity:.42;
+  opacity:.43;
   pointer-events:none;
-}
-
-#introLayer,
-#resultLayer,
-#gateLayer{
-  position:absolute;
-  inset:0;
-  z-index:600;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(4,6,15,.25),
-      rgba(0,0,0,.72)
-    );
-  pointer-events:auto;
-}
-
-.movieCard{
-  width:min(860px,92vw);
-  padding:38px 34px;
-  border-radius:22px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(6,8,15,.95),
-      rgba(1,2,7,.96)
-    );
-  border:1px solid rgba(233,201,109,.19);
-  box-shadow:
-    0 40px 120px rgba(0,0,0,.78),
-    0 0 70px rgba(233,201,109,.05);
-  text-align:center;
-  backdrop-filter:blur(18px);
-}
-
-.movieKicker{
-  color:#8e94a0;
-  font-size:11px;
-  letter-spacing:3px;
-  margin-bottom:13px;
-}
-
-.movieTitle{
-  margin:0;
-  color:#e9c96d;
-  font-size:clamp(36px,7vw,72px);
-  line-height:1.15;
-  text-shadow:
-    0 0 25px rgba(233,201,109,.18);
-}
-
-.movieText{
-  color:#d4d7dd;
-  line-height:2;
-  font-size:clamp(15px,2vw,19px);
-  margin:16px auto 22px;
-  max-width:700px;
-}
-
-.smallNote{
-  color:#737985;
-  font-size:11px;
-  line-height:1.8;
-  max-width:650px;
-  margin:0 auto 20px;
-}
-
-.mainButton{
-  pointer-events:auto;
-  border:1px solid rgba(233,201,109,.8);
-  color:#fff;
-  background:
-    linear-gradient(
-      135deg,
-      #2d2207,
-      #b78c2f
-    );
-  padding:13px 24px;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:900;
-  font-size:15px;
-  box-shadow:
-    0 8px 35px rgba(0,0,0,.35);
-  transition:.18s ease;
-}
-
-.mainButton:hover{
-  transform:translateY(-2px);
-  box-shadow:
-    0 12px 45px rgba(0,0,0,.48),
-    0 0 25px rgba(233,201,109,.14);
-}
-
-.hidden{
-  display:none!important;
-}
-
-#topControls{
-  position:absolute;
-  left:3vw;
-  bottom:9vh;
-  display:flex;
-  gap:7px;
-  pointer-events:auto;
-}
-
-.ghostButton{
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(0,0,0,.42);
-  color:#aeb4bf;
-  border-radius:9px;
-  padding:8px 11px;
-  cursor:pointer;
-  font-size:10px;
-  backdrop-filter:blur(8px);
 }
 
 #blackout{
   position:absolute;
   inset:0;
-  background:#000;
   z-index:1000;
-  pointer-events:none;
+  background:#000;
   opacity:0;
+  pointer-events:none;
 }
 
 #flash{
   position:absolute;
   inset:0;
   z-index:1001;
-  pointer-events:none;
   opacity:0;
+  pointer-events:none;
+}
+
+.hidden{
+  display:none!important;
 }
 
 @keyframes shake{
   0%{transform:translate(0,0)}
   20%{transform:translate(-7px,3px)}
-  40%{transform:translate(5px,-4px)}
+  40%{transform:translate(6px,-4px)}
   60%{transform:translate(-4px,5px)}
-  80%{transform:translate(6px,-2px)}
+  80%{transform:translate(7px,-2px)}
   100%{transform:translate(0,0)}
 }
 
-#game.shake{
+.shake{
   animation:shake .55s ease;
-}
-
-@keyframes pulseFrame{
-  0%{box-shadow:0 0 0 rgba(233,201,109,0)}
-  50%{box-shadow:0 0 60px rgba(233,201,109,.12)}
-  100%{box-shadow:0 0 0 rgba(233,201,109,0)}
-}
-
-.movieCard.pulse{
-  animation:pulseFrame 1s ease;
 }
 
 @media(max-width:760px){
@@ -445,7 +419,7 @@ button{
 
   #stats{
     top:14vh;
-    max-width:80vw;
+    max-width:82vw;
   }
 
   #options{
@@ -453,11 +427,7 @@ button{
   }
 
   #decisionLayer{
-    padding:0 3vw 9vh;
-  }
-
-  #decisionBox{
-    padding:12px;
+    padding:0 2.5vw 8vh;
   }
 
   #subtitles{
@@ -465,12 +435,6 @@ button{
     right:4vw;
     bottom:24vh;
   }
-
-  #topControls{
-    left:3vw;
-    bottom:8vh;
-  }
-
 }
 </style>
 </head>
@@ -499,7 +463,7 @@ button{
         class="stageBadge"
         id="stageBadge"
       >
-        الفصل 01 / 33
+        الدرجة 01 / 33
       </div>
 
     </div>
@@ -538,12 +502,12 @@ button{
       <div id="subtitleLine"></div>
 
       <span id="systemLine">
-        النظام يراقب...
+        النظام جاهز...
       </span>
 
     </div>
 
-    <div id="topControls">
+    <div id="controls">
 
       <button
         class="ghostButton"
@@ -572,7 +536,7 @@ button{
     <div class="movieCard">
 
       <div class="movieKicker">
-        INTERACTIVE CINEMATIC STRATEGY
+        INTERACTIVE STRATEGY
       </div>
 
       <h1 class="movieTitle">
@@ -580,14 +544,16 @@ button{
       </h1>
 
       <div class="movieText">
-        هذه ليست مجموعة أسئلة.
+        ثلاثة وثلاثون قراراً.
         <br>
-        إنها قصة تتغير أمامك مع كل قرار.
+        ثلاثة وثلاثون احتمالاً لمستقبل مختلف.
+        <br>
+        وفي النهاية... سيُكشف أثر قراراتك.
       </div>
 
       <div class="smallNote">
-        اللعبة روائية وخيالية بالكامل.
-        الأحداث والشخصيات والمسارات داخلها محاكاة سردية.
+        لعبة روائية واستراتيجية خيالية بالكامل.
+        الأحداث والمسارات داخل اللعبة محاكاة سردية.
       </div>
 
       <button
@@ -595,7 +561,7 @@ button{
         id="startButton"
         type="button"
       >
-        بدء الفيلم
+        بدء اللعبة
       </button>
 
     </div>
@@ -663,43 +629,6 @@ button{
 
   </section>
 
-  <section
-    id="gateLayer"
-    class="hidden"
-  >
-
-    <div class="movieCard">
-
-      <div class="movieKicker">
-        THE NEXT GATE
-      </div>
-
-      <h2 class="movieTitle">
-        بوابة الدرجة 16
-      </h2>
-
-      <div class="movieText">
-        المرحلة التجريبية الأولى انتهت.
-        <br>
-        العالم الذي صنعته بقراراتك أصبح يحمل بصمتك.
-      </div>
-
-      <div class="smallNote">
-        سيتم لاحقاً فتح الدرجات 16–33 فوق هذا المحرك السينمائي.
-      </div>
-
-      <button
-        class="mainButton"
-        id="restartFromGate"
-        type="button"
-      >
-        إعادة التجربة من الدرجة 01
-      </button>
-
-    </div>
-
-  </section>
-
   <div id="blackout"></div>
   <div id="flash"></div>
 
@@ -713,7 +642,7 @@ button{
 ========================================================= */
 
 const SAVE_KEY =
-  "hidden_master_cinematic_v1";
+  "hidden_master_33_complete_v1";
 
 const state = {
   stage:1,
@@ -725,16 +654,15 @@ const state = {
   history:[]
 };
 
-let cinematicRunning = false;
 let answered = false;
+let cinematicRunning = false;
 let soundEnabled = true;
 let audioContext = null;
-let speechVoice = null;
 let animationTime = 0;
 let currentSceneType = "global";
 
 /* =========================================================
-   DOM
+   عناصر الصفحة
 ========================================================= */
 
 const game =
@@ -758,9 +686,6 @@ const decisionBox =
 const resultLayer =
   document.getElementById("resultLayer");
 
-const gateLayer =
-  document.getElementById("gateLayer");
-
 const startButton =
   document.getElementById("startButton");
 
@@ -769,9 +694,6 @@ const continueButton =
 
 const restartButton =
   document.getElementById("restartButton");
-
-const restartFromGate =
-  document.getElementById("restartFromGate");
 
 const soundButton =
   document.getElementById("soundButton");
@@ -806,15 +728,6 @@ const balanceEl =
 const trustEl =
   document.getElementById("trust");
 
-const resultKicker =
-  document.getElementById("resultKicker");
-
-const resultTitle =
-  document.getElementById("resultTitle");
-
-const resultText =
-  document.getElementById("resultText");
-
 const blackout =
   document.getElementById("blackout");
 
@@ -822,8 +735,62 @@ const flash =
   document.getElementById("flash");
 
 /* =========================================================
-   بيانات المراحل
+   أدوات عامة
 ========================================================= */
+
+function clamp(
+  value,
+  min,
+  max
+){
+  return Math.max(
+    min,
+    Math.min(
+      max,
+      value
+    )
+  );
+}
+
+function wait(ms){
+  return new Promise(
+    resolve =>
+      setTimeout(
+        resolve,
+        ms
+      )
+  );
+}
+
+/* =========================================================
+   المراحل 01 - 33
+========================================================= */
+
+function option(
+  id,
+  text,
+  title,
+  result,
+  path,
+  influence,
+  peace,
+  chaos,
+  balance,
+  trust
+){
+  return {
+    id,
+    text,
+    title,
+    result,
+    path,
+    influence,
+    peace,
+    chaos,
+    balance,
+    trust
+  };
+}
 
 const stages = {
 
@@ -838,38 +805,10 @@ const stages = {
  ],
  question:"ما المبدأ الذي ستضعه أولاً عندما تكون كل الخيارات مكلفة؟",
  options:[
-  {
-   id:"peace",
-   text:"🕊️ أفتح باب التفاوض وأمنح السلام الأولوية.",
-   title:"قرار السلام",
-   result:"بدأت أول نافذة للتهدئة.",
-   path:"peace",
-   influence:8,peace:12,chaos:-3,balance:5,trust:8
-  },
-  {
-   id:"power",
-   text:"⚔️ أستخدم القوة لفرض الاستقرار.",
-   title:"قرار القوة",
-   result:"ارتفع نفوذك... وارتفع معه الخوف.",
-   path:"power",
-   influence:13,peace:-8,chaos:9,balance:-2,trust:-4
-  },
-  {
-   id:"balance",
-   text:"⚖️ أحافظ على توازن القوى.",
-   title:"قرار التوازن",
-   result:"منعت طرفاً واحداً من امتلاك المشهد.",
-   path:"balance",
-   influence:10,peace:4,chaos:2,balance:12,trust:5
-  },
-  {
-   id:"chaos",
-   text:"🔥 أستغل الفوضى لإعادة تشكيل النظام.",
-   title:"قرار الفوضى",
-   result:"صعد نفوذك بصورة مذهلة... لكن النظام اهتز.",
-   path:"chaos",
-   influence:18,peace:-15,chaos:24,balance:-12,trust:-10
-  }
+  option("peace","🕊️ أفتح باب التفاوض وأمنح السلام الأولوية.","قرار السلام","بدأت أول نافذة للتهدئة.","peace",8,12,-3,5,8),
+  option("power","⚔️ أستخدم القوة لفرض الاستقرار.","قرار القوة","ارتفع نفوذك... وارتفع معه الخوف.","power",13,-8,9,-2,-4),
+  option("balance","⚖️ أحافظ على توازن القوى.","قرار التوازن","منعت طرفاً واحداً من امتلاك المشهد.","balance",10,4,2,12,5),
+  option("chaos","🔥 أستغل الفوضى لإعادة تشكيل النظام.","قرار الفوضى","صعد نفوذك بصورة مذهلة... لكن النظام اهتز.","chaos",18,-15,24,-12,-10)
  ]
 },
 
@@ -884,38 +823,10 @@ const stages = {
  ],
  question:"كيف تتعامل مع مورد محدود؟",
  options:[
-  {
-   id:"ration",
-   text:"🌿 أفرض التقنين وأحمي الخدمات الأساسية.",
-   title:"قرار التقنين",
-   result:"نجت الخدمات الأساسية.",
-   path:"peace",
-   influence:7,peace:10,chaos:-5,balance:9,trust:10
-  },
-  {
-   id:"market",
-   text:"💰 أترك السوق يحدد الأولويات.",
-   title:"قرار السوق",
-   result:"تحركت الموارد بسرعة، لكن الثمن كان قاسياً.",
-   path:"power",
-   influence:11,peace:-2,chaos:8,balance:3,trust:-2
-  },
-  {
-   id:"alliance",
-   text:"🤝 أعقد تحالفاً لتقاسم الموارد.",
-   title:"قرار التحالف",
-   result:"ولدت شبكة مصالح جديدة.",
-   path:"balance",
-   influence:12,peace:8,chaos:-2,balance:14,trust:9
-  },
-  {
-   id:"shock",
-   text:"⚡ أستخدم قراراً صادماً لإعادة البناء.",
-   title:"قرار الصدمة",
-   result:"توقفت الفوضى... لكن الخوف بدأ.",
-   path:"chaos",
-   influence:20,peace:-17,chaos:22,balance:-9,trust:-12
-  }
+  option("ration","🌿 أفرض التقنين وأحمي الخدمات الأساسية.","قرار التقنين","نجت الخدمات الأساسية.","peace",7,10,-5,9,10),
+  option("market","💰 أترك السوق يحدد الأولويات.","قرار السوق","تحركت الموارد بسرعة، لكن الثمن كان قاسياً.","power",11,-2,8,3,-2),
+  option("alliance","🤝 أعقد تحالفاً لتقاسم الموارد.","قرار التحالف","ولدت شبكة مصالح جديدة.","balance",12,8,-2,14,9),
+  option("shock","⚡ أستخدم قراراً صادماً لإعادة البناء.","قرار الصدمة","توقفت الفوضى... لكن الخوف بدأ.","chaos",20,-17,22,-9,-12)
  ]
 },
 
@@ -930,38 +841,10 @@ const stages = {
  ],
  question:"كيف تتعامل مع المورد الحيوي؟",
  options:[
-  {
-   id:"share",
-   text:"💧 أفرض اتفاقاً دولياً لتقاسم المياه.",
-   title:"اتفاق المياه",
-   result:"فتحت الممرات المائية أمام الجميع.",
-   path:"peace",
-   influence:10,peace:15,chaos:-8,balance:10,trust:12
-  },
-  {
-   id:"control",
-   text:"🏛️ أضع الموارد تحت سيطرة مركزية.",
-   title:"سيطرة الموارد",
-   result:"ازدادت قوتك... وازداد الخوف.",
-   path:"power",
-   influence:17,peace:-5,chaos:10,balance:6,trust:-7
-  },
-  {
-   id:"trade",
-   text:"⚖️ أحول المياه إلى اتفاقات تبادل.",
-   title:"اقتصاد المياه",
-   result:"أصبح الجميع محتاجاً إلى الجميع.",
-   path:"balance",
-   influence:13,peace:7,chaos:1,balance:14,trust:6
-  },
-  {
-   id:"deny",
-   text:"🌋 أستخدم الأزمة لإجبار الخصوم.",
-   title:"قرار الانهيار",
-   result:"دخل النظام منطقة خطرة.",
-   path:"chaos",
-   influence:22,peace:-18,chaos:26,balance:-13,trust:-15
-  }
+  option("share","💧 أفرض اتفاقاً دولياً لتقاسم المياه.","اتفاق المياه","فتحت الممرات المائية أمام الجميع.","peace",10,15,-8,10,12),
+  option("control","🏛️ أضع الموارد تحت سيطرة مركزية.","سيطرة الموارد","ازدادت قوتك... وازداد الخوف.","power",17,-5,10,6,-7),
+  option("trade","⚖️ أحول المياه إلى اتفاقات تبادل.","اقتصاد المياه","أصبح الجميع محتاجاً إلى الجميع.","balance",13,7,1,14,6),
+  option("deny","🌋 أستخدم الأزمة لإجبار الخصوم.","قرار الانهيار","دخل النظام منطقة خطرة.","chaos",22,-18,26,-13,-15)
  ]
 },
 
@@ -976,38 +859,10 @@ const stages = {
  ],
  question:"ما خطوتك الأولى؟",
  options:[
-  {
-   id:"hotline",
-   text:"📞 أفتح خط اتصال مباشر لمنع سوء الفهم.",
-   title:"خط الطوارئ",
-   result:"انخفض احتمال سوء الحسابات.",
-   path:"peace",
-   influence:9,peace:12,chaos:-5,balance:8,trust:11
-  },
-  {
-   id:"deterrence",
-   text:"🛡️ أعزز الردع العسكري.",
-   title:"تعزيز الردع",
-   result:"وصلت رسالة القوة... لكن التوتر ارتفع.",
-   path:"power",
-   influence:16,peace:-4,chaos:10,balance:4,trust:-2
-  },
-  {
-   id:"observer",
-   text:"⚖️ أطلب مراقبة مشتركة ومحايدة.",
-   title:"المراقبة المشتركة",
-   result:"أصبح الهدوء مصلحة مشتركة.",
-   path:"balance",
-   influence:12,peace:8,chaos:0,balance:15,trust:9
-  },
-  {
-   id:"provocation",
-   text:"🔥 أستغل الحشد العسكري لخلق فوضى جديدة.",
-   title:"الاستفزاز",
-   result:"تحولت الحدود إلى شرارة.",
-   path:"chaos",
-   influence:21,peace:-20,chaos:28,balance:-15,trust:-18
-  }
+  option("hotline","📞 أفتح خط اتصال مباشر لمنع سوء الفهم.","خط الطوارئ","انخفض احتمال سوء الحسابات.","peace",9,12,-5,8,11),
+  option("deterrence","🛡️ أعزز الردع العسكري.","تعزيز الردع","وصلت رسالة القوة... لكن التوتر ارتفع.","power",16,-4,10,4,-2),
+  option("observer","⚖️ أطلب مراقبة مشتركة ومحايدة.","المراقبة المشتركة","أصبح الهدوء مصلحة مشتركة.","balance",12,8,0,15,9),
+  option("provocation","🔥 أستغل الحشد العسكري لخلق فوضى جديدة.","الاستفزاز","تحولت الحدود إلى شرارة.","chaos",21,-20,28,-15,-18)
  ]
 },
 
@@ -1018,42 +873,14 @@ const stages = {
  narration:[
   "الأسهم تهبط.",
   "الشاشات تتحول إلى الأحمر.",
-  "والأسواق... لا تخاف من الخسارة بقدر خوفها من المجهول."
+  "والأسواق لا تخاف من الخسارة بقدر خوفها من المجهول."
  ],
  question:"كيف تمنع الانهيار؟",
  options:[
-  {
-   id:"confidence",
-   text:"🏦 أطلق خطة طمأنة وتعاون مالي.",
-   title:"استعادة الثقة",
-   result:"تراجع الذعر تدريجياً.",
-   path:"peace",
-   influence:10,peace:9,chaos:-7,balance:11,trust:14
-  },
-  {
-   id:"control",
-   text:"💼 أفرض ضوابط صارمة فوراً.",
-   title:"السيطرة المالية",
-   result:"ثبت السوق... لكن الأسئلة بقيت.",
-   path:"power",
-   influence:18,peace:-3,chaos:8,balance:5,trust:-4
-  },
-  {
-   id:"hedge",
-   text:"⚖️ أوزع المخاطر بين عدة قنوات.",
-   title:"توازن المخاطر",
-   result:"أصبح النظام أقوى أمام الصدمات.",
-   path:"balance",
-   influence:14,peace:6,chaos:-1,balance:17,trust:8
-  },
-  {
-   id:"speculate",
-   text:"🔥 أستخدم الذعر لصناعة نفوذ جديد.",
-   title:"اقتصاد الفوضى",
-   result:"ربحت نفوذاً... وانتشرت الخسائر.",
-   path:"chaos",
-   influence:24,peace:-15,chaos:25,balance:-11,trust:-14
-  }
+  option("confidence","🏦 أطلق خطة طمأنة وتعاون مالي.","استعادة الثقة","تراجع الذعر تدريجياً.","peace",10,9,-7,11,14),
+  option("control","💼 أفرض ضوابط صارمة فوراً.","السيطرة المالية","ثبت السوق... لكن الأسئلة بقيت.","power",18,-3,8,5,-4),
+  option("hedge","⚖️ أوزع المخاطر بين عدة قنوات.","توازن المخاطر","أصبح النظام أقوى أمام الصدمات.","balance",14,6,-1,17,8),
+  option("speculate","🔥 أستخدم الذعر لصناعة نفوذ جديد.","اقتصاد الفوضى","ربحت نفوذاً... وانتشرت الخسائر.","chaos",24,-15,25,-11,-14)
  ]
 },
 
@@ -1068,38 +895,10 @@ const stages = {
  ],
  question:"ما القرار الذي تتخذه؟",
  options:[
-  {
-   id:"defense",
-   text:"🖥️ أعزل الأنظمة وأعطي الدفاع أولوية.",
-   title:"الدفاع الرقمي",
-   result:"انكمشت مساحة الهجوم.",
-   path:"peace",
-   influence:11,peace:10,chaos:-7,balance:8,trust:10
-  },
-  {
-   id:"counter",
-   text:"⚔️ أطلق هجوماً مضاداً واسعاً.",
-   title:"الهجوم المضاد",
-   result:"وصلت رسالة قوة... وبدأ التصعيد.",
-   path:"power",
-   influence:20,peace:-5,chaos:11,balance:2,trust:-5
-  },
-  {
-   id:"protocol",
-   text:"⚖️ أطرح بروتوكولاً دولياً للتهدئة الرقمية.",
-   title:"التهدئة الإلكترونية",
-   result:"نشأت قواعد جديدة.",
-   path:"balance",
-   influence:15,peace:7,chaos:-2,balance:16,trust:9
-  },
-  {
-   id:"blackout",
-   text:"🔥 أقطع الشبكات بالكامل لأربك الجميع.",
-   title:"الإطفاء الرقمي",
-   result:"عم الظلام الرقمي.",
-   path:"chaos",
-   influence:23,peace:-18,chaos:29,balance:-16,trust:-17
-  }
+  option("defense","🖥️ أعزل الأنظمة وأعطي الدفاع أولوية.","الدفاع الرقمي","انكمشت مساحة الهجوم.","peace",11,10,-7,8,10),
+  option("counter","⚔️ أطلق هجوماً مضاداً واسعاً.","الهجوم المضاد","وصلت رسالة قوة... وبدأ التصعيد.","power",20,-5,11,2,-5),
+  option("protocol","⚖️ أطرح بروتوكولاً دولياً للتهدئة الرقمية.","التهدئة الإلكترونية","نشأت قواعد جديدة.","balance",15,7,-2,16,9),
+  option("blackout","🔥 أقطع الشبكات بالكامل لأربك الجميع.","الإطفاء الرقمي","عم الظلام الرقمي.","chaos",23,-18,29,-16,-17)
  ]
 },
 
@@ -1114,38 +913,10 @@ const stages = {
  ],
  question:"كيف تستخدم التأثير؟",
  options:[
-  {
-   id:"truth",
-   text:"📚 أضع الشفافية أولاً.",
-   title:"سياسة الشفافية",
-   result:"ارتفع منسوب الثقة العامة.",
-   path:"peace",
-   influence:9,peace:11,chaos:-6,balance:10,trust:15
-  },
-  {
-   id:"narrative",
-   text:"📢 أفرض رواية موحدة للأزمة.",
-   title:"الرواية المركزية",
-   result:"أصبح صوتك أعلى من الجميع.",
-   path:"power",
-   influence:19,peace:-4,chaos:9,balance:3,trust:-8
-  },
-  {
-   id:"plurality",
-   text:"⚖️ أسمح بتعدد الأصوات ضمن قواعد واضحة.",
-   title:"توازن السرد",
-   result:"ظهر مجال للنقاش المنضبط.",
-   path:"balance",
-   influence:14,peace:8,chaos:-1,balance:18,trust:12
-  },
-  {
-   id:"disinformation",
-   text:"🔥 أستغل التضليل لإعادة تشكيل المشهد.",
-   title:"غرفة الفوضى",
-   result:"سبقت الشائعات الحقائق.",
-   path:"chaos",
-   influence:25,peace:-17,chaos:30,balance:-18,trust:-20
-  }
+  option("truth","📚 أضع الشفافية أولاً.","سياسة الشفافية","ارتفع منسوب الثقة العامة.","peace",9,11,-6,10,15),
+  option("narrative","📢 أفرض رواية موحدة للأزمة.","الرواية المركزية","أصبح صوتك أعلى من الجميع.","power",19,-4,9,3,-8),
+  option("plurality","⚖️ أسمح بتعدد الأصوات ضمن قواعد واضحة.","توازن السرد","ظهر مجال للنقاش المنضبط.","balance",14,8,-1,18,12),
+  option("disinformation","🔥 أستغل التضليل لإعادة تشكيل المشهد.","غرفة الفوضى","سبقت الشائعات الحقائق.","chaos",25,-17,30,-18,-20)
  ]
 },
 
@@ -1160,42 +931,10 @@ const stages = {
  ],
  question:"أي مسار تتوقعه خلال الفترة القادمة؟",
  options:[
-  {
-   id:"forecast_peace",
-   text:"🔮 أتوقع انفراجاً واسعاً واتساع التعاون.",
-   title:"تنبؤ السلام",
-   result:"تم تسجيل توقعك في النظام.",
-   path:"peace",
-   forecast:true,
-   influence:7,peace:9,chaos:-3,balance:9,trust:8
-  },
-  {
-   id:"forecast_power",
-   text:"🔮 أتوقع سباق نفوذ وتصعيداً محسوباً.",
-   title:"تنبؤ القوة",
-   result:"تم تسجيل توقعك في النظام.",
-   path:"power",
-   forecast:true,
-   influence:15,peace:-2,chaos:8,balance:4,trust:2
-  },
-  {
-   id:"forecast_balance",
-   text:"🔮 أتوقع توازناً هشاً بين القوى.",
-   title:"تنبؤ التوازن",
-   result:"تم تسجيل توقعك في النظام.",
-   path:"balance",
-   forecast:true,
-   influence:12,peace:5,chaos:1,balance:15,trust:7
-  },
-  {
-   id:"forecast_chaos",
-   text:"🔮 أتوقع صدمة كبيرة وانهياراً في النظام.",
-   title:"تنبؤ الفوضى",
-   result:"تم تسجيل توقعك في النظام.",
-   path:"chaos",
-   forecast:true,
-   influence:18,peace:-10,chaos:20,balance:-10,trust:-8
-  }
+  option("forecastPeace","🔮 أتوقع انفراجاً واسعاً واتساع التعاون.","تنبؤ السلام","تم تسجيل توقعك في النظام.","peace",7,9,-3,9,8),
+  option("forecastPower","🔮 أتوقع سباق نفوذ وتصعيداً محسوباً.","تنبؤ القوة","تم تسجيل توقعك في النظام.","power",15,-2,8,4,2),
+  option("forecastBalance","🔮 أتوقع توازناً هشاً بين القوى.","تنبؤ التوازن","تم تسجيل توقعك في النظام.","balance",12,5,1,15,7),
+  option("forecastChaos","🔮 أتوقع صدمة كبيرة وانهياراً في النظام.","تنبؤ الفوضى","تم تسجيل توقعك في النظام.","chaos",18,-10,20,-10,-8)
  ]
 },
 
@@ -1210,38 +949,10 @@ const stages = {
  ],
  question:"كيف تمنع تحوّلها إلى شرارة؟",
  options:[
-  {
-   id:"guarantee",
-   text:"🤝 أقدم ضمانات دولية للمنطقة.",
-   title:"الضمانات",
-   result:"أصبح الهدوء مصلحة مشتركة.",
-   path:"peace",
-   influence:11,peace:13,chaos:-5,balance:10,trust:12
-  },
-  {
-   id:"leverage",
-   text:"⚔️ أستخدم المنطقة ورقة ضغط.",
-   title:"ورقة الضغط",
-   result:"ارتفع نفوذك وتحرك الخصوم.",
-   path:"power",
-   influence:19,peace:-5,chaos:10,balance:4,trust:-6
-  },
-  {
-   id:"neutrality",
-   text:"⚖️ أرسخ حياداً متوازناً.",
-   title:"الحياد",
-   result:"تحولت الجزيرة إلى مساحة توازن.",
-   path:"balance",
-   influence:14,peace:9,chaos:-1,balance:18,trust:11
-  },
-  {
-   id:"trigger",
-   text:"🔥 أشعل نزاعاً محدوداً لإعادة رسم الحسابات.",
-   title:"الشرارة",
-   result:"كبرت الأزمة أبعد من الجزيرة.",
-   path:"chaos",
-   influence:26,peace:-19,chaos:31,balance:-20,trust:-19
-  }
+  option("guarantee","🤝 أقدم ضمانات دولية للمنطقة.","الضمانات","أصبح الهدوء مصلحة مشتركة.","peace",11,13,-5,10,12),
+  option("leverage","⚔️ أستخدم المنطقة ورقة ضغط.","ورقة الضغط","ارتفع نفوذك وتحرك الخصوم.","power",19,-5,10,4,-6),
+  option("neutrality","⚖️ أرسخ حياداً متوازناً.","الحياد","تحولت الجزيرة إلى مساحة توازن.","balance",14,9,-1,18,11),
+  option("trigger","🔥 أشعل نزاعاً محدوداً لإعادة رسم الحسابات.","الشرارة","كبرت الأزمة أبعد من الجزيرة.","chaos",26,-19,31,-20,-19)
  ]
 },
 
@@ -1256,38 +967,10 @@ const stages = {
  ],
  question:"ماذا تفعل عندما يصبح القرار نهائياً؟",
  options:[
-  {
-   id:"humanity",
-   text:"🕊️ أختار أقل المسارات ضرراً على البشر.",
-   title:"أولوية الإنسان",
-   result:"حافظت على البوصلة.",
-   path:"peace",
-   influence:8,peace:15,chaos:-9,balance:11,trust:16
-  },
-  {
-   id:"dominance",
-   text:"👑 أختار السيطرة الكاملة.",
-   title:"السيطرة",
-   result:"وصل نفوذك إلى مستوى جديد.",
-   path:"power",
-   influence:25,peace:-9,chaos:13,balance:-2,trust:-10
-  },
-  {
-   id:"equilibrium",
-   text:"⚖️ أقبل بحل ناقص يحقق توازناً.",
-   title:"الحل الوسط",
-   result:"لم ينتصر أحد تماماً.",
-   path:"balance",
-   influence:15,peace:8,chaos:-1,balance:20,trust:12
-  },
-  {
-   id:"collapse",
-   text:"🌋 أقبل بالانهيار كوسيلة لإعادة البداية.",
-   title:"إعادة التشغيل",
-   result:"بدأ عصر جديد فوق الأنقاض.",
-   path:"chaos",
-   influence:30,peace:-25,chaos:38,balance:-24,trust:-25
-  }
+  option("humanity","🕊️ أختار أقل المسارات ضرراً على البشر.","أولوية الإنسان","حافظت على البوصلة.","peace",8,15,-9,11,16),
+  option("dominance","👑 أختار السيطرة الكاملة.","السيطرة","وصل نفوذك إلى مستوى جديد.","power",25,-9,13,-2,-10),
+  option("equilibrium","⚖️ أقبل بحل ناقص يحقق توازناً.","الحل الوسط","لم ينتصر أحد تماماً.","balance",15,8,-1,20,12),
+  option("collapse","🌋 أقبل بالانهيار كوسيلة لإعادة البداية.","إعادة التشغيل","بدأ عصر جديد فوق الأنقاض.","chaos",30,-25,38,-24,-25)
  ]
 },
 
@@ -1302,38 +985,10 @@ const stages = {
  ],
  question:"كيف تمنع الانقسام من التحول إلى واقع دائم؟",
  options:[
-  {
-   id:"bridge",
-   text:"🌉 أبني جسور تعاون تدريجية.",
-   title:"بناء الجسور",
-   result:"بدأ الانقسام بالتراجع.",
-   path:"peace",
-   influence:10,peace:14,chaos:-6,balance:12,trust:14
-  },
-  {
-   id:"bloc",
-   text:"🛡️ أختار كتلة واحدة وأدعمها.",
-   title:"سياسة الكتل",
-   result:"تشكل محور جديد.",
-   path:"power",
-   influence:22,peace:-6,chaos:11,balance:3,trust:-7
-  },
-  {
-   id:"federation",
-   text:"⚖️ أقترح منظومة توازن بين الطرفين.",
-   title:"الاتحاد المتوازن",
-   result:"أصبح التنافس أكثر قابلية للإدارة.",
-   path:"balance",
-   influence:16,peace:9,chaos:0,balance:21,trust:13
-  },
-  {
-   id:"fracture",
-   text:"🔥 أدفع الطرفين إلى نقطة الانفصال.",
-   title:"التشظي",
-   result:"تحولت الخلافات إلى أزمة عميقة.",
-   path:"chaos",
-   influence:28,peace:-20,chaos:34,balance:-18,trust:-21
-  }
+  option("bridge","🌉 أبني جسور تعاون تدريجية.","بناء الجسور","بدأ الانقسام بالتراجع.","peace",10,14,-6,12,14),
+  option("bloc","🛡️ أختار كتلة واحدة وأدعمها.","سياسة الكتل","تشكل محور جديد.","power",22,-6,11,3,-7),
+  option("federation","⚖️ أقترح منظومة توازن بين الطرفين.","الاتحاد المتوازن","أصبح التنافس أكثر قابلية للإدارة.","balance",16,9,0,21,13),
+  option("fracture","🔥 أدفع الطرفين إلى نقطة الانفصال.","التشظي","تحولت الخلافات إلى أزمة عميقة.","chaos",28,-20,34,-18,-21)
  ]
 },
 
@@ -1344,43 +999,14 @@ const stages = {
  narration:[
   "تصل المؤشرات إلى الأحمر.",
   "لم يبق سوى دقائق.",
-  "والسؤال الآن ليس ماذا تريد...",
-  "بل ماذا ستنقذ."
+  "والسؤال الآن ليس ماذا تريد... بل ماذا ستنقذ."
  ],
  question:"ما أول شيء تنقذه؟",
  options:[
-  {
-   id:"people",
-   text:"❤️ أنقذ حياة الناس أولاً.",
-   title:"إنقاذ البشر",
-   result:"ارتفعت الثقة بك وسط الأزمة.",
-   path:"peace",
-   influence:11,peace:17,chaos:-10,balance:8,trust:18
-  },
-  {
-   id:"command",
-   text:"🎖️ أضع السلطة في مركز واحد.",
-   title:"غرفة القيادة",
-   result:"أصبح القرار أسرع وأقسى.",
-   path:"power",
-   influence:27,peace:-8,chaos:14,balance:-1,trust:-11
-  },
-  {
-   id:"systems",
-   text:"⚖️ أحافظ على عمل الأنظمة الرئيسية معاً.",
-   title:"حماية الأنظمة",
-   result:"نجت البنية الأساسية من الانهيار.",
-   path:"balance",
-   influence:17,peace:10,chaos:-1,balance:22,trust:14
-  },
-  {
-   id:"reset",
-   text:"🔥 أترك الأنظمة تسقط لأبدأ من جديد.",
-   title:"الصفر الكبير",
-   result:"دخل العالم حالة فوضى.",
-   path:"chaos",
-   influence:32,peace:-28,chaos:42,balance:-25,trust:-28
-  }
+  option("people","❤️ أنقذ حياة الناس أولاً.","إنقاذ البشر","ارتفعت الثقة بك وسط الأزمة.","peace",11,17,-10,8,18),
+  option("command","🎖️ أضع السلطة في مركز واحد.","غرفة القيادة","أصبح القرار أسرع وأقسى.","power",27,-8,14,-1,-11),
+  option("systems","⚖️ أحافظ على عمل الأنظمة الرئيسية معاً.","حماية الأنظمة","نجت البنية الأساسية من الانهيار.","balance",17,10,-1,22,14),
+  option("reset","🔥 أترك الأنظمة تسقط لأبدأ من جديد.","الصفر الكبير","دخل العالم حالة فوضى.","chaos",32,-28,42,-25,-28)
  ]
 },
 
@@ -1396,38 +1022,10 @@ const stages = {
  ],
  question:"عندما ترى أثر اختياراتك، هل تغير المسار؟",
  options:[
-  {
-   id:"learn",
-   text:"🧭 أتعلم من النتائج وأصحح الاتجاه.",
-   title:"التعلم",
-   result:"الماضي لم يعد سجناً للمستقبل.",
-   path:"peace",
-   influence:9,peace:13,chaos:-8,balance:13,trust:16
-  },
-  {
-   id:"persist",
-   text:"⚔️ أواصل النهج نفسه مهما كانت التكلفة.",
-   title:"الإصرار",
-   result:"أصبحت قراراتك أكثر قسوة.",
-   path:"power",
-   influence:23,peace:-6,chaos:12,balance:1,trust:-9
-  },
-  {
-   id:"rebalance",
-   text:"⚖️ أعيد توزيع التأثيرات.",
-   title:"إعادة التوازن",
-   result:"بدأ النظام يستعيد شكله.",
-   path:"balance",
-   influence:16,peace:9,chaos:-2,balance:23,trust:15
-  },
-  {
-   id:"embrace",
-   text:"🔥 أحتضن الفوضى بالكامل.",
-   title:"سيد الفوضى",
-   result:"ازدادت قوة العاصفة.",
-   path:"chaos",
-   influence:31,peace:-24,chaos:40,balance:-23,trust:-26
-  }
+  option("learn","🧭 أتعلم من النتائج وأصحح الاتجاه.","التعلم","الماضي لم يعد سجناً للمستقبل.","peace",9,13,-8,13,16),
+  option("persist","⚔️ أواصل النهج نفسه مهما كانت التكلفة.","الإصرار","أصبحت قراراتك أكثر قسوة.","power",23,-6,12,1,-9),
+  option("rebalance","⚖️ أعيد توزيع التأثيرات.","إعادة التوازن","بدأ النظام يستعيد شكله.","balance",16,9,-2,23,15),
+  option("embrace","🔥 أحتضن الفوضى بالكامل.","سيد الفوضى","ازدادت قوة العاصفة.","chaos",31,-24,40,-23,-26)
  ]
 },
 
@@ -1442,38 +1040,10 @@ const stages = {
  ],
  question:"ما الذي يستحق أن يبقى بعد انتهاء الصراع؟",
  options:[
-  {
-   id:"legacy",
-   text:"🌱 أبني إرثاً يقوم على الاستقرار.",
-   title:"الإرث",
-   result:"تحول نفوذك إلى قدرة على البناء.",
-   path:"peace",
-   influence:12,peace:18,chaos:-10,balance:14,trust:19
-  },
-  {
-   id:"authority",
-   text:"👑 أبني منظومة تدور حول قراراتي.",
-   title:"السلطة",
-   result:"أصبحت مركز الثقل الحقيقي.",
-   path:"power",
-   influence:30,peace:-8,chaos:14,balance:2,trust:-12
-  },
-  {
-   id:"architecture",
-   text:"⚖️ أصنع نظاماً لا يعتمد على فرد واحد.",
-   title:"هندسة التوازن",
-   result:"بدأت المؤسسة تتجاوز صاحبها.",
-   path:"balance",
-   influence:18,peace:12,chaos:-2,balance:25,trust:18
-  },
-  {
-   id:"endgame",
-   text:"🔥 أدفع اللعبة إلى أقصى حد ممكن.",
-   title:"النهاية القصوى",
-   result:"اهتزت جميع المؤشرات.",
-   path:"chaos",
-   influence:34,peace:-30,chaos:45,balance:-28,trust:-30
-  }
+  option("legacy","🌱 أبني إرثاً يقوم على الاستقرار.","الإرث","تحول نفوذك إلى قدرة على البناء.","peace",12,18,-10,14,19),
+  option("authority","👑 أبني منظومة تدور حول قراراتي.","السلطة","أصبحت مركز الثقل الحقيقي.","power",30,-8,14,2,-12),
+  option("architecture","⚖️ أصنع نظاماً لا يعتمد على فرد واحد.","هندسة التوازن","بدأت المؤسسة تتجاوز صاحبها.","balance",18,12,-2,25,18),
+  option("endgame","🔥 أدفع اللعبة إلى أقصى حد ممكن.","النهاية القصوى","اهتزت جميع المؤشرات.","chaos",34,-30,45,-28,-30)
  ]
 },
 
@@ -1482,57 +1052,353 @@ const stages = {
  title:"بوابة الدرجة 16",
  location:"الممر الأخير",
  narration:[
-  "المرحلة الخامسة عشرة.",
-  "وهنا يتوقف الفيلم للحظة.",
-  "لأن النظام يريد أن يعرف شيئاً واحداً...",
-  "هل أصبحت أنت السيد الخفي؟"
+  "الدرجة الخامسة عشرة.",
+  "العالم بدأ يحمل بصمتك.",
+  "لكن اللعبة الحقيقية لم تبدأ بعد."
  ],
  question:"ما النهج الذي تأخذه إلى المستقبل؟",
  options:[
-  {
-   id:"future_peace",
-   text:"🕊️ أدخل المستقبل بعقلية التعاون.",
-   title:"بوابة السلام",
-   result:"تم فتح المسار الهادئ.",
-   path:"peace",
-   influence:10,peace:20,chaos:-10,balance:14,trust:20
-  },
-  {
-   id:"future_power",
-   text:"⚔️ أدخل المستقبل بمنطق الردع والنفوذ.",
-   title:"بوابة القوة",
-   result:"تم فتح مسار النفوذ.",
-   path:"power",
-   influence:30,peace:-5,chaos:15,balance:3,trust:-8
-  },
-  {
-   id:"future_balance",
-   text:"⚖️ أدخل المستقبل بتوازن مدروس.",
-   title:"بوابة التوازن",
-   result:"تم فتح المسار الأكثر استقراراً.",
-   path:"balance",
-   influence:20,peace:12,chaos:-2,balance:26,trust:18
-  },
-  {
-   id:"future_chaos",
-   text:"🔥 أدخل المستقبل بلا حدود.",
-   title:"بوابة الفوضى",
-   result:"تم فتح مسار عالي المخاطر.",
-   path:"chaos",
-   influence:35,peace:-25,chaos:44,balance:-26,trust:-28
-  }
+  option("futurePeace","🕊️ أدخل المستقبل بعقلية التعاون.","بوابة السلام","تم فتح المسار الهادئ.","peace",10,20,-10,14,20),
+  option("futurePower","⚔️ أدخل المستقبل بمنطق الردع والنفوذ.","بوابة القوة","تم فتح مسار النفوذ.","power",30,-5,15,3,-8),
+  option("futureBalance","⚖️ أدخل المستقبل بتوازن مدروس.","بوابة التوازن","تم فتح المسار الأكثر استقراراً.","balance",20,12,-2,26,18),
+  option("futureChaos","🔥 أدخل المستقبل بلا حدود.","بوابة الفوضى","تم فتح مسار عالي المخاطر.","chaos",35,-25,44,-26,-28)
+ ]
+},
+
+16:{
+ type:"moon",
+ title:"المدينة التي لا تنام",
+ location:"مدينة ساحلية — 02:41",
+ narration:[
+  "المدينة تبدو هادئة.",
+  "لكن تحت الأضواء... شبكة مصالح كاملة تتحرك.",
+  "وأنت الآن أمام أول قرار حقيقي بعد البوابة."
+ ],
+ question:"كيف تستخدم نفوذك الجديد؟",
+ options:[
+  option("m16a","🌿 أوجهه نحو الاستقرار.","المسار الهادئ","هدأت المدينة.","peace",12,12,-5,8,13),
+  option("m16b","⚔️ أستخدمه لتثبيت سلطتي.","تثبيت النفوذ","ازدادت الهيبة.","power",19,-4,10,1,-5),
+  option("m16c","⚖️ أوزعه بين القوى.","التوزيع المتوازن","لم يعد أحد قادراً على احتكار القرار.","balance",15,7,-1,17,12),
+  option("m16d","🔥 أضاعف الضغط.","ضغط شامل","بدأ النظام بالتصدع.","chaos",24,-14,24,-12,-15)
+ ]
+},
+
+17:{
+ type:"signal",
+ title:"الإشارة المجهولة",
+ location:"مرصد بعيد — 03:03",
+ narration:[
+  "وصلت إشارة لا تحمل اسماً.",
+  "لم يعرف النظام مصدرها.",
+  "لكنها أشارت إلى حدث سيأتي لاحقاً."
+ ],
+ question:"كيف تتعامل مع المعلومة الغامضة؟",
+ options:[
+  option("m17a","🔎 أحقق بهادوء قبل أي خطوة.","التحقيق","حصلت على وقت ثمين.","peace",9,11,-5,7,12),
+  option("m17b","⚔️ أتصرف فوراً لحماية نفوذي.","الرد العاجل","سبقت الآخرين بخطوة.","power",21,-4,9,1,-4),
+  option("m17c","⚖️ أوزع التحقيق بين عدة أطراف.","التحقيق المشترك","ظهرت الصورة تدريجياً.","balance",15,6,0,18,11),
+  option("m17d","🔥 أستخدم الغموض لإرباك الجميع.","اللعب بالغموض","انتشر الذعر.","chaos",25,-15,27,-13,-16)
+ ]
+},
+
+18:{
+ type:"desert",
+ title:"الصحراء الحمراء",
+ location:"ممر صحراوي — غروب",
+ narration:[
+  "لا شيء يتحرك.",
+  "ثم يظهر على الأفق ضوء أحمر.",
+  "القرار القادم سيحدد من يمتلك الطريق."
+ ],
+ question:"من يحصل على الممر؟",
+ options:[
+  option("m18a","🤝 أفتح الطريق للجميع بقواعد واضحة.","الممر المفتوح","بدأت التجارة من جديد.","peace",11,13,-5,10,13),
+  option("m18b","🛡️ أضعه تحت حمايتي.","السيطرة على الطريق","ازداد نفوذك.","power",23,-5,11,3,-7),
+  option("m18c","⚖️ أجعل الطريق منطقة توازن.","المنطقة المحايدة","استفاد الجميع.","balance",17,8,0,20,14),
+  option("m18d","🔥 أغلق الطريق بالكامل.","الطريق المغلق","بدأ الاقتصاد بالاختناق.","chaos",28,-18,31,-17,-20)
+ ]
+},
+
+19:{
+ type:"sky",
+ title:"السماء المزدحمة",
+ location:"مركز مراقبة — منتصف الليل",
+ narration:[
+  "السماء لم تعد فارغة.",
+  "أجسام عديدة تتحرك في صمت.",
+  "والكل يريد معرفة من يراقب من."
+ ],
+ question:"كيف تدير سباق المراقبة؟",
+ options:[
+  option("m19a","🕊️ أدعو إلى قواعد شفافة.","قواعد السماء","انخفض التوتر.","peace",10,12,-6,11,14),
+  option("m19b","⚔️ أضاعف قدرات المراقبة.","تفوق السماء","أصبحت ترى أكثر من الجميع.","power",25,-4,11,4,-6),
+  option("m19c","⚖️ أؤسس مراقبة مشتركة.","الرصد المشترك","توازن جديد ظهر.","balance",18,9,-1,21,14),
+  option("m19d","🔥 أزرع إشارات مضللة.","السماء المعتمة","لم يعد أحد يثق بالمؤشرات.","chaos",27,-16,28,-18,-22)
+ ]
+},
+
+20:{
+ type:"ocean",
+ title:"البحر الأسود",
+ location:"المحيط المفتوح — عاصفة",
+ narration:[
+  "المحيط لا ينسى.",
+  "تحت الأمواج... طرق كاملة تتقاطع.",
+  "وتلك الطرق يمكن أن تصنع نفوذاً أو حرباً."
+ ],
+ question:"من يتحكم بالممر البحري؟",
+ options:[
+  option("m20a","🚢 أفتح الممر أمام الحركة التجارية.","الممر المفتوح","تحسن تدفق التجارة.","peace",11,14,-6,9,13),
+  option("m20b","⚓ أفرض نفوذي على المنطقة.","السيطرة البحرية","ارتفع النفوذ.","power",25,-5,13,2,-8),
+  option("m20c","⚖️ أضع نظاماً متعدد الأطراف.","التوازن البحري","استقرت الحركة.","balance",18,8,-1,22,15),
+  option("m20d","🔥 أستخدم الممر كورقة حصار.","الحصار","دخل الاقتصاد مرحلة خطرة.","chaos",29,-20,33,-18,-22)
+ ]
+},
+
+21:{
+ type:"winter",
+ title:"شتاء القرار",
+ location:"العاصمة الشمالية — ليل طويل",
+ narration:[
+  "الشتاء هنا ليس فصلاً.",
+  "إنه اختبار للقدرة على الصمود.",
+  "والسكان ينتظرون قراراً."
+ ],
+ question:"كيف تدير الأزمة؟",
+ options:[
+  option("m21a","🏠 أحمي المدنيين أولاً.","الإنقاذ","ارتفعت الثقة.","peace",10,16,-8,8,17),
+  option("m21b","🎖️ أضع القرار في غرفة واحدة.","القيادة المركزية","ازدادت سرعة القرار.","power",28,-6,14,0,-12),
+  option("m21c","⚖️ أقسم المسؤولية بين عدة مؤسسات.","الحوكمة","استقر النظام.","balance",17,10,-2,23,16),
+  option("m21d","🔥 أترك الانهيار يعيد ترتيب الجميع.","الانهيار","دخلت العاصمة فوضى.","chaos",31,-26,38,-23,-28)
+ ]
+},
+
+22:{
+ type:"forest",
+ title:"الغابة الصامتة",
+ location:"منطقة خضراء — فجر",
+ narration:[
+  "للمرة الأولى لا توجد مدينة.",
+  "فقط غابة صامتة.",
+  "لكن خلف الأشجار... يتغير شيء."
+ ],
+ question:"هل تحمي المورد أم تستخدمه؟",
+ options:[
+  option("m22a","🌱 أحميه للأجيال القادمة.","الحماية","استعاد النظام بعض توازنه.","peace",9,18,-10,12,17),
+  option("m22b","⚔️ أستثمره لزيادة القوة.","الاستثمار","ارتفع النفوذ.","power",24,-5,12,4,-5),
+  option("m22c","⚖️ أوزع الاستفادة بعدالة.","الإدارة المتوازنة","حصل الجميع على نصيبه.","balance",18,9,-2,24,16),
+  option("m22d","🔥 أستهلكه بأقصى سرعة.","الاستنزاف","بدأت الطبيعة بالاحتجاج.","chaos",30,-21,35,-25,-24)
+ ]
+},
+
+23:{
+ type:"mountain",
+ title:"الجبل",
+ location:"مركز مرتفع — قبل العاصفة",
+ narration:[
+  "من فوق الجبل تبدو الحدود صغيرة.",
+  "لكن القرار هنا يصل إلى الجميع.",
+  "والجميع يريد موقعك."
+ ],
+ question:"هل تصعد أكثر أم تعود إلى التوازن؟",
+ options:[
+  option("m23a","🕊️ أفتح مفاوضات من القمة.","الهدنة من الأعلى","تراجع التصعيد.","peace",12,14,-6,11,15),
+  option("m23b","⚔️ أستغل الموقع لتعزيز القوة.","السيطرة على القمة","أصبحت في موقع أفضل.","power",27,-5,13,2,-8),
+  option("m23c","⚖️ أجعل القمة منصة مشتركة.","منصة التوازن","دخل الجميع إلى الغرفة.","balance",19,10,-1,24,16),
+  option("m23d","🔥 أدفع الجميع إلى الصدام.","قمة الفوضى","اشتعلت الجبهة.","chaos",32,-23,37,-24,-27)
+ ]
+},
+
+24:{
+ type:"mirror",
+ title:"الوجه الآخر",
+ location:"ممر المرايا — بلا زمن",
+ narration:[
+  "تدخل غرفة لا تحتوي على أبواب.",
+  "كل جدار يعكس قراراً من قراراتك.",
+  "لكن أحد الانعكاسات... لا يشبهك."
+ ],
+ question:"هل تثق بما تراه؟",
+ options:[
+  option("m24a","🔍 أبحث عن الحقيقة قبل الرد.","الحقيقة","انكشف جزء من الخداع.","peace",10,14,-7,10,16),
+  option("m24b","⚔️ أضرب أولاً.","الضربة الأولى","اختفى التهديد مؤقتاً.","power",26,-7,14,1,-9),
+  option("m24c","⚖️ أطلب تأكيداً من عدة مصادر.","التأكد","ازدادت دقة الصورة.","balance",19,8,-1,24,18),
+  option("m24d","🔥 أستغل الوهم ضد الجميع.","الوهم","بدأت الحقيقة بالتلاشي.","chaos",33,-23,39,-25,-29)
+ ]
+},
+
+25:{
+ type:"clock",
+ title:"الساعة المعطلة",
+ location:"برج الزمن — 00:00",
+ narration:[
+  "توقفت الساعة.",
+  "كل عقاربها تشير إلى اللحظة نفسها.",
+  "ربما انتهى الوقت... أو ربما بدأ من جديد."
+ ],
+ question:"ماذا تفعل عندما يتوقف الزمن؟",
+ options:[
+  option("m25a","🕊️ أتريث وأحمي الموجود.","الانتظار","تراجع الارتباك.","peace",10,13,-6,10,15),
+  option("m25b","⚔️ أتحرك قبل الآخرين.","الحركة المبكرة","امتلكت أفضلية لحظية.","power",28,-4,12,3,-7),
+  option("m25c","⚖️ أجمع الأطراف حول ساعة واحدة.","الوقت المشترك","عاد النظام للعمل.","balance",20,9,-1,25,17),
+  option("m25d","🔥 أكسر الساعة تماماً.","كسر الزمن","لم يعد أحد يعرف القواعد.","chaos",34,-24,40,-27,-30)
+ ]
+},
+
+26:{
+ type:"lab",
+ title:"المختبر الأخير",
+ location:"مختبر تحت الأرض",
+ narration:[
+  "لا خرائط هنا.",
+  "لا جيوش.",
+  "فقط شاشة واحدة تعرض مستقبلات محتملة."
+ ],
+ question:"ما الذي تفعله بالمعلومة؟",
+ options:[
+  option("m26a","🧪 أستخدمها لحماية البشر.","المعلومة الوقائية","تحسن الاستعداد.","peace",11,15,-8,12,17),
+  option("m26b","⚔️ أحولها إلى نفوذ استراتيجي.","المعلومة كسلاح","اتسعت قدراتك.","power",29,-4,15,2,-8),
+  option("m26c","⚖️ أشاركها مع الآخرين.","المعرفة المشتركة","اتسع نطاق التعاون.","balance",21,10,-1,26,18),
+  option("m26d","🔥 أحجبها وأزرع الشك.","المعلومة المظلمة","ازدادت الفوضى.","chaos",35,-25,42,-27,-31)
+ ]
+},
+
+27:{
+ type:"redline",
+ title:"الخط الأحمر",
+ location:"غرفة الإنذار — 01:27",
+ narration:[
+  "ظهر الخط الأحمر.",
+  "خط واحد فقط.",
+  "عبوره يعني أن كل شيء سيتغير."
+ ],
+ question:"هل تعبر الخط؟",
+ options:[
+  option("m27a","🕊️ أتراجع خطوة.","التراجع","توقفت سلسلة التصعيد.","peace",10,18,-10,9,18),
+  option("m27b","⚔️ أعبره بقوة محسوبة.","العبور","ارتفع نفوذك بشدة.","power",31,-8,17,1,-12),
+  option("m27c","⚖️ أحول الخط إلى اتفاق.","الاتفاق","أصبح الخط قاعدة مشتركة.","balance",22,11,-2,27,19),
+  option("m27d","🔥 أكسره بالكامل.","الانفجار","انفتح الباب للفوضى.","chaos",38,-29,46,-31,-34)
+ ]
+},
+
+28:{
+ type:"city",
+ title:"مدينة المستقبل",
+ location:"مدينة ذكية — ليل",
+ narration:[
+  "المباني تضيء وحدها.",
+  "السيارات تتحرك بلا سائق.",
+  "لكن المدينة تسأل سؤالاً واحداً: من يملك القرار؟"
+ ],
+ question:"كيف تدير المدينة؟",
+ options:[
+  option("m28a","🌱 أجعل الإنسان في مركز النظام.","المدينة الإنسانية","ارتفعت الثقة.","peace",13,16,-8,13,20),
+  option("m28b","⚔️ أركز القرار في منظومة واحدة.","المدينة المسيطرة","ارتفعت الكفاءة والنفوذ.","power",30,-5,14,3,-10),
+  option("m28c","⚖️ أبني نظاماً موزعاً.","المدينة المتوازنة","أصبح القرار موزعاً.","balance",22,11,-2,29,19),
+  option("m28d","🔥 أفتح النظام للفوضى.","المدينة المنفلتة","تحولت التكنولوجيا إلى فوضى.","chaos",37,-26,44,-29,-32)
+ ]
+},
+
+29:{
+ type:"storm",
+ title:"العاصفة الكبرى",
+ location:"فوق الغيوم — العالم تحتك",
+ narration:[
+  "من الأعلى يبدو كل شيء هادئاً.",
+  "لكن العاصفة تتحرك.",
+  "والقرار الآن سيحدد اتجاهها."
+ ],
+ question:"أي طريق تختار للعاصفة؟",
+ options:[
+  option("m29a","🕊️ أوجهها بعيداً عن المدن.","حماية المدن","انخفضت الخسائر.","peace",12,17,-9,12,18),
+  option("m29b","⚔️ أستخدمها للضغط.","سلاح الطبيعة","ازداد نفوذك والخوف.","power",32,-7,16,2,-11),
+  option("m29c","⚖️ أوجهها وفق خطة مشتركة.","إدارة العاصفة","استقر المسار.","balance",23,10,-2,28,20),
+  option("m29d","🔥 أتركها تضرب الجميع.","العاصفة","انفجرت المؤشرات.","chaos",39,-30,48,-32,-35)
+ ]
+},
+
+30:{
+ type:"archive",
+ title:"أرشيف البشرية",
+ location:"المكتبة الأخيرة",
+ narration:[
+  "ثلاثون درجة.",
+  "آلاف الاحتمالات.",
+  "وكل قرار كتب سطراً في هذا الأرشيف."
+ ],
+ question:"ماذا تريد أن يقرأه القادمون بعدك؟",
+ options:[
+  option("m30a","📜 قصة نجاة.","إرث النجاة","سيذكر الأرشيف أنك بنيت.","peace",13,19,-10,13,21),
+  option("m30b","👑 قصة الهيمنة.","إرث القوة","ستبقى بصمة السلطة.","power",33,-7,16,2,-12),
+  option("m30c","⚖️ قصة التوازن.","إرث التوازن","سيبقى النظام قادراً على الحياة.","balance",24,12,-2,30,21),
+  option("m30d","🔥 قصة الانهيار.","إرث الفوضى","أصبح اسمك مرتبطاً بالانهيار.","chaos",40,-32,49,-34,-37)
+ ]
+},
+
+31:{
+ type:"finalstorm",
+ title:"قبل النهاية",
+ location:"المركز النهائي — 23:59",
+ narration:[
+  "بقيت درجتان.",
+  "لم يعد السؤال ماذا تعرف.",
+  "لقد أصبح السؤال... من أصبحت."
+ ],
+ question:"أي شيء ستضعه فوق كل شيء آخر؟",
+ options:[
+  option("m31a","❤️ الإنسان.","أولوية الإنسان","أصبح البشر معيار القرار.","peace",14,20,-10,12,23),
+  option("m31b","👑 النفوذ.","أولوية النفوذ","أصبحت مركز الثقل.","power",36,-8,17,2,-13),
+  option("m31c","⚖️ التوازن.","أولوية التوازن","استقر العالم على الحافة.","balance",26,13,-2,31,22),
+  option("m31d","🔥 النتيجة بأي ثمن.","أولوية النتيجة","لم تعد الحدود واضحة.","chaos",42,-34,50,-36,-39)
+ ]
+},
+
+32:{
+ type:"threshold",
+ title:"الثانية الأخيرة",
+ location:"الساعة النهائية — 23:59:59",
+ narration:[
+  "الدرجة الثانية والثلاثون.",
+  "كل المسارات أصبحت أمامك.",
+  "وفي نهاية الممر... باب واحد."
+ ],
+ question:"هل تدخل النهاية بالرحمة أم بالقوة أم بالتوازن أم بالفوضى؟",
+ options:[
+  option("m32a","🕊️ الرحمة.","بوابة الرحمة","فتحت الطريق نحو سلام غير متوقع.","peace",15,22,-12,13,25),
+  option("m32b","⚔️ القوة.","بوابة القوة","فتح نفوذك الطريق بالقوة.","power",39,-10,19,1,-15),
+  option("m32c","⚖️ التوازن.","بوابة التوازن","فتح التوازن الباب دون أن ينكسر النظام.","balance",28,14,-3,33,24),
+  option("m32d","🔥 الفوضى.","بوابة الفوضى","انفتح الباب على مستقبل مجهول.","chaos",45,-37,52,-39,-42)
+ ]
+},
+
+33:{
+ type:"final",
+ title:"السيد الخفي",
+ location:"الغرفة الأخيرة — لا وقت",
+ narration:[
+  "الدرجة الثالثة والثلاثون.",
+  "لا توجد شاشة أخرى بعدها.",
+  "لا يوجد قرار آخر.",
+  "هناك فقط... النتيجة."
+ ],
+ question:"هذه هي اللحظة الأخيرة. أي إرث تريد أن تتركه للعالم؟",
+ options:[
+  option("finalPeace","🕊️ السلام.","النهاية: عالم أكثر سلاماً","اخترت أن يكون النفوذ وسيلة للحياة لا للحرب.","peace",16,24,-14,14,28),
+  option("finalPower","👑 الهيمنة.","النهاية: عالم تحت النفوذ","أصبحت القوة هي اللغة التي يتحدث بها العالم.","power",45,-12,22,0,-18),
+  option("finalBalance","⚖️ التوازن.","النهاية: عالم متوازن","لم يحصل أحد على كل شيء، ولهذا بقي العالم واقفاً.","balance",31,16,-4,36,27),
+  option("finalChaos","🔥 الفوضى.","النهاية: عالم مكسور","دفعت النظام إلى أقصى نقطة، ولم يعد شيء كما كان.","chaos",52,-42,55,-44,-48)
  ]
 }
 
 };
 
 /* =========================================================
-   Canvas scenes
+   Canvas
 ========================================================= */
 
 function resizeCanvas(){
 
-  const ratio =
+  const dpr =
     Math.min(
       window.devicePixelRatio || 1,
       1.5
@@ -1540,19 +1406,25 @@ function resizeCanvas(){
 
   scene.width =
     Math.floor(
-      innerWidth*ratio
+      innerWidth*dpr
     );
 
   scene.height =
     Math.floor(
-      innerHeight*ratio
+      innerHeight*dpr
     );
 
+  scene.style.width =
+    innerWidth+"px";
+
+  scene.style.height =
+    innerHeight+"px";
+
   ctx.setTransform(
-    ratio,
+    dpr,
     0,
     0,
-    ratio,
+    dpr,
     0,
     0
   );
@@ -1566,8 +1438,37 @@ window.addEventListener(
 resizeCanvas();
 
 /* =========================================================
-   أدوات الرسم
+   الرسم
 ========================================================= */
+
+function hexToRgba(
+  hex,
+  alpha
+){
+
+  const h =
+    hex.replace("#","");
+
+  const r =
+    parseInt(
+      h.substring(0,2),
+      16
+    );
+
+  const g =
+    parseInt(
+      h.substring(2,4),
+      16
+    );
+
+  const b =
+    parseInt(
+      h.substring(4,6),
+      16
+    );
+
+  return `rgba(${r},${g},${b},${alpha})`;
+}
 
 function clearScene(){
 
@@ -1579,33 +1480,7 @@ function clearScene(){
   );
 }
 
-function rgba(hex,a){
-
-  const value =
-    hex.replace("#","");
-
-  const r =
-    parseInt(
-      value.substring(0,2),
-      16
-    );
-
-  const g =
-    parseInt(
-      value.substring(2,4),
-      16
-    );
-
-  const b =
-    parseInt(
-      value.substring(4,6),
-      16
-    );
-
-  return `rgba(${r},${g},${b},${a})`;
-}
-
-function drawGradient(
+function gradientBackground(
   top,
   bottom
 ){
@@ -1639,9 +1514,9 @@ function drawGradient(
   );
 }
 
-function drawStars(
-  count=75,
-  alpha=.35
+function stars(
+  count,
+  alpha
 ){
 
   for(
@@ -1651,130 +1526,59 @@ function drawStars(
   ){
 
     const x =
-      (i*137.53 +
-      Math.sin(animationTime*.03+i)*2)
-      % innerWidth;
+      (i*137.53)%innerWidth;
 
     const y =
-      (i*71.27)
-      % (innerHeight*.67);
+      (i*71.27)%
+      (innerHeight*.64);
 
-    const s =
-      .5 +
-      ((i*17)%15)/10;
+    const blink =
+      .45+
+      .55*Math.abs(
+        Math.sin(
+          animationTime*.02+i
+        )
+      );
 
     ctx.fillStyle =
       `rgba(255,255,255,${
-        alpha*(.4+
-        .6*Math.abs(
-          Math.sin(animationTime*.02+i)
-        ))
+        alpha*blink
       })`;
 
     ctx.fillRect(
       x,
       y,
-      s,
-      s
+      .7+
+      ((i*13)%12)/10,
+      .7+
+      ((i*13)%12)/10
     );
   }
 }
 
-function drawHorizon(){
-
-  const y =
-    innerHeight*.58;
-
-  ctx.fillStyle =
-    "rgba(0,0,0,.68)";
-
-  ctx.fillRect(
-    0,
-    y,
-    innerWidth,
-    innerHeight-y
-  );
-
-  ctx.strokeStyle =
-    "rgba(150,170,210,.12)";
-
-  ctx.lineWidth = 1;
-
-  for(
-    let i=-10;
-    i<=10;
-    i++
-  ){
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      innerWidth/2+i*45,
-      y
-    );
-
-    ctx.lineTo(
-      innerWidth/2+i*170,
-      innerHeight
-    );
-
-    ctx.stroke();
-  }
-
-  for(
-    let j=0;
-    j<9;
-    j++
-  ){
-
-    const yy =
-      y+j*j*9;
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      0,
-      yy
-    );
-
-    ctx.lineTo(
-      innerWidth,
-      yy
-    );
-
-    ctx.stroke();
-  }
-}
-
-function drawCity(
-  color="#283040",
-  lights=true,
-  scale=1
+function city(
+  buildingColor,
+  lights
 ){
 
   const base =
-    innerHeight*.72;
-
-  const count =
-    Math.ceil(
-      innerWidth/36
-    );
+    innerHeight*.73;
 
   for(
     let i=0;
-    i<count;
+    i<Math.ceil(innerWidth/35);
     i++
   ){
 
     const x =
-      i*36;
+      i*35;
 
     const h =
-      (30 +
-      ((i*47)%100))*scale;
+      35+
+      ((i*47)%115);
 
     ctx.fillStyle =
-      color;
+      buildingColor;
 
     ctx.fillRect(
       x,
@@ -1786,44 +1590,38 @@ function drawCity(
     if(lights){
 
       for(
-        let w=0;
-        w<3;
-        w++
+        let y=base-h+10;
+        y<base-8;
+        y+=12
       ){
 
-        for(
-          let yy=base-h+10;
-          yy<base-7;
-          yy+=11
+        if(
+          (i+
+          Math.floor(y))%4===0
         ){
 
-          if(
-            ((i+w+Math.floor(yy))%4)===0
-          ){
+          ctx.fillStyle =
+            "rgba(241,211,132,.32)";
 
-            ctx.fillStyle =
-              "rgba(236,211,128,.38)";
-
-            ctx.fillRect(
-              x+5+w*6,
-              yy,
-              3,
-              5
-            );
-          }
+          ctx.fillRect(
+            x+6,
+            y,
+            3,
+            5
+          );
         }
       }
     }
   }
 }
 
-function drawOcean(){
+function ocean(){
 
   const y =
-    innerHeight*.66;
+    innerHeight*.64;
 
   ctx.fillStyle =
-    "#061421";
+    "#06131d";
 
   ctx.fillRect(
     0,
@@ -1839,12 +1637,18 @@ function drawOcean(){
   ){
 
     const yy =
-      y+12+i*14;
+      y+
+      10+
+      i*15;
 
     ctx.strokeStyle =
-      `rgba(65,150,210,${
-        .08+.03*Math.sin(
-          animationTime*.04+i
+      `rgba(76,160,210,${
+        .06+
+        .025*
+        Math.abs(
+          Math.sin(
+            animationTime*.04+i
+          )
         )
       })`;
 
@@ -1880,8 +1684,8 @@ function drawOcean(){
   }
 }
 
-function drawGlobe(
-  accent="#9cb8ff"
+function globe(
+  accent
 ){
 
   const cx =
@@ -1900,17 +1704,17 @@ function drawGlobe(
     ctx.createRadialGradient(
       cx,
       cy,
-      5,
+      10,
       cx,
       cy,
-      r*1.45
+      r*1.5
     );
 
   glow.addColorStop(
     0,
-    rgba(
+    hexToRgba(
       accent,
-      .28
+      .22
     )
   );
 
@@ -1927,7 +1731,7 @@ function drawGlobe(
   ctx.arc(
     cx,
     cy,
-    r*1.45,
+    r*1.5,
     0,
     Math.PI*2
   );
@@ -1935,13 +1739,12 @@ function drawGlobe(
   ctx.fill();
 
   ctx.strokeStyle =
-    rgba(
+    hexToRgba(
       accent,
       .55
     );
 
-  ctx.lineWidth =
-    1.5;
+  ctx.lineWidth=1.4;
 
   ctx.beginPath();
 
@@ -1974,9 +1777,9 @@ function drawGlobe(
     );
 
     ctx.strokeStyle =
-      rgba(
+      hexToRgba(
         accent,
-        .18
+        .14
       );
 
     ctx.stroke();
@@ -1988,40 +1791,37 @@ function drawGlobe(
     i++
   ){
 
-    const yy =
-      cy+i*r*.3;
-
     ctx.beginPath();
 
     ctx.ellipse(
       cx,
-      yy,
-      r*.94,
-      r*.22,
+      cy+i*r*.3,
+      r*.95,
+      r*.2,
       0,
       0,
       Math.PI*2
     );
 
     ctx.strokeStyle =
-      rgba(
+      hexToRgba(
         accent,
-        .13
+        .11
       );
 
     ctx.stroke();
   }
 }
 
-function drawRadar(
-  color="#75c6ff"
+function radar(
+  color
 ){
 
   const cx =
-    innerWidth*.72;
+    innerWidth*.73;
 
   const cy =
-    innerHeight*.42;
+    innerHeight*.43;
 
   const r =
     Math.min(
@@ -2030,12 +1830,10 @@ function drawRadar(
     )*.18;
 
   ctx.strokeStyle =
-    rgba(
+    hexToRgba(
       color,
-      .18
+      .17
     );
-
-  ctx.lineWidth=1;
 
   for(
     let i=1;
@@ -2073,18 +1871,20 @@ function drawRadar(
     );
 
     ctx.lineTo(
-      cx+Math.cos(a)*r,
-      cy+Math.sin(a)*r
+      cx+
+      Math.cos(a)*r,
+      cy+
+      Math.sin(a)*r
     );
 
     ctx.stroke();
   }
 
-  const sweep =
-    animationTime*.025;
+  const a =
+    animationTime*.024;
 
   ctx.strokeStyle =
-    rgba(
+    hexToRgba(
       color,
       .7
     );
@@ -2097,107 +1897,28 @@ function drawRadar(
   );
 
   ctx.lineTo(
-    cx+Math.cos(sweep)*r,
-    cy+Math.sin(sweep)*r
+    cx+
+    Math.cos(a)*r,
+    cy+
+    Math.sin(a)*r
   );
 
   ctx.stroke();
 }
 
-function drawRain(
-  amount=80,
-  color="#7db2dc"
-){
-
-  for(
-    let i=0;
-    i<amount;
-    i++
-  ){
-
-    const x =
-      (i*43)%innerWidth;
-
-    const y =
-      ((i*79+
-      animationTime*4*
-      (1+(i%3)))
-      % (innerHeight+100))-50;
-
-    ctx.strokeStyle =
-      rgba(
-        color,
-        .12
-      );
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      x,
-      y
-    );
-
-    ctx.lineTo(
-      x-6,
-      y+17
-    );
-
-    ctx.stroke();
-  }
-}
-
-function drawStorm(
-  color="#d43b43"
-){
-
-  const cx =
-    innerWidth*.5;
-
-  const cy =
-    innerHeight*.35;
-
-  for(
-    let i=0;
-    i<18;
-    i++
-  ){
-
-    const a =
-      animationTime*.01+i*.52;
-
-    const rr =
-      100+i*17;
-
-    ctx.strokeStyle =
-      rgba(
-        color,
-        .15
-      );
-
-    ctx.beginPath();
-
-    ctx.arc(
-      cx,
-      cy,
-      rr,
-      a,
-      a+.65
-    );
-
-    ctx.stroke();
-  }
-}
-
-function drawTerminalRain(
-  color="#62d7ff"
+function digitalRain(
+  color
 ){
 
   ctx.font =
     "12px monospace";
 
+  const chars =
+    ["0","1","7","3","X","#","/"];
+
   for(
     let i=0;
-    i<80;
+    i<90;
     i++
   ){
 
@@ -2205,70 +1926,108 @@ function drawTerminalRain(
       (i*31)%innerWidth;
 
     const y =
-      ((i*53+
-      animationTime*3.8)
-      %(innerHeight+80))-30;
+      (
+        i*53+
+        animationTime*3.5
+      )%
+      (innerHeight+70)-30;
 
     ctx.fillStyle =
-      rgba(
+      hexToRgba(
         color,
         .12
       );
 
-    const chars =
-      ["0","1","7","3","X","/","#"];
-
-    const c =
+    ctx.fillText(
       chars[
         (i+
-        Math.floor(animationTime*.05))
-        %chars.length
-      ];
-
-    ctx.fillText(
-      c,
+        Math.floor(
+          animationTime*.04
+        ))%
+        chars.length
+      ],
       x,
       y
     );
   }
 }
 
-function drawFire(
-  color="#ff632e"
+function storm(
+  color
 ){
 
-  const count=55;
+  const cx =
+    innerWidth*.5;
+
+  const cy =
+    innerHeight*.38;
 
   for(
     let i=0;
-    i<count;
+    i<18;
+    i++
+  ){
+
+    const angle =
+      animationTime*.009+
+      i*.54;
+
+    const radius =
+      90+i*18;
+
+    ctx.strokeStyle =
+      hexToRgba(
+        color,
+        .12
+      );
+
+    ctx.beginPath();
+
+    ctx.arc(
+      cx,
+      cy,
+      radius,
+      angle,
+      angle+.7
+    );
+
+    ctx.stroke();
+  }
+}
+
+function fire(
+  color
+){
+
+  for(
+    let i=0;
+    i<70;
     i++
   ){
 
     const x =
       (i*47)%innerWidth;
 
-    const y0 =
-      innerHeight*.75;
-
     const y =
-      y0-
+      innerHeight*.77-
       (
-        (i*19+
-        animationTime*(1.5+(i%3)))
-        %(
-          innerHeight*.45
-        )
+        (
+          i*19+
+          animationTime*
+          (1.3+(i%4)*.35)
+        )%
+        (innerHeight*.45)
       );
 
-    const s =
-      2+(i%5);
+    const r =
+      1.5+
+      (i%5);
 
     ctx.fillStyle =
-      rgba(
+      hexToRgba(
         color,
         .08+
-        (i%4)*.04
+        (i%4)*.03
       );
 
     ctx.beginPath();
@@ -2276,10 +2035,10 @@ function drawFire(
     ctx.arc(
       x+
       Math.sin(
-        animationTime*.05+i
+        animationTime*.04+i
       )*5,
       y,
-      s,
+      r,
       0,
       Math.PI*2
     );
@@ -2288,331 +2047,514 @@ function drawFire(
   }
 }
 
-function drawMirrorScene(){
+function mirrorScene(){
 
-  const w =
-    innerWidth;
-
-  const h =
-    innerHeight;
-
-  const grd =
+  const g =
     ctx.createLinearGradient(
       0,
       0,
-      w,
+      innerWidth,
       0
     );
 
-  grd.addColorStop(
+  g.addColorStop(
     0,
-    "rgba(55,77,118,.18)"
+    "rgba(54,73,114,.18)"
   );
 
-  grd.addColorStop(
+  g.addColorStop(
     .48,
     "rgba(0,0,0,.02)"
   );
 
-  grd.addColorStop(
+  g.addColorStop(
     .52,
-    "rgba(160,100,180,.16)"
+    "rgba(159,96,185,.18)"
   );
 
-  grd.addColorStop(
+  g.addColorStop(
     1,
-    "rgba(15,10,30,.28)"
+    "rgba(17,10,30,.28)"
   );
 
   ctx.fillStyle =
-    grd;
+    g;
 
   ctx.fillRect(
     0,
     0,
-    w,
-    h
+    innerWidth,
+    innerHeight
   );
 
   ctx.fillStyle =
     "rgba(255,255,255,.025)";
 
   ctx.fillRect(
-    w*.498,
+    innerWidth*.498,
     0,
-    w*.004,
-    h
+    innerWidth*.004,
+    innerHeight
   );
+
+  ctx.strokeStyle =
+    "rgba(186,196,255,.18)";
+
+  ctx.lineWidth=2;
 
   ctx.beginPath();
 
   ctx.arc(
-    w*.5,
-    h*.48,
-    Math.min(w,h)*.2,
+    innerWidth*.5,
+    innerHeight*.47,
+    Math.min(
+      innerWidth,
+      innerHeight
+    )*.2,
     0,
     Math.PI*2
   );
 
-  ctx.strokeStyle =
-    "rgba(190,200,255,.18)";
-
-  ctx.lineWidth=2;
-
   ctx.stroke();
 }
 
-function drawSceneForStage(stage){
+function drawScene(){
 
   clearScene();
 
   const type =
-    stages[stage]?.type ||
-    "global";
-
-  currentSceneType =
-    type;
+    currentSceneType;
 
   switch(type){
 
     case "global":
-      drawGradient(
-        "#03060f",
-        "#030306"
+      gradientBackground(
+        "#040711",
+        "#020307"
       );
-      drawStars(85,.3);
-      drawHorizon();
-      drawCity(
-        "#1d2532",
-        true,
-        1.1
+      stars(85,.28);
+      city(
+        "#1c2430",
+        true
       );
-      drawGlobe(
+      globe(
         "#d6c16e"
       );
       break;
 
     case "energy":
-      drawGradient(
-        "#08090c",
+      gradientBackground(
+        "#08090d",
         "#020304"
       );
-      drawCity(
-        "#171b22",
-        true,
-        1.05
-      );
-      drawRain(
-        95,
-        "#4e6e87"
+      city(
+        "#181c23",
+        true
       );
       break;
 
     case "water":
-      drawGradient(
-        "#041119",
+      gradientBackground(
+        "#04121a",
         "#02060b"
       );
-      drawOcean();
-      drawGlobe(
-        "#53b6dc"
+      ocean();
+      globe(
+        "#52b7dd"
       );
       break;
 
     case "border":
-      drawGradient(
-        "#11131b",
+      gradientBackground(
+        "#10131b",
         "#030405"
       );
-      drawCity(
-        "#171923",
-        false,
-        1
+      city(
+        "#181a22",
+        false
       );
-      drawRadar(
-        "#b9c6e8"
+      radar(
+        "#c2cceb"
       );
-      drawStorm(
-        "#7f4352"
+      storm(
+        "#834758"
       );
       break;
 
     case "market":
-      drawGradient(
-        "#0c0a08",
+      gradientBackground(
+        "#0d0a08",
         "#030305"
       );
-      drawCity(
-        "#20201e",
-        true,
-        1.15
+      city(
+        "#22211f",
+        true
       );
-      drawRadar(
-        "#e9c46d"
+      radar(
+        "#e8c36d"
       );
       break;
 
     case "cyber":
-      drawGradient(
-        "#02070c",
-        "#030309"
+      gradientBackground(
+        "#02080d",
+        "#020308"
       );
-      drawTerminalRain(
-        "#52d0ff"
+      digitalRain(
+        "#56d7ff"
       );
-      drawRadar(
-        "#59d6ff"
+      radar(
+        "#5ed7ff"
       );
       break;
 
     case "media":
-      drawGradient(
-        "#110b16",
+      gradientBackground(
+        "#120a17",
         "#030307"
       );
-      drawCity(
-        "#24202c",
-        true,
-        1.15
+      city(
+        "#25202d",
+        true
       );
-      drawTerminalRain(
-        "#cf77ff"
+      digitalRain(
+        "#d172ff"
       );
       break;
 
     case "forecast":
-      drawGradient(
-        "#07091b",
+      gradientBackground(
+        "#07091c",
         "#02030b"
       );
-      drawStars(100,.4);
-      drawGlobe(
-        "#7b83ff"
+      stars(100,.4);
+      globe(
+        "#7c86ff"
       );
-      drawRadar(
-        "#7d89ff"
+      radar(
+        "#7b89ff"
       );
       break;
 
     case "island":
-      drawGradient(
+      gradientBackground(
         "#020812",
-        "#010206"
+        "#010205"
       );
-      drawOcean();
-      drawStorm(
-        "#2c7d9d"
+      ocean();
+      storm(
+        "#277691"
       );
       break;
 
     case "endgame":
-      drawGradient(
-        "#16080a",
+      gradientBackground(
+        "#17090c",
         "#020304"
       );
-      drawCity(
-        "#201317",
-        true,
-        1.2
+      city(
+        "#201318",
+        true
       );
-      drawFire(
-        "#ff4c2b"
+      fire(
+        "#ff512c"
       );
-      drawStorm(
-        "#f03942"
+      storm(
+        "#e73542"
       );
       break;
 
     case "continent":
-      drawGradient(
-        "#090a12",
+      gradientBackground(
+        "#090a13",
         "#030304"
       );
-      drawGlobe(
-        "#b6bbd4"
+      globe(
+        "#b7bdd8"
       );
-      drawStorm(
-        "#734d9d"
+      storm(
+        "#744da0"
       );
       break;
 
     case "zero":
-      drawGradient(
-        "#160b08",
+      gradientBackground(
+        "#180b08",
         "#020303"
       );
-      drawCity(
-        "#241613",
-        true,
-        1.18
+      city(
+        "#251714",
+        true
       );
-      drawFire(
+      fire(
         "#ff7427"
       );
-      drawStorm(
-        "#ff3743"
+      storm(
+        "#f93840"
       );
       break;
 
     case "mirror":
-      drawGradient(
+      gradientBackground(
         "#080914",
         "#02020a"
       );
-      drawMirrorScene();
-      drawStars(60,.22);
+      mirrorScene();
+      stars(55,.2);
       break;
 
     case "legacy":
-      drawGradient(
-        "#0b0c12",
+      gradientBackground(
+        "#0b0d13",
         "#020306"
       );
-      drawCity(
-        "#1b2024",
-        true,
-        1.08
+      city(
+        "#1b2026",
+        true
       );
-      drawGlobe(
-        "#8fa2d7"
+      globe(
+        "#8fa3d9"
       );
-      drawStars(65,.24);
+      stars(60,.2);
       break;
 
-    case "gate":
-      drawGradient(
-        "#100914",
-        "#02030a"
+    case "moon":
+    case "city":
+      gradientBackground(
+        "#07101a",
+        "#020308"
       );
-      drawStars(110,.45);
-      drawGlobe(
+      city(
+        "#1d2630",
+        true
+      );
+      globe(
+        "#7896d8"
+      );
+      break;
+
+    case "signal":
+    case "lab":
+      gradientBackground(
+        "#020914",
+        "#03030b"
+      );
+      digitalRain(
+        "#54cfff"
+      );
+      radar(
+        "#55d3ff"
+      );
+      break;
+
+    case "desert":
+      gradientBackground(
+        "#23150c",
+        "#050303"
+      );
+      storm(
+        "#b3622f"
+      );
+      stars(45,.25);
+      break;
+
+    case "sky":
+    case "ocean":
+      gradientBackground(
+        "#020a16",
+        "#020305"
+      );
+      stars(50,.2);
+      radar(
+        "#65b9ff"
+      );
+      ocean();
+      break;
+
+    case "winter":
+      gradientBackground(
+        "#0a1422",
+        "#020305"
+      );
+      stars(75,.28);
+      city(
+        "#1a242e",
+        true
+      );
+      break;
+
+    case "forest":
+      gradientBackground(
+        "#06110b",
+        "#020304"
+      );
+      stars(35,.15);
+      city(
+        "#13281d",
+        false
+      );
+      break;
+
+    case "mountain":
+      gradientBackground(
+        "#0c0e16",
+        "#030405"
+      );
+      storm(
+        "#635477"
+      );
+      city(
+        "#161a23",
+        false
+      );
+      break;
+
+    case "clock":
+      gradientBackground(
+        "#120e18",
+        "#020206"
+      );
+      radar(
+        "#b59af5"
+      );
+      globe(
+        "#b39bdb"
+      );
+      break;
+
+    case "redline":
+      gradientBackground(
+        "#19080b",
+        "#020304"
+      );
+      storm(
+        "#ef3545"
+      );
+      city(
+        "#231416",
+        true
+      );
+      break;
+
+    case "archive":
+      gradientBackground(
+        "#0e0b0a",
+        "#020204"
+      );
+      stars(65,.23);
+      globe(
+        "#b8a47a"
+      );
+      break;
+
+    case "finalstorm":
+      gradientBackground(
+        "#16070a",
+        "#020304"
+      );
+      fire(
+        "#ff512c"
+      );
+      storm(
+        "#ff2c3e"
+      );
+      break;
+
+    case "threshold":
+      gradientBackground(
+        "#110814",
+        "#020307"
+      );
+      stars(100,.38);
+      globe(
+        "#d4a8ff"
+      );
+      storm(
+        "#a34bd0"
+      );
+      break;
+
+    case "final":
+      gradientBackground(
+        "#08070d",
+        "#020204"
+      );
+      stars(120,.45);
+      globe(
         "#e9c96d"
       );
-      drawStorm(
-        "#8a4eaa"
+      break;
+
+    case "peaceEnding":
+      gradientBackground(
+        "#06130c",
+        "#020509"
+      );
+      city(
+        "#173223",
+        true
+      );
+      globe(
+        "#79d39a"
+      );
+      stars(70,.25);
+      break;
+
+    case "powerEnding":
+      gradientBackground(
+        "#190a07",
+        "#030203"
+      );
+      city(
+        "#301718",
+        true
+      );
+      fire(
+        "#ff632f"
+      );
+      globe(
+        "#d74b42"
+      );
+      break;
+
+    case "balanceEnding":
+      gradientBackground(
+        "#0c0a1b",
+        "#020307"
+      );
+      globe(
+        "#a3a8ff"
+      );
+      stars(95,.35);
+      mirrorScene();
+      break;
+
+    case "chaosEnding":
+      gradientBackground(
+        "#1a0507",
+        "#020102"
+      );
+      fire(
+        "#ff3023"
+      );
+      storm(
+        "#ff1e35"
+      );
+      city(
+        "#301214",
+        true
       );
       break;
   }
 
   animationTime++;
   requestAnimationFrame(
-    () => {}
-  );
-}
-
-function renderLoop(){
-
-  drawSceneForStage(
-    state.stage
-  );
-
-  requestAnimationFrame(
-    renderLoop
+    drawScene
   );
 }
 
 /* =========================================================
-   الصوت
+   صوت
 ========================================================= */
 
 function initAudio(){
@@ -2638,7 +2580,8 @@ function initAudio(){
     }
 
     if(
-      audioContext.state === "suspended"
+      audioContext.state ===
+      "suspended"
     ){
 
       audioContext.resume();
@@ -2671,16 +2614,16 @@ function tone(
       audioContext.currentTime+
       delay;
 
-    const oscillator =
+    const osc =
       audioContext.createOscillator();
 
     const gain =
       audioContext.createGain();
 
-    oscillator.type =
+    osc.type =
       type;
 
-    oscillator.frequency.setValueAtTime(
+    osc.frequency.setValueAtTime(
       frequency,
       start
     );
@@ -2691,8 +2634,11 @@ function tone(
     );
 
     gain.gain.exponentialRampToValueAtTime(
-      Math.max(volume,.001),
-      start+.025
+      Math.max(
+        volume,
+        .001
+      ),
+      start+.03
     );
 
     gain.gain.exponentialRampToValueAtTime(
@@ -2700,265 +2646,113 @@ function tone(
       start+duration
     );
 
-    oscillator.connect(gain);
+    osc.connect(gain);
     gain.connect(
       audioContext.destination
     );
 
-    oscillator.start(
-      start
-    );
-
-    oscillator.stop(
-      start+duration+.03
+    osc.start(start);
+    osc.stop(
+      start+
+      duration+
+      .03
     );
 
   }catch(error){}
 }
 
-function impactSound(){
-
-  if(!soundEnabled){
-    return;
-  }
-
-  tone(
-    52,
-    .55,
-    .05,
-    "sawtooth"
-  );
-
-  tone(
-    78,
-    .35,
-    .035,
-    "triangle",
-    .08
-  );
-
-}
-
-function peaceSound(){
-
-  tone(
-    261.6,
-    .22,
-    .03,
-    "sine"
-  );
-
-  tone(
-    329.6,
-    .28,
-    .028,
-    "sine",
-    .08
-  );
-
-  tone(
-    392,
-    .34,
-    .022,
-    "sine",
-    .16
-  );
-
-}
-
-function balanceSound(){
-
-  tone(
-    220,
-    .18,
-    .025,
-    "triangle"
-  );
-
-  tone(
-    293.7,
-    .23,
-    .022,
-    "triangle",
-    .1
-  );
-
-  tone(
-    349.2,
-    .27,
-    .018,
-    "triangle",
-    .19
-  );
-
-}
-
-function futureSound(){
-
-  tone(
-    180,
-    .12,
-    .022,
-    "square"
-  );
-
-  tone(
-    270,
-    .16,
-    .018,
-    "square",
-    .12
-  );
-
-  tone(
-    405,
-    .2,
-    .014,
-    "triangle",
-    .24
-  );
-
-}
-
-function powerSound(){
-
-  tone(
-    88,
-    .35,
-    .045,
-    "sawtooth"
-  );
-
-  tone(
-    132,
-    .28,
-    .028,
-    "square",
-    .1
-  );
-
-}
-
-function typeForPath(path){
+function decisionSound(
+  path
+){
 
   if(path==="peace"){
-    return "peace";
-  }
 
-  if(path==="power"){
-    return "power";
-  }
-
-  if(path==="chaos"){
-    return "chaos";
-  }
-
-  return "balance";
-}
-
-function speak(text){
-
-  if(!soundEnabled){
-    return;
-  }
-
-  if(
-    !("speechSynthesis" in window)
-  ){
-    return;
-  }
-
-  try{
-
-    window.speechSynthesis.cancel();
-
-    const utterance =
-      new SpeechSynthesisUtterance(
-        text
-      );
-
-    utterance.lang =
-      "ar-SA";
-
-    utterance.rate =
-      .83;
-
-    utterance.pitch =
-      .48;
-
-    utterance.volume =
-      .95;
-
-    if(!speechVoice){
-
-      const voices =
-        window.speechSynthesis
-        .getVoices();
-
-      speechVoice =
-        voices.find(
-          v =>
-            /ar/i.test(
-              v.lang
-            )
-        ) ||
-        voices[0] ||
-        null;
-    }
-
-    if(speechVoice){
-      utterance.voice =
-        speechVoice;
-    }
-
-    window.speechSynthesis.speak(
-      utterance
+    tone(
+      261.6,
+      .22,
+      .03,
+      "sine"
     );
 
-  }catch(error){}
-}
+    tone(
+      329.6,
+      .28,
+      .026,
+      "sine",
+      .08
+    );
 
-window.speechSynthesis?.addEventListener(
-  "voiceschanged",
-  function(){
+    tone(
+      392,
+      .34,
+      .02,
+      "sine",
+      .16
+    );
 
-    const voices =
-      window.speechSynthesis
-      .getVoices();
+  }else if(
+    path==="power"
+  ){
 
-    speechVoice =
-      voices.find(
-        v =>
-          /ar/i.test(
-            v.lang
-          )
-      ) ||
-      voices[0] ||
-      null;
+    tone(
+      88,
+      .36,
+      .044,
+      "sawtooth"
+    );
+
+    tone(
+      132,
+      .28,
+      .03,
+      "square",
+      .1
+    );
+
+  }else if(
+    path==="chaos"
+  ){
+
+    tone(
+      48,
+      .55,
+      .06,
+      "sawtooth"
+    );
+
+    tone(
+      71,
+      .42,
+      .03,
+      "triangle",
+      .09
+    );
+
+  }else{
+
+    tone(
+      220,
+      .2,
+      .024,
+      "triangle"
+    );
+
+    tone(
+      293.7,
+      .23,
+      .02,
+      "triangle",
+      .1
+    );
+
+    tone(
+      349.2,
+      .27,
+      .017,
+      "triangle",
+      .19
+    );
   }
-);
-
-/* =========================================================
-   انتقالات سينمائية
-========================================================= */
-
-function fadeFromBlack(){
-
-  blackout.style.transition =
-    "opacity 1.2s ease";
-
-  blackout.style.opacity =
-    "1";
-
-  setTimeout(
-    function(){
-
-      blackout.style.opacity =
-        "0";
-
-    },
-    80
-  );
 }
 
 function flashScreen(
@@ -2983,10 +2777,7 @@ function flashScreen(
 
       setTimeout(
         function(){
-
-          flash.style.transition =
-            "";
-
+          flash.style.transition="";
         },
         650
       );
@@ -3010,106 +2801,133 @@ function shake(){
 
   setTimeout(
     function(){
-
       game.classList.remove(
         "shake"
       );
-
     },
     600
   );
 }
 
 /* =========================================================
-   النص السينمائي
+   صوت الراوي
 ========================================================= */
 
-function clearSubtitle(){
+function speak(
+  text
+){
 
-  subtitleLine.textContent =
-    "";
+  if(!soundEnabled){
+    return;
+  }
+
+  if(
+    !("speechSynthesis" in window)
+  ){
+
+    return;
+  }
+
+  try{
+
+    window.speechSynthesis.cancel();
+
+    const utterance =
+      new SpeechSynthesisUtterance(
+        text
+      );
+
+    utterance.lang =
+      "ar-SA";
+
+    utterance.rate =
+      .82;
+
+    utterance.pitch =
+      .52;
+
+    utterance.volume =
+      .95;
+
+    window.speechSynthesis.speak(
+      utterance
+    );
+
+  }catch(error){}
 }
 
-function systemText(text){
+function stopSpeech(){
 
-  systemLine.textContent =
-    text;
+  try{
+
+    if(
+      "speechSynthesis"
+      in window
+    ){
+
+      window.speechSynthesis.cancel();
+    }
+
+  }catch(error){}
 }
 
-function typeSubtitle(
-  text,
-  duration=2100
+/* =========================================================
+   النص
+========================================================= */
+
+async function typeText(
+  text
 ){
 
   subtitleLine.textContent =
     "";
 
-  return new Promise(
-    resolve => {
-
-      let index=0;
-
-      const speed =
+  const speed =
+    Math.max(
+      24,
+      Math.min(
+        55,
+        1500/
         Math.max(
-          18,
-          Math.floor(
-            duration/
-            Math.max(
-              text.length,
-              1
-            )
-          )
-        );
-
-      const timer =
-        setInterval(
-          function(){
-
-            subtitleLine.textContent =
-              text.substring(
-                0,
-                ++index
-              );
-
-            if(
-              index>=text.length
-            ){
-
-              clearInterval(
-                timer
-              );
-
-              resolve();
-            }
-
-          },
-          speed
-        );
-    }
-  );
-}
-
-function wait(ms){
-
-  return new Promise(
-    resolve =>
-      setTimeout(
-        resolve,
-        ms
+          text.length,
+          1
+        )
       )
-  );
+    );
+
+  for(
+    let i=1;
+    i<=text.length;
+    i++
+  ){
+
+    if(!cinematicRunning){
+      return;
+    }
+
+    subtitleLine.textContent =
+      text.substring(
+        0,
+        i
+      );
+
+    await wait(
+      speed
+    );
+  }
 }
 
 /* =========================================================
-   تحديث المؤشرات
+   واجهة البيانات
 ========================================================= */
 
 function updateStats(){
 
   stageBadge.textContent =
-    "الفصل " +
-    String(state.stage)
-    .padStart(2,"0") +
+    "الدرجة " +
+    String(
+      state.stage
+    ).padStart(2,"0")+
     " / 33";
 
   influenceEl.textContent =
@@ -3136,6 +2954,14 @@ function updateStats(){
     Math.round(
       state.trust
     );
+}
+
+function setSystem(
+  text
+){
+
+  systemLine.textContent =
+    text;
 }
 
 /* =========================================================
@@ -3184,14 +3010,12 @@ function load(){
     );
 
     state.stage =
-      Math.max(
+      clamp(
+        Number(
+          state.stage
+        ) || 1,
         1,
-        Math.min(
-          15,
-          Number(
-            state.stage
-          ) || 1
-        )
+        33
       );
 
     if(
@@ -3207,99 +3031,36 @@ function load(){
 }
 
 /* =========================================================
-   نتيجة المسار
+   المشهد السينمائي
 ========================================================= */
 
-function applyPathEffect(
+function sceneTypeAfterDecision(
   selected
 ){
 
-  const path =
-    typeForPath(
-      selected.path
-    );
-
   if(
-    selected.forecast
+    selected.path==="peace"
   ){
 
-    currentSceneType =
-      "forecast";
-
-    futureSound();
-
-    flashScreen(
-      "#666cff",
-      .16
-    );
-
-    systemText(
-      "النظام يسجل توقعك..."
-    );
-
-    return;
+    return "peaceEnding";
   }
 
-  if(path==="peace"){
+  if(
+    selected.path==="power"
+  ){
 
-    peaceSound();
-
-    flashScreen(
-      "#5dffae",
-      .13
-    );
-
-    systemText(
-      "النظام يتحول نحو التهدئة..."
-    );
-
-  }else if(path==="power"){
-
-    powerSound();
-
-    flashScreen(
-      "#ff7b35",
-      .2
-    );
-
-    systemText(
-      "مؤشر النفوذ يرتفع..."
-    );
-
-  }else if(path==="chaos"){
-
-    impactSound();
-
-    flashScreen(
-      "#ff2020",
-      .34
-    );
-
-    shake();
-
-    systemText(
-      "تحذير: النظام يدخل منطقة الخطر..."
-    );
-
-  }else{
-
-    balanceSound();
-
-    flashScreen(
-      "#8a8cff",
-      .1
-    );
-
-    systemText(
-      "التوازن يعيد بناء نفسه..."
-    );
+    return "powerEnding";
   }
 
+  if(
+    selected.path==="chaos"
+  ){
+
+    return "chaosEnding";
+  }
+
+  return "balanceEnding";
 }
-
-/* =========================================================
-   المشهد الافتتاحي للمرحلة
-========================================================= */
 
 async function playStageFilm(){
 
@@ -3307,29 +3068,20 @@ async function playStageFilm(){
     return;
   }
 
-  cinematicRunning =
-    true;
-
-  answered=false;
-
   const stage =
     stages[state.stage];
 
   if(!stage){
-
-    cinematicRunning =
-      false;
-
-    showGate();
-
     return;
   }
 
-  resultLayer.classList.add(
-    "hidden"
-  );
+  cinematicRunning =
+    true;
 
-  gateLayer.classList.add(
+  answered =
+    false;
+
+  resultLayer.classList.add(
     "hidden"
   );
 
@@ -3337,49 +3089,64 @@ async function playStageFilm(){
     "hidden"
   );
 
+  decisionBox.classList.remove(
+    "visible"
+  );
+
   updateStats();
 
   currentSceneType =
     stage.type;
 
-  fadeFromBlack();
+  blackout.style.transition =
+    "opacity 1.1s ease";
 
-  systemText(
+  blackout.style.opacity =
+    "1";
+
+  await wait(280);
+
+  blackout.style.opacity =
+    "0";
+
+  setSystem(
     stage.location
   );
 
-  clearSubtitle();
+  subtitleLine.textContent =
+    "";
 
   await wait(500);
 
   for(
-    let i=0;
-    i<stage.narration.length;
-    i++
+    const line
+    of stage.narration
   ){
 
-    if(!cinematicRunning){
+    if(
+      !cinematicRunning
+    ){
+
       return;
     }
 
-    const line =
-      stage.narration[i];
-
-    await typeSubtitle(
-      line,
-      1750
+    await typeText(
+      line
     );
 
-    speak(line);
+    speak(
+      line
+    );
 
-    await wait(850);
+    await wait(
+      700
+    );
   }
 
   cinematicRunning =
     false;
 
   showDecision();
-
 }
 
 /* =========================================================
@@ -3391,12 +3158,6 @@ function showDecision(){
   const stage =
     stages[state.stage];
 
-  if(!stage){
-    return;
-  }
-
-  answered=false;
-
   question.textContent =
     stage.question;
 
@@ -3404,28 +3165,28 @@ function showDecision(){
     "";
 
   stage.options.forEach(
-    function(option){
+    function(item){
 
       const button =
         document.createElement(
           "button"
         );
 
-      button.type =
-        "button";
-
       button.className =
         "option";
 
+      button.type =
+        "button";
+
       button.textContent =
-        option.text;
+        item.text;
 
       button.addEventListener(
         "click",
         function(){
 
           chooseOption(
-            option,
+            item,
             button
           );
 
@@ -3435,6 +3196,7 @@ function showDecision(){
       options.appendChild(
         button
       );
+
     }
   );
 
@@ -3452,18 +3214,18 @@ function showDecision(){
     }
   );
 
-  systemText(
-    "اختر... والعالم سيتغير."
+  setSystem(
+    "اختر قرارك..."
   );
 }
 
 /* =========================================================
-   الاختيار
+   تنفيذ القرار
 ========================================================= */
 
 async function chooseOption(
   selected,
-  clicked
+  clickedButton
 ){
 
   if(answered){
@@ -3472,40 +3234,35 @@ async function chooseOption(
 
   answered=true;
 
-  const buttons =
-    Array.from(
-      options.querySelectorAll(
-        ".option"
-      )
+  options
+    .querySelectorAll(".option")
+    .forEach(
+      btn =>
+        btn.classList.add(
+          "locked"
+        )
     );
 
-  buttons.forEach(
-    button =>
-      button.classList.add(
-        "locked"
-      )
-  );
-
-  clicked.style.borderColor =
+  clickedButton.style.borderColor =
     "#e9c96d";
 
-  clicked.style.boxShadow =
-    "0 0 30px rgba(233,201,109,.12)";
+  clickedButton.style.boxShadow =
+    "0 0 30px rgba(233,201,109,.13)";
 
   state.influence +=
-    selected.influence || 0;
+    selected.influence;
 
   state.peace +=
-    selected.peace || 0;
+    selected.peace;
 
   state.chaos +=
-    selected.chaos || 0;
+    selected.chaos;
 
   state.balance +=
-    selected.balance || 0;
+    selected.balance;
 
   state.trust +=
-    selected.trust || 0;
+    selected.trust;
 
   state.peace =
     clamp(
@@ -3539,8 +3296,7 @@ async function chooseOption(
     stage:state.stage,
     id:selected.id,
     path:selected.path,
-    title:selected.title,
-    forecast:!!selected.forecast
+    title:selected.title
   });
 
   save();
@@ -3556,56 +3312,87 @@ async function chooseOption(
     "hidden"
   );
 
-  applyPathEffect(
-    selected
-  );
-
   currentSceneType =
-    selected.path === "peace"
-      ? "global"
-      : selected.path === "power"
-      ? "border"
-      : selected.path === "chaos"
-      ? "zero"
-      : selected.path === "balance"
-      ? "mirror"
-      : currentSceneType;
-
-  const narration =
-    getResultNarration(
+    sceneTypeAfterDecision(
       selected
     );
 
-  clearSubtitle();
+  decisionSound(
+    selected.path
+  );
 
-  for(
-    let i=0;
-    i<narration.length;
-    i++
+  if(
+    selected.path==="chaos"
   ){
 
-    await typeSubtitle(
-      narration[i],
-      1700
+    flashScreen(
+      "#ff2020",
+      .35
+    );
+
+    shake();
+
+  }else if(
+    selected.path==="power"
+  ){
+
+    flashScreen(
+      "#ff7f32",
+      .18
+    );
+
+  }else if(
+    selected.path==="peace"
+  ){
+
+    flashScreen(
+      "#66ffad",
+      .12
+    );
+
+  }else{
+
+    flashScreen(
+      "#8e8cff",
+      .09
+    );
+  }
+
+  const lines =
+    resultLines(
+      selected
+    );
+
+  cinematicRunning =
+    true;
+
+  for(
+    const line
+    of lines
+  ){
+
+    await typeText(
+      line
     );
 
     speak(
-      narration[i]
+      line
     );
 
-    await wait(700);
+    await wait(
+      650
+    );
   }
+
+  cinematicRunning =
+    false;
 
   showResult(
     selected
   );
 }
 
-/* =========================================================
-   نصوص النتيجة
-========================================================= */
-
-function getResultNarration(
+function resultLines(
   selected
 ){
 
@@ -3613,9 +3400,9 @@ function getResultNarration(
     selected.path==="peace"
   ){
 
-    return[
+    return [
       "القرار تحرك.",
-      "التوتر ينخفض.",
+      "مؤشرات التوتر تنخفض.",
       selected.result
     ];
   }
@@ -3624,9 +3411,9 @@ function getResultNarration(
     selected.path==="power"
   ){
 
-    return[
+    return [
       "القرار تحرك.",
-      "النفوذ يرتفع.",
+      "مؤشر النفوذ يرتفع.",
       selected.result
     ];
   }
@@ -3635,16 +3422,16 @@ function getResultNarration(
     selected.path==="chaos"
   ){
 
-    return[
+    return [
       "القرار تحرك.",
       "المؤشرات تتحول إلى الأحمر.",
       selected.result
     ];
   }
 
-  return[
+  return [
     "القرار تحرك.",
-    "الأنظمة تعيد حساباتها.",
+    "النظام يعيد حساب توازنه.",
     selected.result
   ];
 }
@@ -3657,27 +3444,32 @@ function showResult(
   selected
 ){
 
-  resultKicker.textContent =
-    "AFTERMATH • " +
-    String(
-      state.stage
-    ).padStart(2,"0");
-
-  resultTitle.textContent =
-    selected.title;
-
-  resultText.textContent =
-    selected.result;
-
   resultLayer.classList.remove(
     "hidden"
   );
 
-  continueButton.textContent =
-    state.stage >= 15
-      ? "الوصول إلى البوابة"
-      : "الفصل التالي";
+  document.getElementById(
+    "resultTitle"
+  ).textContent =
+    selected.title;
 
+  document.getElementById(
+    "resultText"
+  ).textContent =
+    selected.result;
+
+  if(
+    state.stage===33
+  ){
+
+    continueButton.textContent =
+      "إظهار النهاية";
+
+  }else{
+
+    continueButton.textContent =
+      "متابعة";
+  }
 }
 
 /* =========================================================
@@ -3688,22 +3480,23 @@ continueButton.addEventListener(
   "click",
   function(){
 
-    resultLayer.classList.add(
-      "hidden"
-    );
-
     if(
-      state.stage >= 15
+      state.stage===33
     ){
 
-      showGate();
+      showFinalEnding();
 
       return;
     }
 
+    resultLayer.classList.add(
+      "hidden"
+    );
+
     state.stage++;
 
     save();
+
     updateStats();
 
     playStageFilm();
@@ -3711,47 +3504,170 @@ continueButton.addEventListener(
 );
 
 /* =========================================================
-   بوابة الدرجة 16
+   النهاية
 ========================================================= */
 
-function showGate(){
+function calculateEnding(){
+
+  if(
+    state.chaos>=
+    Math.max(
+      state.peace,
+      state.balance,
+      state.influence/1.5
+    )
+  ){
+
+    return "chaos";
+  }
+
+  if(
+    state.influence>=
+    170 &&
+    state.influence>
+    state.balance*3.2
+  ){
+
+    return "power";
+  }
+
+  if(
+    state.peace>=
+    state.balance+12
+  ){
+
+    return "peace";
+  }
+
+  return "balance";
+}
+
+function showFinalEnding(){
 
   stopSpeech();
 
+  resultLayer.classList.remove(
+    "hidden"
+  );
+
+  const ending =
+    calculateEnding();
+
   currentSceneType =
-    "gate";
+    ending==="peace"
+      ? "peaceEnding"
+      : ending==="power"
+      ? "powerEnding"
+      : ending==="chaos"
+      ? "chaosEnding"
+      : "balanceEnding";
 
-  resultLayer.classList.add(
-    "hidden"
-  );
+  let title="";
+  let text="";
 
-  decisionLayer.classList.add(
-    "hidden"
-  );
+  if(
+    ending==="peace"
+  ){
 
-  gateLayer.classList.remove(
-    "hidden"
-  );
+    title =
+      "النهاية: عالم أكثر سلاماً";
 
-  systemText(
-    "الدرجة 16 تنتظر..."
-  );
+    text =
+      "بلغت الدرجة 33، ولم تستخدم النفوذ كغاية. تحولت قراراتك إلى مسار يميل إلى التعاون والتهدئة. في هذا المسار، يبقى العالم قائماً لأنك قررت أن القوة ليست دائماً في الصدام.";
 
-  subtitleLine.textContent =
-    "وصلت إلى البوابة الأولى.";
+    flashScreen(
+      "#69ffad",
+      .18
+    );
 
-  stageBadge.textContent =
-    "بوابة 16";
-}
+    decisionSound(
+      "peace"
+    );
 
-restartFromGate.addEventListener(
-  "click",
-  function(){
+  }else if(
+    ending==="power"
+  ){
 
-    restartGame();
+    title =
+      "النهاية: عالم تحت النفوذ";
 
+    text =
+      "بلغت الدرجة 33، وأثبتت أن النفوذ يمكن أن يعيد ترتيب العالم. لكن النظام الجديد يحمل سؤالاً أكبر: هل يستطيع عالم واحد أن يعيش طويلاً تحت مركز قوة واحد؟";
+
+    flashScreen(
+      "#ff7e35",
+      .2
+    );
+
+    decisionSound(
+      "power"
+    );
+
+  }else if(
+    ending==="chaos"
+  ){
+
+    title =
+      "النهاية: عالم مكسور";
+
+    text =
+      "بلغت الدرجة 33، لكن الفوضى أصبحت أقوى من النظام. لقد اختبرت الحد الأقصى للعبة، والآن لم يعد المستقبل يشبه ما كان عليه في البداية.";
+
+    flashScreen(
+      "#ff2020",
+      .38
+    );
+
+    shake();
+
+    decisionSound(
+      "chaos"
+    );
+
+  }else{
+
+    title =
+      "النهاية: التوازن";
+
+    text =
+      "بلغت الدرجة 33، ولم تسمح لأي قوة بأن تبتلع العالم. لم يكن مسارك مثالياً، لكنه أبقى النظام واقفاً. وفي عالم القرارات، قد يكون ذلك أكبر انتصار.";
+
+    flashScreen(
+      "#8f90ff",
+      .12
+    );
+
+    decisionSound(
+      "balance"
+    );
   }
-);
+
+  document.getElementById(
+    "resultTitle"
+  ).textContent =
+    title;
+
+  document.getElementById(
+    "resultText"
+  ).textContent =
+    text;
+
+  continueButton.textContent =
+    "إعادة اللعبة من الدرجة 01";
+
+  continueButton.onclick =
+    function(){
+
+      continueButton.onclick =
+        null;
+
+      restartGame();
+    };
+
+  setSystem(
+    "اكتملت درجات السيد الخفي 33..."
+  );
+}
 
 /* =========================================================
    إعادة اللعبة
@@ -3780,7 +3696,7 @@ function restartGame(){
 
   }catch(error){}
 
-  introLayer.classList.remove(
+  resultLayer.classList.add(
     "hidden"
   );
 
@@ -3788,42 +3704,30 @@ function restartGame(){
     "hidden"
   );
 
-  resultLayer.classList.add(
+  introLayer.classList.remove(
     "hidden"
   );
-
-  gateLayer.classList.add(
-    "hidden"
-  );
-
-  decisionBox.classList.remove(
-    "visible"
-  );
-
-  subtitleLine.textContent =
-    "";
-
-  updateStats();
 
   currentSceneType =
     "global";
 
-  systemText(
+  subtitleLine.textContent =
+    "";
+
+  setSystem(
     "النظام جاهز..."
   );
+
+  updateStats();
 }
 
 restartButton.addEventListener(
   "click",
-  function(){
-
-    restartGame();
-
-  }
+  restartGame
 );
 
 /* =========================================================
-   الصوت تشغيل / إيقاف
+   الصوت
 ========================================================= */
 
 soundButton.addEventListener(
@@ -3838,26 +3742,15 @@ soundButton.addEventListener(
         ? "الصوت: تشغيل"
         : "الصوت: إيقاف";
 
-    if(!soundEnabled){
-      stopSpeech();
-    }
-  }
-);
-
-function stopSpeech(){
-
-  try{
-
     if(
-      "speechSynthesis"
-      in window
+      !soundEnabled
     ){
 
-      window.speechSynthesis.cancel();
+      stopSpeech();
     }
 
-  }catch(error){}
-}
+  }
+);
 
 /* =========================================================
    بدء اللعبة
@@ -3865,7 +3758,7 @@ function stopSpeech(){
 
 startButton.addEventListener(
   "click",
-  async function(){
+  function(){
 
     initAudio();
 
@@ -3876,12 +3769,11 @@ startButton.addEventListener(
     updateStats();
 
     playStageFilm();
-
   }
 );
 
 /* =========================================================
-   أول تشغيل
+   تهيئة
 ========================================================= */
 
 load();
@@ -3892,29 +3784,11 @@ currentSceneType =
   stages[state.stage]?.type ||
   "global";
 
-systemText(
+setSystem(
   "النظام جاهز..."
 );
 
-/* =========================================================
-   حلقة الرسم
-========================================================= */
-
-function cinematicRender(){
-
-  clearScene();
-
-  drawSceneForStage(
-    state.stage
-  );
-
-  requestAnimationFrame(
-    cinematicRender
-  );
-}
-
-cinematicRender();
-
+drawScene();
 </script>
 
 </body>
